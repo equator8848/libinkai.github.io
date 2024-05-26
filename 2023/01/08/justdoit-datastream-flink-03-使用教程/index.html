@@ -1,0 +1,509 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Flink使用教程 | Equator's Blog</title><meta name="author" content="Equator"><meta name="copyright" content="Equator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据流处理实战">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flink使用教程">
+<meta property="og:url" content="https://equator8848.xyz/2023/01/08/justdoit-datastream-flink-03-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Equator&#39;s Blog">
+<meta property="og:description" content="数据流处理实战">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://equator8848.xyz/img/default_cover.jpg">
+<meta property="article:published_time" content="2023-01-08T16:06:59.000Z">
+<meta property="article:modified_time" content="2024-05-26T16:39:36.425Z">
+<meta property="article:author" content="Equator">
+<meta property="article:tag" content="Flink">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://equator8848.xyz/img/default_cover.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://equator8848.xyz/2023/01/08/justdoit-datastream-flink-03-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Flink使用教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-27 00:39:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/default_cover.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Equator's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Flink使用教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-08T16:06:59.000Z" title="发表于 2023-01-09 00:06:59">2023-01-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-26T16:39:36.425Z" title="更新于 2024-05-27 00:39:36">2024-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>19分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Flink使用教程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="流处理API"><a href="#流处理API" class="headerlink" title="流处理API"></a>流处理API</h1><h2 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h2><ul>
+<li><p><strong>createExecutionEnvironment</strong>，返回本地执行环境，需要在调用时指定默认的并行度。</p>
+</li>
+<li><p><strong>createRemoteEnvironment</strong>，返回远程执行环境，需要指定JobManager的IP以及端口号，并指定要在集群种运行的Jar包。</p>
+</li>
+<li><p>以上两种方法不太通用，可以使用<strong>getExecutionEnvironment</strong>，根据提交任务的方式返回本地的或者集群的运行环境，为最常用的执行环境创建方式。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span> ExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line">或者</span><br><span class="line"><span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span> StreamExecutionEnvironment.getExecutionEnvironment();</span><br></pre></td></tr></table></figure>
+
+<h2 id="Source"><a href="#Source" class="headerlink" title="Source"></a>Source</h2><h3 id="从集合中读取数据"><a href="#从集合中读取数据" class="headerlink" title="从集合中读取数据"></a>从集合中读取数据</h3><h3 id="从文件中读取数据"><a href="#从文件中读取数据" class="headerlink" title="从文件中读取数据"></a>从文件中读取数据</h3><h3 id="从消息队列读取数据（Kafka）"><a href="#从消息队列读取数据（Kafka）" class="headerlink" title="从消息队列读取数据（Kafka）"></a>从消息队列读取数据（Kafka）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span> StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line"></span><br><span class="line"><span class="type">Properties</span> <span class="variable">conf</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">conf.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, <span class="string">&quot;kafka1:9092;kafka2:9093;kafka3:9094&quot;</span>);</span><br><span class="line"></span><br><span class="line">DataStreamSource&lt;String&gt; dataStreamSource = env.addSource(<span class="keyword">new</span> <span class="title class_">FlinkKafkaConsumer</span>&lt;&gt;(<span class="string">&quot;sensor_topic&quot;</span>, <span class="keyword">new</span> <span class="title class_">SimpleStringSchema</span>(), conf));</span><br><span class="line"></span><br><span class="line">dataStreamSource.print(<span class="string">&quot;sensor&quot;</span>);</span><br><span class="line"></span><br><span class="line">env.execute();</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义消息源"><a href="#自定义消息源" class="headerlink" title="自定义消息源"></a>自定义消息源</h3><ul>
+<li>实现自定义SourceFunction</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SensorDataSource</span> <span class="keyword">implements</span> <span class="title class_">SourceFunction</span>&lt;SensorReading&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 标记位控制数据的产生</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="variable">isRunning</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">(SourceContext&lt;SensorReading&gt; sourceContext)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">sensorNum</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">        <span class="comment">// 随机生成初始化温度</span></span><br><span class="line">        Map&lt;String, Double&gt; temperatureMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;(sensorNum);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; sensorNum; i++) &#123;</span><br><span class="line">            <span class="comment">// 服从正态分布的温度</span></span><br><span class="line">            temperatureMap.put(<span class="string">&quot;sensor_&quot;</span> + (i + <span class="number">1</span>), <span class="number">60</span> + random.nextGaussian() * <span class="number">20</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 在循环中源源不断地生成数据</span></span><br><span class="line">        <span class="keyword">while</span> (isRunning) &#123;</span><br><span class="line">            <span class="keyword">for</span> (String sensorId : temperatureMap.keySet()) &#123;</span><br><span class="line">                <span class="comment">// 在原温度基础上随机波动</span></span><br><span class="line">                <span class="type">Double</span> <span class="variable">temperature</span> <span class="operator">=</span> temperatureMap.get(sensorId) + random.nextGaussian();</span><br><span class="line">                temperatureMap.put(sensorId, temperature);</span><br><span class="line">                sourceContext.collect(<span class="keyword">new</span> <span class="title class_">SensorReading</span>(sensorId, System.currentTimeMillis(), temperature));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 控制输出频率</span></span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">cancel</span><span class="params">()</span> &#123;</span><br><span class="line">        isRunning = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SourceFunctionTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span> StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line">        <span class="comment">// 自定义SourceFunction</span></span><br><span class="line">        DataStreamSource&lt;SensorReading&gt; dataStreamSource = env.addSource(<span class="keyword">new</span> <span class="title class_">SensorDataSource</span>());</span><br><span class="line"></span><br><span class="line">        dataStreamSource.print(<span class="string">&quot;sensor&quot;</span>);</span><br><span class="line"></span><br><span class="line">        env.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h2><h3 id="基本转换操作"><a href="#基本转换操作" class="headerlink" title="基本转换操作"></a>基本转换操作</h3><ul>
+<li>map，一对一转换</li>
+<li>flatMap，一对一或者一对多转换</li>
+<li>filter，过滤</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BaseTransformation</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span> StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line">        <span class="comment">// 加上这句代码可以实现顺序输出</span></span><br><span class="line">        env.setParallelism(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        DataStreamSource&lt;String&gt; fileDataStreamSource = env.readTextFile(<span class="string">&quot;src/main/resources/data/sensordata.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        DataStream&lt;Integer&gt; mapStream = fileDataStreamSource.map(String::length);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        DataStream&lt;String&gt; flatMapStream = fileDataStreamSource.flatMap(<span class="keyword">new</span> <span class="title class_">FlatMapFunction</span>&lt;String, String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">flatMap</span><span class="params">(String line, Collector&lt;String&gt; collector)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">                String[] fields = line.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">                <span class="keyword">for</span> (String field : fields) &#123;</span><br><span class="line">                    collector.collect(field);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        SingleOutputStreamOperator&lt;String&gt; filterStream = fileDataStreamSource.filter((line) -&gt; line.startsWith(<span class="string">&quot;sensor_1&quot;</span>));</span><br><span class="line"></span><br><span class="line">        mapStream.print(<span class="string">&quot;map&quot;</span>);</span><br><span class="line">        flatMapStream.print(<span class="string">&quot;flatMap&quot;</span>);</span><br><span class="line">        filterStream.print(<span class="string">&quot;filter&quot;</span>);</span><br><span class="line"></span><br><span class="line">        env.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>keyBy，分组：DataStream-&gt;KeyedStream，逻辑地将一个流拆分为不相交的分区，每个分区包含具有相同key的元素，在内部以hash的方式实现。</li>
+</ul>
+<h3 id="滚动聚合"><a href="#滚动聚合" class="headerlink" title="滚动聚合"></a>滚动聚合</h3><blockquote>
+<p>对KeyedStreamd的每一个支流做聚合</p>
+</blockquote>
+<ul>
+<li>sum</li>
+<li>min，保留一个字段；minBy，保留全部字段</li>
+<li>max；maxBy</li>
+</ul>
+<h3 id="reduce聚合"><a href="#reduce聚合" class="headerlink" title="reduce聚合"></a>reduce聚合</h3><blockquote>
+<p>KeyedStreamd-&gt;DataStream，一个分组数据流的聚合操作，合并当前的元素和上次聚合的结果，产生一个新的结果。（更加一般化的聚合操作）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReduceAggregationTest</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span> StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line">        <span class="comment">// 加上这句代码可以实现顺序输出</span></span><br><span class="line">        env.setParallelism(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        DataStreamSource&lt;String&gt; fileDataStreamSource = env.readTextFile(<span class="string">&quot;src/main/resources/data/sensordata.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// String数据包装为SensorReading</span></span><br><span class="line">        DataStream&lt;SensorReading&gt; dataStream = fileDataStreamSource.map((line) -&gt; &#123;</span><br><span class="line">            String[] fields = line.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SensorReading</span>(fields[<span class="number">0</span>], Long.valueOf(fields[<span class="number">1</span>]), Double.valueOf(fields[<span class="number">2</span>]));</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        KeyedStream&lt;SensorReading, Tuple&gt; keyedStream = dataStream.keyBy(<span class="string">&quot;id&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// reduce聚合，取最大的温度值以及最新的时间戳</span></span><br><span class="line">        SingleOutputStreamOperator&lt;SensorReading&gt; reduceStream = keyedStream.reduce(<span class="keyword">new</span> <span class="title class_">ReduceFunction</span>&lt;SensorReading&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> SensorReading <span class="title function_">reduce</span><span class="params">(SensorReading oldVal, SensorReading newVal)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SensorReading</span>(oldVal.getId(), newVal.getTimestamp(), Math.max(oldVal.getTemperature(), newVal.getTemperature()));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        reduceStream.print();</span><br><span class="line"></span><br><span class="line">        env.execute();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分流"><a href="#分流" class="headerlink" title="分流"></a>分流</h3><blockquote>
+<p>Split：DataStream-&gt;SplitStream，根据某些特征把一个DataStream拆分为多个或者多个DataStream。</p>
+<p>Select：SplitStream-&gt;DataStream，从一个SplitStream中获取一个或者多个DataStream。</p>
+<p>Split与Select两个操作是分流的一个流程</p>
+</blockquote>
+<h3 id="connect合流"><a href="#connect合流" class="headerlink" title="connect合流"></a>connect合流</h3><blockquote>
+<p>DataStream，DataStream-&gt;ConnectStreams，连接两个保持他们类型的数据流，两个数据流被Connect之后，内部的数据和形式不变，两条流相互独立。需要通过CoMap或者CoFlatMap操作合并为真正的一条数据流。</p>
+</blockquote>
+<h3 id="union合流"><a href="#union合流" class="headerlink" title="union合流"></a>union合流</h3><blockquote>
+<p>DataStream-&gt;DataStream，连接多条数据类型一致的数据流</p>
+</blockquote>
+<p><img src="/2023/01/08/justdoit-datastream-flink-03-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/%E6%95%B0%E6%8D%AE%E6%B5%81%E8%BD%AC%E6%8D%A2.jpg" alt="数据流转换"></p>
+<h2 id="Sink"><a href="#Sink" class="headerlink" title="Sink"></a>Sink</h2><ul>
+<li>对外的输出操作都需要使用Sink完成，<code>stream.addSink(new SinkFunction(xxx))</code>，Flink提供了一些连接器，其余的需要用户自定义</li>
+<li>Kafka等消息队列可以作为source来源或者sink的目的地，HDFS、Redis等一般只作为sink目的地。</li>
+</ul>
+<h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><ul>
+<li>使用Kafka作为数据管道的两端，Flink进行ETL操作</li>
+</ul>
+<h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><h3 id="ES"><a href="#ES" class="headerlink" title="ES"></a>ES</h3><h3 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h3><ul>
+<li>继承RichSinkFunction</li>
+</ul>
+<h2 id="Flink数据类型"><a href="#Flink数据类型" class="headerlink" title="Flink数据类型"></a>Flink数据类型</h2><ul>
+<li>Flink使用类型信息的概念来表示数据类型，为每个数据类型生成特定的序列化器、反序列化器以及比较器。</li>
+<li>Flink具有类型提取系统，分析函数的输入和返回类型，以自动获取类型信息。但是再lambda函数或者泛型类型场景下，需要程序显式地提供类型信息。</li>
+<li>具体类型<ul>
+<li>Java、Scala的基础类型以及其包装类型</li>
+<li>Java、Scala的元组类型Tuple（最大25元组）</li>
+<li>Scala样例类（Scala Classes）、Java简单对象（POJO，需要有空参构造方法以及setter、getter方法）</li>
+</ul>
+</li>
+</ul>
+<h2 id="UDF函数类"><a href="#UDF函数类" class="headerlink" title="UDF函数类"></a>UDF函数类</h2><h3 id="函数类"><a href="#函数类" class="headerlink" title="函数类"></a>函数类</h3><ul>
+<li>Flink暴露了所有UDF函数的接口（实现方式为接口或者抽象类），如MapFunction、FilterFunction。</li>
+</ul>
+<h3 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h3><ul>
+<li>lambda表达式</li>
+</ul>
+<h3 id="富函数"><a href="#富函数" class="headerlink" title="富函数"></a>富函数</h3><ul>
+<li>DataStream API提供的函数类接口，所有的Flink的函数类都有其Rich版本。其可以获取运行环境的上下文（<code>getRuntimeContext</code>，获取子任务编号、上下文、状态等信息），并拥有一些生命周期方法（<code>open</code>、<code>close</code>），可以实现更加复杂的功能。如RichMapFunction、RichFilterFunction。</li>
+</ul>
+<h2 id="数据重分区操作"><a href="#数据重分区操作" class="headerlink" title="数据重分区操作"></a>数据重分区操作</h2><ul>
+<li>forward，传播到下一个分区</li>
+<li>keyBy，哈希重分区</li>
+<li>broadcast，广播到所有下游</li>
+<li>shuffle，随机传播到下游</li>
+<li>reblance，轮询传播</li>
+<li>rescale，分组轮询</li>
+<li>global，将全部数据汇总到下游第一个分区</li>
+<li>partitionCustom，自定义重分区分区器</li>
+</ul>
+<h1 id="窗口API"><a href="#窗口API" class="headerlink" title="窗口API"></a>窗口API</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><blockquote>
+<p>窗口（window）就是将无限流切割为有限流的一种方式，其将无限流数据分发到有限大小的桶（bucket）中进行分析。</p>
+</blockquote>
+<h2 id="窗口的类型"><a href="#窗口的类型" class="headerlink" title="窗口的类型"></a>窗口的类型</h2><h3 id="时间窗口（Time-Window）"><a href="#时间窗口（Time-Window）" class="headerlink" title="时间窗口（Time Window）"></a>时间窗口（Time Window）</h3><blockquote>
+<p>按照时间开窗</p>
+</blockquote>
+<h4 id="滚动时间窗口（Tumbling）"><a href="#滚动时间窗口（Tumbling）" class="headerlink" title="滚动时间窗口（Tumbling）"></a>滚动时间窗口（Tumbling）</h4><ul>
+<li>将数据依据固定的窗口长度进行切分，时间对齐，窗口长度（<code>window_size</code>）固定，没有重叠。</li>
+</ul>
+<h4 id="滑动时间窗口（Sliding）"><a href="#滑动时间窗口（Sliding）" class="headerlink" title="滑动时间窗口（Sliding）"></a>滑动时间窗口（Sliding）</h4><ul>
+<li>滚动窗口的广义形式，由固定的窗口长度（<code>window_size</code>）和滑动间隔（<code>window_slide</code>）组成，可以有重叠（一条数据最多属于<code>window_size/window_slide</code>个窗口）</li>
+<li>可以通过偏移量控制窗口起始位置。</li>
+</ul>
+<h4 id="会话窗口"><a href="#会话窗口" class="headerlink" title="会话窗口"></a>会话窗口</h4><ul>
+<li>一段时间<code>timeout</code>没有接收到新数据就会生成新的窗口，时间不对齐</li>
+</ul>
+<h3 id="计数窗口（Count-Window）"><a href="#计数窗口（Count-Window）" class="headerlink" title="计数窗口（Count Window）"></a>计数窗口（Count Window）</h3><blockquote>
+<p>按照数据条数开窗</p>
+</blockquote>
+<h4 id="滚动计数窗口"><a href="#滚动计数窗口" class="headerlink" title="滚动计数窗口"></a>滚动计数窗口</h4><h4 id="滑动计数窗口"><a href="#滑动计数窗口" class="headerlink" title="滑动计数窗口"></a>滑动计数窗口</h4><h2 id="窗口分配器"><a href="#窗口分配器" class="headerlink" title="窗口分配器"></a>窗口分配器</h2><ul>
+<li>使用window方法定义一个窗口，基于这个window去做一些聚合操作。或者使用timeWindow或者countWindow方法直接定义时间窗口与计数窗口。</li>
+<li>开窗的前提是处理keyedStream，否则使用windowAll方法，需要将所有数据发送到下游同一个算子，类似于global的传播方式。</li>
+</ul>
+<h2 id="窗口增量聚合"><a href="#窗口增量聚合" class="headerlink" title="窗口增量聚合"></a>窗口增量聚合</h2><blockquote>
+<p>每条数据到来就进行计算，保持一个简单的状态，如ReduceFunction，AggregationFunction。</p>
+</blockquote>
+<ul>
+<li>ReduceFunction即reduce聚合</li>
+<li>AggregationFunction&lt;IN,ACC,OUT&gt;，ACC表示累加器</li>
+</ul>
+<h2 id="窗口全窗口聚合"><a href="#窗口全窗口聚合" class="headerlink" title="窗口全窗口聚合"></a>窗口全窗口聚合</h2><blockquote>
+<p>先把窗口所有的数据收集起来再处理，计算时遍历所有数据处理，如ProcessFunction、WindowFunction。 统计平均数、中位数等场景下需要用到。更加灵活，可操作性更强。</p>
+</blockquote>
+<ul>
+<li>WindowFunction&lt;IN,OUT,KEY,W&gt;</li>
+</ul>
+<h2 id="其它可选API"><a href="#其它可选API" class="headerlink" title="其它可选API"></a>其它可选API</h2><h1 id="时间语义"><a href="#时间语义" class="headerlink" title="时间语义"></a>时间语义</h1><ul>
+<li>Event Time：事件创建的时间</li>
+<li>Ingestion Time：数据进入Flink的时间</li>
+<li>Processing Time：执行操作算子的本地系统时间，与机器相关</li>
+</ul>
+<p><img src="/2023/01/08/justdoit-datastream-flink-03-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/image-20210627205306914.png" alt="image-20210627205306914"></p>
+<ul>
+<li>一般来说，EventTime更为重要，其代表了事件的实际发生时间，可以从日志数据时间戳中提取。 （EventTime使用更大的时间延迟来换取相对更加准确的计算结果）</li>
+<li>时间语义的设置在环境中进行设置</li>
+</ul>
+<h1 id="WaterMark"><a href="#WaterMark" class="headerlink" title="WaterMark"></a>WaterMark</h1><h2 id="乱序数据带来的问题"><a href="#乱序数据带来的问题" class="headerlink" title="乱序数据带来的问题"></a>乱序数据带来的问题</h2><ul>
+<li>当Flink以EventTime模式处理数据时，其根据数据的时间戳来处理基于时间的算子，由于网络、分布式等原因，会导致乱序数据的产生。</li>
+</ul>
+<h2 id="WaterMark基本原理"><a href="#WaterMark基本原理" class="headerlink" title="WaterMark基本原理"></a>WaterMark基本原理</h2><blockquote>
+<p>由于Flink延迟较低，迟到数据的延迟也不高，数据比较集中</p>
+</blockquote>
+<ul>
+<li>可以这样处理乱序事件：窗口应该关闭的时候，不立即触发窗口的关闭而是等待一段事件，等迟到的数据来了之后关闭，一般结合window使用。WaterMark让程序自己平衡延迟和结果正确性，它的设置需要一定的经验。</li>
+<li>WaterMark是一条特殊的带有时间戳的数据记录，时间戳必须单调递增以确保任务的事件时间时钟在向前推进而不是后退。</li>
+</ul>
+<h2 id="WaterMark在任务间的传递"><a href="#WaterMark在任务间的传递" class="headerlink" title="WaterMark在任务间的传递"></a>WaterMark在任务间的传递</h2><ul>
+<li>WaterMark是一条特殊的数据，从上游传递到下游，采取广播的方式。</li>
+<li>算子作为下游接收WaterMark时，保留每个上游任务最新的的WaterMark即分区水位线，算子选取做小的WM作为自己的事件时钟。</li>
+</ul>
+<h2 id="WaterMark的使用"><a href="#WaterMark的使用" class="headerlink" title="WaterMark的使用"></a>WaterMark的使用</h2><ul>
+<li>基本流程：环境中设置时间语义，提取数据的时间戳，生成WaterMark。<code>assignTimestampAndWatermarks</code>方法，<code>BoundedOutOfOrdernessTimestampExtractor</code>时间戳抽取类。<code>AscendingTimestampExtractor</code>用来处理正常排序的升序数据。</li>
+<li>WaterMark可以间断性生成（WM生成很多），周期性生成（适合数据量大的情况）</li>
+</ul>
+<h2 id="设定原则"><a href="#设定原则" class="headerlink" title="设定原则"></a>设定原则</h2><ul>
+<li>经验值</li>
+<li>WM设置延迟时间太长，结果产出可能很慢，解决方法是到达水位线前输出一个近似的结果。VM设置延迟时间太短，可能收到错误的结果，可以通过Flink的迟到数据处理机制纠正结果。</li>
+</ul>
+<h1 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h1><ul>
+<li>由一个任务维护，并且用来计算某个结果的所有数据，都属于这个任务的状态。可以认为是一个本地变量，可以被任务的业务逻辑访问。</li>
+<li>Flink会进行状态管理，保证状态一致性，故障处理以及高效存储访问。</li>
+<li>可以在富函数类的close生命周期方法中清理状态资源。</li>
+</ul>
+<h2 id="算子状态"><a href="#算子状态" class="headerlink" title="算子状态"></a>算子状态</h2><blockquote>
+<p>Operator State，算子状态的作用范围限定为算子任务</p>
+</blockquote>
+<ul>
+<li>算子状态是对于同一个子任务共享的，不能由相同或者不同算子的另一个子任务访问。</li>
+</ul>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><ul>
+<li>列表状态 List State</li>
+<li>联合列表状态 Union List State</li>
+<li>广播状态 Broadcast State</li>
+</ul>
+<h2 id="键控状态"><a href="#键控状态" class="headerlink" title="键控状态"></a>键控状态</h2><blockquote>
+<p>Keyed State，根据输入数据流中定义的键key来维护和访问</p>
+</blockquote>
+<ul>
+<li>键控状态根据数据流中定义的键来维护和访问的。Flink为每个key维护一个状态实例，并将具有相同键的所有数据都分到同一个算子任务中，该任务维护和处理这个key对应的状态。</li>
+<li>当任务处理一条数据时，其自动将状态的访问范围限定为当前数据的key。</li>
+</ul>
+<h3 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h3><ul>
+<li>Value State</li>
+<li>List State</li>
+<li>Map State</li>
+<li>Reducing State &amp; Aggregation State</li>
+</ul>
+<h2 id="状态后端"><a href="#状态后端" class="headerlink" title="状态后端"></a>状态后端</h2><ul>
+<li>状态的存储，访问以及维护由一个可插入的组件决定，该组件就是状态后端（State Backend）。其主要负责：本地状态管理，将检查点（CheckPoint）状态写入远程存储。</li>
+</ul>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><ul>
+<li><p>MemoryStateBackend：内存级别的状态后端，状态保存在TaskManager的JVM堆上，检查点状态存储在JobManager的JVM堆上。快速但是不稳定。</p>
+</li>
+<li><p>FsStateBacked：将检查点写入远程持久的文件系统（HDFS）上，本地存储仍然保存在本地。</p>
+</li>
+<li><p>RocksDBStateBackend：将所有状态序列化后写入本地RocksDB中存储。（适合需要消耗大量内存的任务）</p>
+</li>
+</ul>
+<h1 id="ProcessFunction-API（底层API）"><a href="#ProcessFunction-API（底层API）" class="headerlink" title="ProcessFunction API（底层API）"></a>ProcessFunction API（底层API）</h1><blockquote>
+<p>访问时间戳（事件时间）、watermark，以及注册定时事件</p>
+</blockquote>
+<ul>
+<li>根据不同的数据流，需要调用不同的ProcessFunction（都是抽象类）</li>
+</ul>
+<h2 id="KeyedProcessFunction"><a href="#KeyedProcessFunction" class="headerlink" title="KeyedProcessFunction"></a>KeyedProcessFunction</h2><ul>
+<li>获取时间服务，定义定时事件（删除定时器需要利用键控状态保存定时器触发时间，利用该时间进行删除），侧输出流（自定义侧输出流实现分流操作）</li>
+</ul>
+<h2 id="CoProcessFunction"><a href="#CoProcessFunction" class="headerlink" title="CoProcessFunction"></a>CoProcessFunction</h2><h1 id="容错机制"><a href="#容错机制" class="headerlink" title="容错机制"></a>容错机制</h1><h2 id="一致性检查点（checkpoint）"><a href="#一致性检查点（checkpoint）" class="headerlink" title="一致性检查点（checkpoint）"></a>一致性检查点（checkpoint）</h2><ul>
+<li>Flink故障恢复机制的核心就是应用状态的一致性检查点，有状态流应用的一致性检查点，其实就是所有任务的状态，在某个时间点的一份拷贝（快照）。这个时间点，应该就是所有任务都恰好处理完一个相同输入数据的时刻。</li>
+</ul>
+<h2 id="从检查点恢复状态"><a href="#从检查点恢复状态" class="headerlink" title="从检查点恢复状态"></a>从检查点恢复状态</h2><ul>
+<li>如果发生故障，Flink将会使用最近的检查点来一致恢复应用程序的状态，并且重新启动处理流程（主要是Source组件重放数据，因为Kafka等消息队列可以通过offset从指定的位置读取数据）。</li>
+<li>故障恢复三部曲：</li>
+</ul>
+<ol>
+<li>重启任务</li>
+<li>从检查点读取状态并重置状态</li>
+<li>消费并处理检查点到故障发生之前的数据</li>
+</ol>
+<ul>
+<li>检查点机制可以为应用程序状态提供ExactlyOnce的保障</li>
+</ul>
+<h2 id="Flink检查点算法"><a href="#Flink检查点算法" class="headerlink" title="Flink检查点算法"></a>Flink检查点算法</h2><ul>
+<li>检查点的保存不需要暂停整个世界：暂停应用，保存状态到检查点，再重新恢复应用。</li>
+<li>Flink的算法，基于Chandy-Lamport算法的分布式快照，将检查点的保存和数据处理分离开，不用暂定整个应用。主体思路是各个节点做了快照之后，由JobManager组合成为整个拓扑的状态。</li>
+<li>Flink的检查点算法使用到了一种称为分界线（barrier）的数据形式，其将一条流上的数据按照不同的检查点分开。分界线之前的数据导致的状态更改，都会被包含在当前分界线所属的检查点中，而基于分界线之后的数据导致的状态修改，都会被包含在之后的检查点之中。</li>
+<li>具体流程<ol>
+<li>JobManager会向每个Source任务发送一条带有新检查点ID的消息，以此启动检查点。</li>
+<li>数据源将它们的状态写入检查点（状态后端），并发出一个检查点barrier。状态后端在状态写入检查点后，会返回通知给Source任务，Source任务会向JobManager确认检查点完成。</li>
+<li>分界线对齐：barrier向下游传递，任务会等待所有输入分区的分界线到达，对于barrier已经到达的分区，继续达到的数据（barrier之后的数据）将会被缓存。barrier尚未达到的分区，数据（barrier之前的数据）会被正常处理。当收到所有输入分区的分界线时，任务就将其状态保存到状态后端的检查点中，然后将barrier继续向下游发送。向下游转发检查点barrier之后，任务将继续正常的数据处理。</li>
+<li>Sink任务向JobManager确认状态保存到检查点完毕。当所有任务都确认已经成功将状态保存到检查点时，检查点就真正完成了。</li>
+</ol>
+</li>
+</ul>
+<h2 id="保存点（save-points）"><a href="#保存点（save-points）" class="headerlink" title="保存点（save points）"></a>保存点（save points）</h2><ul>
+<li>Flink还提供了自定义的镜像保存功能，即保存点。其实现算法与检查点基本类似，因此可以认为保存点就是具有一些额外元数据的检查点。</li>
+<li>Flink不会自动创建保存点，需要用户或者外部调度程序明确地触发创建操作。除了故障恢复之外，保存点还可以用于有计划的手动备份，更新应用程序，版本迁移，暂停和重启应用程序等。</li>
+</ul>
+<h2 id="检查点和重启策略配置"><a href="#检查点和重启策略配置" class="headerlink" title="检查点和重启策略配置"></a>检查点和重启策略配置</h2><ul>
+<li>启动检查点机制，<code>env.enableCheckPoint(interval)</code>，配置状态一致性策略、超时时间、最多同时检查点数量（默认为1），限制检查点触发间隔、容忍失败的保存点数目（默认为0）等。</li>
+<li>重启策略配置，<code>env.setRestartStrategy(strategy)</code>。主要有固定延迟重启（重启尝试次数，重启间隔），失败率重启（一定的时间内，重启失败的次数）。</li>
+</ul>
+<h1 id="状态一致性"><a href="#状态一致性" class="headerlink" title="状态一致性"></a>状态一致性</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>有状态的流式处理，每个算子任务都可以有自己的状态。所谓状态一致性，其实就是我们所说的计算结果需要保证准确，数据处理需要不重不漏。故障恢复后的状态也应该是一致的。</li>
+<li>At-Most-Once 最多一次：最多处理一次事件，遇到故障时什么都不做。</li>
+<li>At-Least-Once 最少一次：不丢失数据但是一些数据可能会被处理多次。（UV数据统计）</li>
+<li>Exactly-Once 精确一次：数据处理不重不漏。</li>
+</ul>
+<h2 id="一致性检查点"><a href="#一致性检查点" class="headerlink" title="一致性检查点"></a>一致性检查点</h2><ul>
+<li>checkpoints机制可以保证一致性</li>
+</ul>
+<h2 id="端到端状态一致性"><a href="#端到端状态一致性" class="headerlink" title="端到端状态一致性"></a>端到端状态一致性</h2><ul>
+<li>端到端状态一致性意味着正确的结果贯穿了整个流处理应用，每个组件都保证了它自己的一致性。整个端到端的一致性级别取决于所有组件中一致性最弱的组件。</li>
+<li>内部保证：checkpoints</li>
+<li>source保证：可重设数据的读取位置</li>
+<li>sink端保证：故障恢复时，数据不会重复写入外部系统，即幂等性写入或者事务写入。</li>
+</ul>
+<h3 id="幂等性写入"><a href="#幂等性写入" class="headerlink" title="幂等性写入"></a>幂等性写入</h3><ul>
+<li>一个操作可以重复执行多重，但是只导致一次结果更改，后续重复执行不生效。（如Hash表的写入覆盖）</li>
+<li>最终结果一致但是中间状态可能不一致</li>
+</ul>
+<h3 id="事务写入"><a href="#事务写入" class="headerlink" title="事务写入"></a>事务写入</h3><ul>
+<li>构建的事务对应着checkpoint，等到checkpoint真正完成时，才把对应的结果写入sink系统中</li>
+<li>实现方式：预写日志、两阶段提交</li>
+</ul>
+<h3 id="预写日志"><a href="#预写日志" class="headerlink" title="预写日志"></a>预写日志</h3><ul>
+<li><p>预写日志（WAL，Write-Ahead-Log），把结果数据先当成状态保存，收到checkpoints完成通知时，一次性写入sink系统。对sink系统的类型不敏感，所有sink系统都可以使用这种方式。</p>
+</li>
+<li><p>使用<code>GenericWriteAheadSink</code>模板类实现事务性Sink。</p>
+</li>
+<li><p>如果外部系统写入过程中失败，仍有可能不能实现精确一次一致性。</p>
+</li>
+</ul>
+<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><ul>
+<li>两阶段提交（2PC，Two-Phase-Commit），对于每个checkpoint，sink都启动一个事务，将接下来接收到的数据添加到事务中。将数据写入sink系统，但是不提交。等到接受到checkpoint完成的通知时，正式提交事务。该方式真正实现了精确一次一致性保证。</li>
+<li>使用<code>TwoPhaseCommitSinkFunction</code>接口实现两阶段提交。</li>
+<li>2PC对外部系统的要求：必须支持事务或者sink任务能够模拟外部系统上的事务。在checkpoint的间隔期里，必须能够开启一个事务并接受数据的写入。在收到checkpoints完成通知之前，事务必须是“等待提交”状态；故障恢复场景下，如果sink系统关闭事务（如超时了），未提交的事务就会丢失。sink任务必须能够在进程失败后恢复事务。提交事务必须是幂等性操作。</li>
+</ul>
+<h2 id="Flink-Kafka端到端一致性保证"><a href="#Flink-Kafka端到端一致性保证" class="headerlink" title="Flink+Kafka端到端一致性保证"></a>Flink+Kafka端到端一致性保证</h2><ul>
+<li>source：Flink Consumer，保存偏移量，故障恢复时由连接器重置偏移量，重放数据</li>
+<li>内部系统：checkpoints机制</li>
+<li>sink：Kafka Producer，采取两阶段提交sink机制</li>
+</ul>
+<h1 id="Table-API与Flink-SQL"><a href="#Table-API与Flink-SQL" class="headerlink" title="Table API与Flink SQL"></a>Table API与Flink SQL</h1><blockquote>
+<p>Table API 是一套内嵌在Java和Scala语言中的查询API，它允许以非常直观的方式组合来自一些关系运算符的查询。Flink SQL支持基于实现了SQL标准的Apache Calcite。</p>
+</blockquote>
+<h2 id="基本程序结构"><a href="#基本程序结构" class="headerlink" title="基本程序结构"></a>基本程序结构</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建表执行环境</span></span><br><span class="line"><span class="type">StreamTableEnvironment</span> <span class="variable">tableEnv</span> <span class="operator">=</span> ...</span><br><span class="line"><span class="comment">// 创建一张表，用于读取数据</span></span><br><span class="line">tableEnv.connect(...).createTemporaryTable(<span class="string">&quot;inputTable&quot;</span>)</span><br><span class="line"><span class="comment">// 创建一张表，用于输出数据</span></span><br><span class="line">tableEnv.connect(...).createTemporaryTable(<span class="string">&quot;outputTable&quot;</span>)</span><br><span class="line"><span class="comment">// 通过Table API查询算子，得到一张结果表</span></span><br><span class="line"><span class="type">Table</span> <span class="variable">result</span> <span class="operator">=</span> tableEnv.from(<span class="string">&quot;inputTable&quot;</span>).select(...);</span><br><span class="line"><span class="comment">// 或者通过SQL查询语句，得到一张结果表</span></span><br><span class="line"><span class="type">Table</span> <span class="variable">sqlResult</span> <span class="operator">=</span> tableEnv.sqlQuery(<span class="string">&quot;SELECT XXX&quot;</span>);</span><br><span class="line"><span class="comment">// 输出结果</span></span><br><span class="line">result.insertInto(<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="表环境配置"><a href="#表环境配置" class="headerlink" title="表环境配置"></a>表环境配置</h2><h2 id="表的创建"><a href="#表的创建" class="headerlink" title="表的创建"></a>表的创建</h2><h2 id="表的查询"><a href="#表的查询" class="headerlink" title="表的查询"></a>表的查询</h2><ul>
+<li>Table API基于代表“表”的Table类，提供对应的操作处理API，这些API会返回一个新的Table对象，表示对输入表进行转换操作的结果。</li>
+</ul>
+<h2 id="表的输出"><a href="#表的输出" class="headerlink" title="表的输出"></a>表的输出</h2><ul>
+<li>输出到文件、Kafka，只能追加不能修改</li>
+</ul>
+<h2 id="更新模式"><a href="#更新模式" class="headerlink" title="更新模式"></a>更新模式</h2><ul>
+<li>追加模式 Append：只做插入操作</li>
+<li>撤回模式 Retract：插入编码为Add，删除编码为Retract，更新编码为上一条的Retract和下一条的Add消息。</li>
+<li>更新插入 Upsert：更新与插入都编码为Upsert消息（需要指定key），删除编码为Delete消息。</li>
+</ul>
+<h2 id="表流转换"><a href="#表流转换" class="headerlink" title="表流转换"></a>表流转换</h2><h3 id="将表转换为流"><a href="#将表转换为流" class="headerlink" title="将表转换为流"></a>将表转换为流</h3><ul>
+<li>追加模式：用于表只会被插入操作更改的场景</li>
+<li>撤回模式：用于任何模式，转换后的数据会增加一个布尔标识位，用它来表示数据是新增还是删除。</li>
+</ul>
+<h3 id="将流转换为表"><a href="#将流转换为表" class="headerlink" title="将流转换为表"></a>将流转换为表</h3><ul>
+<li>直接转换即可，<code>tableEnv.fromDataStream(dataStream)</code></li>
+</ul>
+<h2 id="动态表"><a href="#动态表" class="headerlink" title="动态表"></a>动态表</h2><ul>
+<li>与表示批处理数据的静态表，动态表是随时间变化的</li>
+<li>动态表可以像静态的批处理表一样进行查询，查询一个动态表会产生持续查询（Continuous Query），持续查询永不停止，会在动态表上做计算处理，并将结果生成新的动态表。</li>
+</ul>
+<p><img src="/2023/01/08/justdoit-datastream-flink-03-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/image-20210706074748218.png" alt="image-20210706074748218"></p>
+<h2 id="时间特性"><a href="#时间特性" class="headerlink" title="时间特性"></a>时间特性</h2><ul>
+<li>基于时间的操作，需要定义相关的时间语义和时间数据来源的信息</li>
+</ul>
+<h3 id="处理时间"><a href="#处理时间" class="headerlink" title="处理时间"></a>处理时间</h3><ul>
+<li>由流转换成表时指定，处理时间语义下，允许表处理程序根据机器的本地时间生成结果。最简单的方式，不需要提取时间戳也不需要生成watermark。</li>
+<li>定义schema的时候，可以使用<code>xxx.protime</code>，附加逻辑字段拓展物理schema。</li>
+</ul>
+<h3 id="事件时间"><a href="#事件时间" class="headerlink" title="事件时间"></a>事件时间</h3><ul>
+<li>表处理程序根据每个记录中包含的时间生成结果，可以处理乱序以及延迟数据。</li>
+<li>使用<code>xxx.rowtime</code>定义事件时间（使用哪个字段已经通过assignTimestampsAndWatermark指定）</li>
+<li>也可以在定义Table Schema时定义</li>
+<li>也可以在DDL SQL中指定</li>
+</ul>
+<h2 id="窗口"><a href="#窗口" class="headerlink" title="窗口"></a>窗口</h2><h3 id="分组窗口"><a href="#分组窗口" class="headerlink" title="分组窗口"></a>分组窗口</h3><ul>
+<li>Group Windows，根据时间或者行计数间隔，将行聚合到有限的组（Group）中，并对每个组的数据执行一次聚合函数。</li>
+</ul>
+<h3 id="开窗函数"><a href="#开窗函数" class="headerlink" title="开窗函数"></a>开窗函数</h3><ul>
+<li><p>Over Windows，针对每个输入行，计算相邻行范围内的聚合。</p>
+</li>
+<li><p>指定partition、指定orderBy、指定preceding字段</p>
+</li>
+<li><p>类型</p>
+<ul>
+<li>无界：preceding指定常量（over window、row count window）</li>
+<li>有界：preceding指定范围</li>
+</ul>
+</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>比较函数、逻辑函数、算术函数、字符串函数、时间函数、聚合函数。</li>
+</ul>
+<h2 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h2><h3 id="标量函数"><a href="#标量函数" class="headerlink" title="标量函数"></a>标量函数</h3><ul>
+<li>将0、1或者多个标量值映射到新的标量值，有一个eval的求值方法，决定了函数的行为。</li>
+</ul>
+<h3 id="表函数"><a href="#表函数" class="headerlink" title="表函数"></a>表函数</h3><ul>
+<li>将输入的0、1或者多个标量值，返回任意数量的数据行作为输出而不是标量值。</li>
+</ul>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><ul>
+<li>将一个表中的数据聚合成标量值。</li>
+<li>继承自AggregateFunction，实现createAccumulator、getValue方法，自己实现accumulate方法</li>
+</ul>
+<h3 id="表聚合函数"><a href="#表聚合函数" class="headerlink" title="表聚合函数"></a>表聚合函数</h3><ul>
+<li><p>将一个表中数据，聚合为多行和多列的结果<strong>表</strong>（二维的）</p>
+</li>
+<li><p>继承TableAggregateFunction抽象类</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://equator8848.xyz">Equator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://equator8848.xyz/2023/01/08/justdoit-datastream-flink-03-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">https://equator8848.xyz/2023/01/08/justdoit-datastream-flink-03-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://equator8848.xyz" target="_blank">Equator's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Flink/">Flink</a></div><div class="post_share"><div class="social-share" data-image="/img/default_cover.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2023/01/08/justdoit-datastream-zookeeper-03-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"><img class="prev-cover" src="/img/default_cover.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Zookeeper使用教程</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/08/justdoit-datastream-flink-01-%E5%88%9D%E4%BD%93%E9%AA%8C/" title="Flink初体验"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">Flink初体验</div></div></a></div><div><a href="/2023/01/08/justdoit-datastream-flink-02-%E5%8E%9F%E7%90%86/" title="Flink原理"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">Flink原理</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Equator</div><div class="author-info__description">分享互联网技术与摄影</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/libinkai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客搬家中，陆续将文章迁移进来...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E5%A4%84%E7%90%86API"><span class="toc-number">1.</span> <span class="toc-text">流处理API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Environment"><span class="toc-number">1.1.</span> <span class="toc-text">Environment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Source"><span class="toc-number">1.2.</span> <span class="toc-text">Source</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E9%9B%86%E5%90%88%E4%B8%AD%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">从集合中读取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%96%87%E4%BB%B6%E4%B8%AD%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">从文件中读取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%EF%BC%88Kafka%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">从消息队列读取数据（Kafka）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B6%88%E6%81%AF%E6%BA%90"><span class="toc-number">1.2.4.</span> <span class="toc-text">自定义消息源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Transform"><span class="toc-number">1.3.</span> <span class="toc-text">Transform</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%BD%AC%E6%8D%A2%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.1.</span> <span class="toc-text">基本转换操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E8%81%9A%E5%90%88"><span class="toc-number">1.3.2.</span> <span class="toc-text">滚动聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reduce%E8%81%9A%E5%90%88"><span class="toc-number">1.3.3.</span> <span class="toc-text">reduce聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%B5%81"><span class="toc-number">1.3.4.</span> <span class="toc-text">分流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#connect%E5%90%88%E6%B5%81"><span class="toc-number">1.3.5.</span> <span class="toc-text">connect合流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#union%E5%90%88%E6%B5%81"><span class="toc-number">1.3.6.</span> <span class="toc-text">union合流</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sink"><span class="toc-number">1.4.</span> <span class="toc-text">Sink</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Kafka"><span class="toc-number">1.4.1.</span> <span class="toc-text">Kafka</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-number">1.4.2.</span> <span class="toc-text">Redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES"><span class="toc-number">1.4.3.</span> <span class="toc-text">ES</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JDBC"><span class="toc-number">1.4.4.</span> <span class="toc-text">JDBC</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">Flink数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UDF%E5%87%BD%E6%95%B0%E7%B1%BB"><span class="toc-number">1.6.</span> <span class="toc-text">UDF函数类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%B1%BB"><span class="toc-number">1.6.1.</span> <span class="toc-text">函数类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.2.</span> <span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%8C%E5%87%BD%E6%95%B0"><span class="toc-number">1.6.3.</span> <span class="toc-text">富函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%87%8D%E5%88%86%E5%8C%BA%E6%93%8D%E4%BD%9C"><span class="toc-number">1.7.</span> <span class="toc-text">数据重分区操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3API"><span class="toc-number">2.</span> <span class="toc-text">窗口API</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.2.</span> <span class="toc-text">窗口的类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%AA%97%E5%8F%A3%EF%BC%88Time-Window%EF%BC%89"><span class="toc-number">2.2.1.</span> <span class="toc-text">时间窗口（Time Window）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E6%97%B6%E9%97%B4%E7%AA%97%E5%8F%A3%EF%BC%88Tumbling%EF%BC%89"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">滚动时间窗口（Tumbling）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E6%97%B6%E9%97%B4%E7%AA%97%E5%8F%A3%EF%BC%88Sliding%EF%BC%89"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">滑动时间窗口（Sliding）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E7%AA%97%E5%8F%A3"><span class="toc-number">2.2.1.3.</span> <span class="toc-text">会话窗口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E7%AA%97%E5%8F%A3%EF%BC%88Count-Window%EF%BC%89"><span class="toc-number">2.2.2.</span> <span class="toc-text">计数窗口（Count Window）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E8%AE%A1%E6%95%B0%E7%AA%97%E5%8F%A3"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">滚动计数窗口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E8%AE%A1%E6%95%B0%E7%AA%97%E5%8F%A3"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">滑动计数窗口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%88%86%E9%85%8D%E5%99%A8"><span class="toc-number">2.3.</span> <span class="toc-text">窗口分配器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%A2%9E%E9%87%8F%E8%81%9A%E5%90%88"><span class="toc-number">2.4.</span> <span class="toc-text">窗口增量聚合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%85%A8%E7%AA%97%E5%8F%A3%E8%81%9A%E5%90%88"><span class="toc-number">2.5.</span> <span class="toc-text">窗口全窗口聚合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83%E5%8F%AF%E9%80%89API"><span class="toc-number">2.6.</span> <span class="toc-text">其它可选API</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E8%AF%AD%E4%B9%89"><span class="toc-number">3.</span> <span class="toc-text">时间语义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WaterMark"><span class="toc-number">4.</span> <span class="toc-text">WaterMark</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%B1%E5%BA%8F%E6%95%B0%E6%8D%AE%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">4.1.</span> <span class="toc-text">乱序数据带来的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WaterMark%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">4.2.</span> <span class="toc-text">WaterMark基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WaterMark%E5%9C%A8%E4%BB%BB%E5%8A%A1%E9%97%B4%E7%9A%84%E4%BC%A0%E9%80%92"><span class="toc-number">4.3.</span> <span class="toc-text">WaterMark在任务间的传递</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WaterMark%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text">WaterMark的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E5%AE%9A%E5%8E%9F%E5%88%99"><span class="toc-number">4.5.</span> <span class="toc-text">设定原则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8A%B6%E6%80%81"><span class="toc-number">5.</span> <span class="toc-text">状态</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E5%AD%90%E7%8A%B6%E6%80%81"><span class="toc-number">5.1.</span> <span class="toc-text">算子状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">5.1.1.</span> <span class="toc-text">数据结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%AE%E6%8E%A7%E7%8A%B6%E6%80%81"><span class="toc-number">5.2.</span> <span class="toc-text">键控状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-1"><span class="toc-number">5.2.1.</span> <span class="toc-text">数据结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%90%8E%E7%AB%AF"><span class="toc-number">5.3.</span> <span class="toc-text">状态后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.3.1.</span> <span class="toc-text">类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ProcessFunction-API%EF%BC%88%E5%BA%95%E5%B1%82API%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">ProcessFunction API（底层API）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#KeyedProcessFunction"><span class="toc-number">6.1.</span> <span class="toc-text">KeyedProcessFunction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CoProcessFunction"><span class="toc-number">6.2.</span> <span class="toc-text">CoProcessFunction</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%B9%E9%94%99%E6%9C%BA%E5%88%B6"><span class="toc-number">7.</span> <span class="toc-text">容错机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E6%9F%A5%E7%82%B9%EF%BC%88checkpoint%EF%BC%89"><span class="toc-number">7.1.</span> <span class="toc-text">一致性检查点（checkpoint）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E6%A3%80%E6%9F%A5%E7%82%B9%E6%81%A2%E5%A4%8D%E7%8A%B6%E6%80%81"><span class="toc-number">7.2.</span> <span class="toc-text">从检查点恢复状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink%E6%A3%80%E6%9F%A5%E7%82%B9%E7%AE%97%E6%B3%95"><span class="toc-number">7.3.</span> <span class="toc-text">Flink检查点算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E7%82%B9%EF%BC%88save-points%EF%BC%89"><span class="toc-number">7.4.</span> <span class="toc-text">保存点（save points）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E7%82%B9%E5%92%8C%E9%87%8D%E5%90%AF%E7%AD%96%E7%95%A5%E9%85%8D%E7%BD%AE"><span class="toc-number">7.5.</span> <span class="toc-text">检查点和重启策略配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">8.</span> <span class="toc-text">状态一致性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">8.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E6%9F%A5%E7%82%B9"><span class="toc-number">8.2.</span> <span class="toc-text">一致性检查点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%AF%E5%88%B0%E7%AB%AF%E7%8A%B6%E6%80%81%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">8.3.</span> <span class="toc-text">端到端状态一致性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%82%E7%AD%89%E6%80%A7%E5%86%99%E5%85%A5"><span class="toc-number">8.3.1.</span> <span class="toc-text">幂等性写入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%86%99%E5%85%A5"><span class="toc-number">8.3.2.</span> <span class="toc-text">事务写入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%86%99%E6%97%A5%E5%BF%97"><span class="toc-number">8.3.3.</span> <span class="toc-text">预写日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4"><span class="toc-number">8.3.4.</span> <span class="toc-text">两阶段提交</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flink-Kafka%E7%AB%AF%E5%88%B0%E7%AB%AF%E4%B8%80%E8%87%B4%E6%80%A7%E4%BF%9D%E8%AF%81"><span class="toc-number">8.4.</span> <span class="toc-text">Flink+Kafka端到端一致性保证</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Table-API%E4%B8%8EFlink-SQL"><span class="toc-number">9.</span> <span class="toc-text">Table API与Flink SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84"><span class="toc-number">9.1.</span> <span class="toc-text">基本程序结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">9.2.</span> <span class="toc-text">表环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">9.3.</span> <span class="toc-text">表的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E7%9A%84%E6%9F%A5%E8%AF%A2"><span class="toc-number">9.4.</span> <span class="toc-text">表的查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-number">9.5.</span> <span class="toc-text">表的输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%A8%A1%E5%BC%8F"><span class="toc-number">9.6.</span> <span class="toc-text">更新模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E6%B5%81%E8%BD%AC%E6%8D%A2"><span class="toc-number">9.7.</span> <span class="toc-text">表流转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E8%A1%A8%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%B5%81"><span class="toc-number">9.7.1.</span> <span class="toc-text">将表转换为流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%B5%81%E8%BD%AC%E6%8D%A2%E4%B8%BA%E8%A1%A8"><span class="toc-number">9.7.2.</span> <span class="toc-text">将流转换为表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A1%A8"><span class="toc-number">9.8.</span> <span class="toc-text">动态表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%89%B9%E6%80%A7"><span class="toc-number">9.9.</span> <span class="toc-text">时间特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E6%97%B6%E9%97%B4"><span class="toc-number">9.9.1.</span> <span class="toc-text">处理时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E6%97%B6%E9%97%B4"><span class="toc-number">9.9.2.</span> <span class="toc-text">事件时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3"><span class="toc-number">9.10.</span> <span class="toc-text">窗口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E7%AA%97%E5%8F%A3"><span class="toc-number">9.10.1.</span> <span class="toc-text">分组窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E7%AA%97%E5%87%BD%E6%95%B0"><span class="toc-number">9.10.2.</span> <span class="toc-text">开窗函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">9.11.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0"><span class="toc-number">9.12.</span> <span class="toc-text">自定义函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%87%8F%E5%87%BD%E6%95%B0"><span class="toc-number">9.12.1.</span> <span class="toc-text">标量函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%87%BD%E6%95%B0"><span class="toc-number">9.12.2.</span> <span class="toc-text">表函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">9.12.3.</span> <span class="toc-text">聚合函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">9.12.4.</span> <span class="toc-text">表聚合函数</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/26/justdoit-golang-golang/" title="golang基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="golang基础"/></a><div class="content"><a class="title" href="/2024/05/26/justdoit-golang-golang/" title="golang基础">golang基础</a><time datetime="2024-05-26T14:41:44.000Z" title="发表于 2024-05-26 22:41:44">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="antlr学习"/></a><div class="content"><a class="title" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习">antlr学习</a><time datetime="2023-12-07T13:27:37.000Z" title="发表于 2023-12-07 21:27:37">2023-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES基础"/></a><div class="content"><a class="title" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础">ES基础</a><time datetime="2023-05-26T15:17:09.000Z" title="发表于 2023-05-26 23:17:09">2023-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学生开发者怎么赚小钱钱以及做项目"/></a><div class="content"><a class="title" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目">学生开发者怎么赚小钱钱以及做项目</a><time datetime="2023-05-15T00:16:47.000Z" title="发表于 2023-05-15 08:16:47">2023-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java服务端开发学习路线"/></a><div class="content"><a class="title" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线">Java服务端开发学习路线</a><time datetime="2023-05-09T15:38:17.000Z" title="发表于 2023-05-09 23:38:17">2023-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2024 By Equator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

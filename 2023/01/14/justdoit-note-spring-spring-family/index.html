@@ -1,0 +1,1675 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Spring全家桶 | Equator's Blog</title><meta name="author" content="Equator"><meta name="copyright" content="Equator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Spring全家桶，Spring、SpringBoot、SpringCloud">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring全家桶">
+<meta property="og:url" content="https://equator8848.xyz/2023/01/14/justdoit-note-spring-spring-family/index.html">
+<meta property="og:site_name" content="Equator&#39;s Blog">
+<meta property="og:description" content="Spring全家桶，Spring、SpringBoot、SpringCloud">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2023-01-14T15:33:54.000Z">
+<meta property="article:modified_time" content="2024-05-26T16:39:36.453Z">
+<meta property="article:author" content="Equator">
+<meta property="article:tag" content="Spring全家桶">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://equator8848.xyz/2023/01/14/justdoit-note-spring-spring-family/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Spring全家桶',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-27 00:39:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Equator's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Spring全家桶</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-14T15:33:54.000Z" title="发表于 2023-01-14 23:33:54">2023-01-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-26T16:39:36.453Z" title="更新于 2024-05-27 00:39:36">2024-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0%E5%A4%87%E5%BF%98%E5%BD%95/">笔记备忘录</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>25分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Spring全家桶"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Spring概览"><a href="#Spring概览" class="headerlink" title="Spring概览"></a>Spring概览</h1><ul>
+<li>SpringBoot</li>
+<li>SpringCloud</li>
+<li>SpringCloudDataFlow</li>
+</ul>
+<h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><h2 id="单数据源配置"><a href="#单数据源配置" class="headerlink" title="单数据源配置"></a>单数据源配置</h2><h2 id="多数据源配置"><a href="#多数据源配置" class="headerlink" title="多数据源配置"></a>多数据源配置</h2><h2 id="连接池"><a href="#连接池" class="headerlink" title="连接池"></a>连接池</h2><h3 id="HikariCP"><a href="#HikariCP" class="headerlink" title="HikariCP"></a>HikariCP</h3><ul>
+<li>速度快</li>
+</ul>
+<h3 id="Druid"><a href="#Druid" class="headerlink" title="Druid"></a>Druid</h3><ul>
+<li>关注监控运维</li>
+</ul>
+<h2 id="SpringJDBC"><a href="#SpringJDBC" class="headerlink" title="SpringJDBC"></a>SpringJDBC</h2><ul>
+<li>JDBCTemplate</li>
+</ul>
+<h2 id="Spring事务抽象"><a href="#Spring事务抽象" class="headerlink" title="Spring事务抽象"></a>Spring事务抽象</h2><h3 id="核心接口"><a href="#核心接口" class="headerlink" title="核心接口"></a>核心接口</h3><ul>
+<li>PlatformTransactionManager</li>
+<li>TransactionDefinition</li>
+</ul>
+<h3 id="事务传播"><a href="#事务传播" class="headerlink" title="事务传播"></a>事务传播</h3><h3 id="事务隔离"><a href="#事务隔离" class="headerlink" title="事务隔离"></a>事务隔离</h3><h3 id="声明式与编程式事务"><a href="#声明式与编程式事务" class="headerlink" title="声明式与编程式事务"></a>声明式与编程式事务</h3><h2 id="JDBC异常抽象"><a href="#JDBC异常抽象" class="headerlink" title="JDBC异常抽象"></a>JDBC异常抽象</h2><ul>
+<li>将数据操作异常转换为DataAccessException</li>
+<li>原理：数据库的错误码都是固定的，枚举错误码</li>
+</ul>
+<h1 id="对象映射"><a href="#对象映射" class="headerlink" title="对象映射"></a>对象映射</h1><h2 id="为什么需要对象映射"><a href="#为什么需要对象映射" class="headerlink" title="为什么需要对象映射"></a>为什么需要对象映射</h2><blockquote>
+<p>对象与关系的范式不匹配</p>
+</blockquote>
+<p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230115110742394.png" alt="image-20230115110742394"></p>
+<h2 id="Hibernate"><a href="#Hibernate" class="headerlink" title="Hibernate"></a>Hibernate</h2><ul>
+<li>屏蔽数据库底层细节</li>
+<li>将开发者从95%的常见数据持久化工作中解放出来</li>
+</ul>
+<h2 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h2><blockquote>
+<p>Java Persistence API，为对象关系映射提供了一种基于POJO的持久化模型</p>
+</blockquote>
+<ul>
+<li>简化数据持久化代码的开发工作</li>
+<li>屏蔽不同持久化API的差异</li>
+</ul>
+<h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><ul>
+<li><p>实体</p>
+<ul>
+<li><p>Entity</p>
+</li>
+<li><p>MappedSuperClass，多个实体类有一个父类，这个注解用于父类</p>
+</li>
+<li><p>Table(“name”)</p>
+</li>
+</ul>
+</li>
+<li><p>主键</p>
+<ul>
+<li><p>Id</p>
+</li>
+<li><p>GeneratedValue</p>
+</li>
+</ul>
+</li>
+<li><p>映射</p>
+<ul>
+<li>Column</li>
+</ul>
+</li>
+<li><p>关系</p>
+<ul>
+<li>OrderBy</li>
+</ul>
+</li>
+</ul>
+<h2 id="Lombok"><a href="#Lombok" class="headerlink" title="Lombok"></a>Lombok</h2><h2 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h2><h3 id="MyBatisGenerator"><a href="#MyBatisGenerator" class="headerlink" title="MyBatisGenerator"></a>MyBatisGenerator</h3><blockquote>
+<p>逆向工程从表结构生成PO类</p>
+</blockquote>
+<h3 id="MyBatisPageHelper"><a href="#MyBatisPageHelper" class="headerlink" title="MyBatisPageHelper"></a>MyBatisPageHelper</h3><blockquote>
+<p>分页工具</p>
+</blockquote>
+<h1 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h1><h2 id="MongoDB"><a href="#MongoDB" class="headerlink" title="MongoDB"></a>MongoDB</h2><h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><ul>
+<li>spring对Redis的支持<ul>
+<li>Jedis（不是线程安全的，一般使用池化技术，JedisPool）、Lettuce客户端</li>
+<li>RedisTemplate</li>
+<li>Repository支持</li>
+</ul>
+</li>
+<li>哨兵模式<ul>
+<li>Redis Sentinel是Redis的一种HA方案</li>
+<li>通过JedisSentinelPool操作</li>
+</ul>
+</li>
+<li>集群<ul>
+<li>数据自动分片，分成多个Hash Slot</li>
+<li>在部分节点失效时有一定的可用性</li>
+</ul>
+</li>
+</ul>
+<h2 id="Spring缓存抽象"><a href="#Spring缓存抽象" class="headerlink" title="Spring缓存抽象"></a>Spring缓存抽象</h2><blockquote>
+<p>基于AOP实现，为不同的缓存提供一层抽象</p>
+</blockquote>
+<ul>
+<li>为Java方法增加缓存，缓存执行结果</li>
+<li>支持ConcurrentMap</li>
+<li>接口<ul>
+<li>Cache</li>
+<li>CacheManager</li>
+</ul>
+</li>
+<li>注解：开启缓存支持，EnableCaching<ul>
+<li>Cacheable，方法注解</li>
+<li>CacheEvict，缓存清理</li>
+</ul>
+</li>
+</ul>
+<h2 id="本地缓存与分布式缓存"><a href="#本地缓存与分布式缓存" class="headerlink" title="本地缓存与分布式缓存"></a>本地缓存与分布式缓存</h2><ul>
+<li>分布式：redis</li>
+<li>本地：Spring缓存、Guava</li>
+</ul>
+<h2 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h2><ul>
+<li>Lettuce支持读写分析，Jedis不支持<ul>
+<li>只读主、只读从</li>
+<li>优先读主、优先读从</li>
+</ul>
+</li>
+</ul>
+<h2 id="RedisTemplate"><a href="#RedisTemplate" class="headerlink" title="RedisTemplate"></a>RedisTemplate</h2><ul>
+<li>RedisTemplate&lt;K,V&gt;<ul>
+<li>opsForXxx</li>
+</ul>
+</li>
+</ul>
+<h2 id="Redis-Repository"><a href="#Redis-Repository" class="headerlink" title="Redis Repository"></a>Redis Repository</h2><ul>
+<li>实体注解<ul>
+<li>RedisHash</li>
+<li>Id</li>
+<li>Indexed，索引列</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据访问进阶"><a href="#数据访问进阶" class="headerlink" title="数据访问进阶"></a>数据访问进阶</h1><h2 id="Project-Reactor"><a href="#Project-Reactor" class="headerlink" title="Project Reactor"></a>Project Reactor</h2><blockquote>
+<p>响应式或者反应式编程，是一种面向数据流和变化传播的编程范式。这意味着可以在编程语言中很方便地表达静态或者静态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。如数据双向绑定模型？</p>
+</blockquote>
+<ul>
+<li><strong>WebFlux 不是 Spring MVC 的替代方案</strong>！，虽然 WebFlux 也可以被运行在 Servlet 容器上（需是 Servlet 3.1+ 以上的容器），但是 WebFlux 主要还是应用在异步非阻塞编程模型，而 Spring MVC 是同步阻塞的，如果你目前在 Spring MVC 框架中大量使用非同步方案，那么，WebFlux 才是你想要的，否则，使用 Spring MVC 才是你的首选。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/quanxiaoha/p/10773773.html">https://www.cnblogs.com/quanxiaoha/p/10773773.html</a></li>
+<li>适合Reactive的场景：IO密集型<ul>
+<li>网络IO：微服务网关</li>
+<li>磁盘IO：</li>
+</ul>
+</li>
+</ul>
+<h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="Operators-Publisher-x2F-Subscriber"><a href="#Operators-Publisher-x2F-Subscriber" class="headerlink" title="Operators-Publisher&#x2F;Subscriber"></a>Operators-Publisher&#x2F;Subscriber</h3><ul>
+<li>Nothing Happens Until You subscribe()</li>
+<li>Flux[0…N] - onNext()、onComplete()、onError()</li>
+<li>Mono [0…1] - onNext()、onComplete()、onError()</li>
+</ul>
+<h3 id="Backpressure-反压"><a href="#Backpressure-反压" class="headerlink" title="Backpressure-反压"></a>Backpressure-反压</h3><ul>
+<li>Subscription</li>
+<li>onRequest、onCancel、onDispose</li>
+</ul>
+<h3 id="Scheduler-线程调度"><a href="#Scheduler-线程调度" class="headerlink" title="Scheduler-线程调度"></a>Scheduler-线程调度</h3><ul>
+<li>immediate、single、newSingle</li>
+<li>elastic、parallel-固定线程池、newParallel</li>
+</ul>
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ul>
+<li>onError、onErrorReturn、onErrorResume</li>
+<li>doOnError、doFinally</li>
+</ul>
+<h2 id="Reactive-x-Redis"><a href="#Reactive-x-Redis" class="headerlink" title="Reactive x Redis"></a>Reactive x Redis</h2><ul>
+<li><p>Lettuce支持Reactive访问Redis</p>
+</li>
+<li><p>Spring Data Redis</p>
+<ul>
+<li>ReactiveRedisConnection</li>
+<li>ReactiveRedisConnectionFactory</li>
+<li>ReactiveRedisTemplate</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reactive-x-MongoDB"><a href="#Reactive-x-MongoDB" class="headerlink" title="Reactive x MongoDB"></a>Reactive x MongoDB</h2><ul>
+<li><p>MongoDB官方提供Reactive支持</p>
+</li>
+<li><p>Spring Data MongoDB</p>
+<ul>
+<li>ReactiveMongoClientFactoryBean</li>
+<li>ReactiveMongoDatabaseFactory</li>
+<li>ReactiveMongoTemplate</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reactive-x-RDBMS"><a href="#Reactive-x-RDBMS" class="headerlink" title="Reactive x RDBMS"></a>Reactive x RDBMS</h2><ul>
+<li>R2DBC：Reactive Relational Database Connectivity</li>
+<li>支持的数据库<ul>
+<li>Postgres</li>
+<li>H2</li>
+<li>Microsoft SQL Server</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用APO打印数据访问层摘要（日志）"><a href="#使用APO打印数据访问层摘要（日志）" class="headerlink" title="使用APO打印数据访问层摘要（日志）"></a>使用APO打印数据访问层摘要（日志）</h2><h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230119124130259.png" alt="image-20230119124130259"></p>
+<ul>
+<li>为什么需要CGLIB？因为通常情况下，Controller、Service都没有接口</li>
+<li>如何打印SQL<ul>
+<li>HikariCP：依赖P6Spy</li>
+<li>Druid：内置SQL输出</li>
+</ul>
+</li>
+</ul>
+<h1 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h1><h2 id="核心"><a href="#核心" class="headerlink" title="核心"></a>核心</h2><ul>
+<li>DispatcherServlet</li>
+<li>Controller</li>
+<li>XXXResolver<ul>
+<li>viewResolver</li>
+<li>HandlerExceptionResolver</li>
+<li>MultipartResolver</li>
+</ul>
+</li>
+<li>HandlerMapping</li>
+</ul>
+<h2 id="常用注解-1"><a href="#常用注解-1" class="headerlink" title="常用注解"></a>常用注解</h2><ul>
+<li>Controller，定义控制器<ul>
+<li>RestController&#x3D;Controller+ResponseBody</li>
+</ul>
+</li>
+<li>RequestingMapping<ul>
+<li>GetMapping、PostMapping、PutMapping、DeleteMapping</li>
+</ul>
+</li>
+<li>RequestBody、ResponseBody、ResponseStatus-指定响应码</li>
+</ul>
+<h2 id="应用上下文"><a href="#应用上下文" class="headerlink" title="应用上下文"></a>应用上下文</h2><ul>
+<li>常用接口以及实现<ul>
+<li>BeanFactory<ul>
+<li>DefaultListableBeanFactory</li>
+</ul>
+</li>
+<li>ApplicationContext，常用<ul>
+<li>ClassPathXmlApplicationContext</li>
+<li>FileSystemXmlApplicationContext</li>
+<li>AnnotationConfigApplicationContext</li>
+</ul>
+</li>
+<li>WebApplicationContext</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230119182325244.png" alt="image-20230119182325244"></p>
+<h2 id="请求处理机制"><a href="#请求处理机制" class="headerlink" title="请求处理机制"></a>请求处理机制</h2><p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230119193007108.png" alt="image-20230119193007108"></p>
+<h3 id="一个请求的大致处理流程"><a href="#一个请求的大致处理流程" class="headerlink" title="一个请求的大致处理流程"></a>一个请求的大致处理流程</h3><ul>
+<li>绑定Attribute<ul>
+<li>WebApplicationContext、LocaleResolver、ThemeResolver</li>
+</ul>
+</li>
+<li>处理Multipart<ul>
+<li>如果是Multipart请求，将请求转换为MultipartHttpServletRequest</li>
+</ul>
+</li>
+<li>Handler处理<ul>
+<li>如果找到对应的Handler，执行Controller以及前后置处理器逻辑</li>
+</ul>
+</li>
+<li>处理返回的Model，呈现视图</li>
+</ul>
+<h2 id="定义处理方法"><a href="#定义处理方法" class="headerlink" title="定义处理方法"></a>定义处理方法</h2><h3 id="定义映射关系"><a href="#定义映射关系" class="headerlink" title="定义映射关系"></a>定义映射关系</h3><ul>
+<li>Controller</li>
+<li>RequestMapping<ul>
+<li>path、method 指定映射路径与方法</li>
+<li>params、headers 限定映射范围</li>
+<li>consumes、produces 限定请求与响应格式</li>
+</ul>
+</li>
+<li>RestController、XXXMapping</li>
+</ul>
+<h3 id="自定义类型转换"><a href="#自定义类型转换" class="headerlink" title="自定义类型转换"></a>自定义类型转换</h3><ul>
+<li>自己实现WebMvcConfigurer</li>
+<li>添加自定义Converter</li>
+<li>添加自定义的Formatter</li>
+</ul>
+<h3 id="定义校验"><a href="#定义校验" class="headerlink" title="定义校验"></a>定义校验</h3><ul>
+<li>通过Validator对绑定结果进行校验<ul>
+<li>Hibernate Validator</li>
+</ul>
+</li>
+<li>@Valid注解</li>
+<li>BindingResult，用于获取Valid的结果进行自定义的处理逻辑</li>
+</ul>
+<h3 id="Multipart上传"><a href="#Multipart上传" class="headerlink" title="Multipart上传"></a>Multipart上传</h3><ul>
+<li>配置MultipartResolver<ul>
+<li>SpringBoot自动配置MultipartAutoConfiguration</li>
+</ul>
+</li>
+<li>支持类型multipart&#x2F;form-data</li>
+<li>MultipartFile类型</li>
+</ul>
+<h2 id="视图解析机制"><a href="#视图解析机制" class="headerlink" title="视图解析机制"></a>视图解析机制</h2><h3 id="视图解析实现基础"><a href="#视图解析实现基础" class="headerlink" title="视图解析实现基础"></a>视图解析实现基础</h3><ul>
+<li>ViewResolver、View接口<ul>
+<li>AbstractCachingViewResolver</li>
+<li>FreeMarkerViewResolver</li>
+</ul>
+</li>
+<li>@ResponseBody相关逻辑<ul>
+<li>HandlerAdapter.handle()完成Response输出</li>
+<li>RequestMappingHandlerAdapter.invokeHandlerMethod()</li>
+<li>HandlerMethodReturnValueHandlerComposite.handleReturnValue()</li>
+<li>RequestResponseBodyMethodProcessor.handleReturnValue()</li>
+</ul>
+</li>
+</ul>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><ul>
+<li>redirect，客户端，302跳转</li>
+<li>forward，服务端</li>
+</ul>
+<h2 id="常用的视图"><a href="#常用的视图" class="headerlink" title="常用的视图"></a>常用的视图</h2><h3 id="Jackson-based-JSON-x2F-XML"><a href="#Jackson-based-JSON-x2F-XML" class="headerlink" title="Jackson-based JSON &#x2F; XML"></a>Jackson-based JSON &#x2F; XML</h3><ul>
+<li>JacksonAutoConfiguration<ul>
+<li>SpringBoot通过@JsonComponent注册JSON序列化组件</li>
+<li>Jackson2ObjectMapperBuilderCustomizer</li>
+</ul>
+</li>
+<li>JacksonHttpMessageConvertersConfiguration<ul>
+<li>增加jackson-dataformat-xml以支持XML序列化</li>
+</ul>
+</li>
+</ul>
+<h3 id="Thymeleaf-amp-Freemaker"><a href="#Thymeleaf-amp-Freemaker" class="headerlink" title="Thymeleaf &amp; Freemaker"></a>Thymeleaf &amp; Freemaker</h3><ul>
+<li>ThymeleafAutoConfiguration自动装配<ul>
+<li>ThymeleafViewResolver</li>
+</ul>
+</li>
+<li>@Controller、ModelMap</li>
+</ul>
+<h3 id="配置MessageConverter"><a href="#配置MessageConverter" class="headerlink" title="配置MessageConverter"></a>配置MessageConverter</h3><ul>
+<li>通过WebMvcConfigurer的configureMessageConverters()配置，SpringBoot自动查找HttpMessageConverters进行注册</li>
+</ul>
+<h2 id="静态资源与缓存"><a href="#静态资源与缓存" class="headerlink" title="静态资源与缓存"></a>静态资源与缓存</h2><h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><blockquote>
+<p>不推荐在Java中处理静态资源</p>
+</blockquote>
+<ul>
+<li>核心逻辑<ul>
+<li>WebMvcConfigurer.addResourceHandlers</li>
+</ul>
+</li>
+<li>常用配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.mvc.static-path-pattern=/static/**</span><br><span class="line">spring.resources.static-locations=</span><br></pre></td></tr></table></figure>
+
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><ul>
+<li>ResourceProperties.Cache</li>
+</ul>
+<h3 id="推荐架构"><a href="#推荐架构" class="headerlink" title="推荐架构"></a>推荐架构</h3><ul>
+<li>用户-&gt;CDN-&gt;静态资源<ul>
+<li>CDN-&gt;Gateway-&gt;缓存-&gt;应用</li>
+</ul>
+</li>
+</ul>
+<h2 id="异常处理机制"><a href="#异常处理机制" class="headerlink" title="异常处理机制"></a>异常处理机制</h2><ul>
+<li>核心接口：HandlerExceptionResolver</li>
+<li>异常处理方法：@ExceptionHandler<ul>
+<li>添加位置：<ul>
+<li>@Controller、@RestController（高优先级）</li>
+<li>@ControllerAdvice、@RestControllerAdvice（AOP）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在异常类中使用ResponseStatus注解，可以返回指定的错误码</li>
+</ul>
+<h2 id="SpringMVC的切入点"><a href="#SpringMVC的切入点" class="headerlink" title="SpringMVC的切入点"></a>SpringMVC的切入点</h2><h3 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h3><ul>
+<li>核心接口：HandlerInteceptor<ul>
+<li>preHandle</li>
+<li>postHandle</li>
+<li>afterCompletion</li>
+</ul>
+</li>
+<li>配置拦截器<ul>
+<li>常规方法：WebMvcConfigurer.addInterceptors</li>
+<li>SpringBoot配置：创建一个带@Configuration的WebMvcConfigurer配置类<ul>
+<li>不能带@EnableWebMvc，由Spring托管</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用途：搭配ThreadLocal统计调用时间、鉴权</li>
+</ul>
+<h1 id="访问Web资源"><a href="#访问Web资源" class="headerlink" title="访问Web资源"></a>访问Web资源</h1><blockquote>
+<p>就是http客户端，一般用okhttp</p>
+</blockquote>
+<h2 id="通过RestTemplate访问Web资源"><a href="#通过RestTemplate访问Web资源" class="headerlink" title="通过RestTemplate访问Web资源"></a>通过RestTemplate访问Web资源</h2><ul>
+<li>SpringBoot没有自动配置RestTemplate，可以自己new，也可以使用RestTemplateBuilder。</li>
+<li>常用方法<ul>
+<li>getForObject、getForEntity（Entity包含）</li>
+<li>postForObject、postForEntity</li>
+<li>put</li>
+<li>delete</li>
+</ul>
+</li>
+<li>构造URI<ul>
+<li>构造URI：UriComponentsBuilder</li>
+<li>构造相对于当前请求的URI：ServletUriComponentsBuilder</li>
+<li>构造指向Controller的URI：MvcUriComponentsBuilder</li>
+</ul>
+</li>
+</ul>
+<h2 id="RestTemplate高阶用法"><a href="#RestTemplate高阶用法" class="headerlink" title="RestTemplate高阶用法"></a>RestTemplate高阶用法</h2><h3 id="传递Http-Header"><a href="#传递Http-Header" class="headerlink" title="传递Http Header"></a>传递Http Header</h3><ul>
+<li>RestTemplate.exchange()</li>
+<li>RequestEntity、ResponseEntity</li>
+</ul>
+<h2 id="处理类型转换"><a href="#处理类型转换" class="headerlink" title="处理类型转换"></a>处理类型转换</h2><ul>
+<li><p>解析泛型对象</p>
+<ul>
+<li><p>RestTemplate.exchange()</p>
+</li>
+<li><p>ParameterizedTypeReference</p>
+</li>
+</ul>
+</li>
+<li><p>如果不处理，会报错：无法将LinkedHashMap转换为XXX。</p>
+</li>
+</ul>
+<h2 id="定制RestTemplate"><a href="#定制RestTemplate" class="headerlink" title="定制RestTemplate"></a>定制RestTemplate</h2><h3 id="支持的HTTP库"><a href="#支持的HTTP库" class="headerlink" title="支持的HTTP库"></a>支持的HTTP库</h3><ul>
+<li>通用接口：ClientHttpRequestFactory</li>
+<li>默认实现：SimpleClientHttpRequestFactory</li>
+<li>Apache HttpComponents（以前的Http Client）</li>
+<li>Netty</li>
+<li>OkHttp</li>
+</ul>
+<h3 id="优化底层请求逻辑"><a href="#优化底层请求逻辑" class="headerlink" title="优化底层请求逻辑"></a>优化底层请求逻辑</h3><ul>
+<li>连接管理<ul>
+<li>PoolingHttpClientConnectionManager</li>
+<li>KeepAlive策略</li>
+</ul>
+</li>
+<li>超时设置<ul>
+<li>connectTimeout</li>
+<li>readTimeout</li>
+</ul>
+</li>
+<li>SSL校验<ul>
+<li>证书检查策略</li>
+</ul>
+</li>
+</ul>
+<h2 id="通过WebClient访问Web资源"><a href="#通过WebClient访问Web资源" class="headerlink" title="通过WebClient访问Web资源"></a>通过WebClient访问Web资源</h2><ul>
+<li>以Reactive方式处理HTTP请求的非阻塞式客户端</li>
+<li>支持的底层HTTP库<ul>
+<li>Reactor Netty</li>
+<li>Jetty ReactiveStream HttpClient</li>
+</ul>
+</li>
+</ul>
+<h1 id="Web开发进阶"><a href="#Web开发进阶" class="headerlink" title="Web开发进阶"></a>Web开发进阶</h1><h2 id="设计RESTful-Service"><a href="#设计RESTful-Service" class="headerlink" title="设计RESTful Service"></a>设计RESTful Service</h2><blockquote>
+<p>REST提供了一组架构约束，当作为一个整体来应用时，强调组件交互的可伸缩性，接口的通用性，组件的独立部署、以及用来减少交互延迟，增强安全性，封装遗留系统的中间件。</p>
+</blockquote>
+<h3 id="Richardson成熟度模型"><a href="#Richardson成熟度模型" class="headerlink" title="Richardson成熟度模型"></a>Richardson成熟度模型</h3><ul>
+<li>level0：the swarmp of POX，一个URI处理所有操作</li>
+<li>level1：Resources，有资源概念，但是都是在使用GET、POST</li>
+<li>level2：HTTP Verbs，开始关注HTTP Method的含义</li>
+<li>level3：Hypermedia Controls，超媒体</li>
+</ul>
+<h3 id="实现Restful-Web-Service"><a href="#实现Restful-Web-Service" class="headerlink" title="实现Restful Web Service"></a>实现Restful Web Service</h3><ul>
+<li>识别资源<ul>
+<li>找到领域名词，能用CRUD操作的名词</li>
+<li>将资源组织为集合（即集合资源）</li>
+<li>如果需要一次性返回多个资源，则将资源合并为复合资源</li>
+<li>如果无法找到对应的领域名词，则设计为计算或处理函数</li>
+</ul>
+</li>
+<li>选择合适的资源粒度<ul>
+<li>服务端角度<ul>
+<li>网络效率</li>
+<li>表述的多少</li>
+<li>客户端的易用程度</li>
+</ul>
+</li>
+<li>客户端角度<ul>
+<li>可缓存性</li>
+<li>修改频率</li>
+<li>可变性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>设计URI<ul>
+<li>使用域或者子域对资源进行合理的分组或划分</li>
+<li>在URI的路径部分使用斜杆分隔符来表示资源的层级关系</li>
+<li>使用逗号和分号来表示非层级关系</li>
+<li>使用-和_来改善长路径中名称的可读性</li>
+<li>使用&amp;分割参数</li>
+<li>避免出现文件拓展名</li>
+</ul>
+</li>
+<li>选择合适的HTTP方法和返回码</li>
+</ul>
+<p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230120180101614.png" alt="image-20230120180101614"></p>
+<p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230120192007787.png" alt="image-20230120192007787"></p>
+<ul>
+<li>设计资源的表述<ul>
+<li>JSON</li>
+<li>XML</li>
+<li>HTML</li>
+<li>ProtoBuf</li>
+</ul>
+</li>
+</ul>
+<h2 id="HATEOAS"><a href="#HATEOAS" class="headerlink" title="HATEOAS"></a>HATEOAS</h2><blockquote>
+<p>Hybermedia As the Engine Of Application State，把超媒体作为应用状态的引擎，REST统一接口的必要组成部分。</p>
+</blockquote>
+<ul>
+<li>表述中的超链接会提供服务所需的各种REST接口信息，无需事先约定如何访问服务。</li>
+</ul>
+<p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230120192623699.png" alt="image-20230120192623699"></p>
+<ul>
+<li>服务端根据应用状态的不同，返回不同的可操作链接。</li>
+</ul>
+<h2 id="SpringDataREST"><a href="#SpringDataREST" class="headerlink" title="SpringDataREST"></a>SpringDataREST</h2><h3 id="HAL"><a href="#HAL" class="headerlink" title="HAL"></a>HAL</h3><blockquote>
+<p>Hypertext Application Language，一种简单的格式，为API中的资源提供简单一致的链接</p>
+</blockquote>
+<ul>
+<li>HAL模型<ul>
+<li>链接</li>
+<li>内嵌资源</li>
+<li>状态</li>
+</ul>
+</li>
+</ul>
+<h3 id="Spring-Data-REST"><a href="#Spring-Data-REST" class="headerlink" title="Spring Data REST"></a>Spring Data REST</h3><ul>
+<li><p>服务端</p>
+<ul>
+<li><p>@RepositoryRestResource</p>
+</li>
+<li><p>Resource</p>
+</li>
+<li><p>PagedResource</p>
+</li>
+</ul>
+</li>
+<li><p>客户端</p>
+<ul>
+<li>配置Jackson JSON，注册HAL支持</li>
+<li>操作超链接<ul>
+<li>找到需要的Link</li>
+<li>访问超链接</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="分布式环境解决Session问题"><a href="#分布式环境解决Session问题" class="headerlink" title="分布式环境解决Session问题"></a>分布式环境解决Session问题</h2><h3 id="会话解决方案"><a href="#会话解决方案" class="headerlink" title="会话解决方案"></a>会话解决方案</h3><ul>
+<li>粘性会话：Sticky Session，机器下线时session失效</li>
+<li>会话复制：Session Replacation，数据同步代价高，数据容易不同步</li>
+<li>集中会话：Centralized Session，推荐</li>
+</ul>
+<h3 id="Spring-Session"><a href="#Spring-Session" class="headerlink" title="Spring Session"></a>Spring Session</h3><ul>
+<li>简化集群中的用户会话管理，无需绑定容器特定解决方案</li>
+<li>支持的存储<ul>
+<li>Redis</li>
+<li>MongoDB</li>
+<li>JDBC</li>
+<li>Hazelcast</li>
+</ul>
+</li>
+<li>实现原理：定制HttpSession<ul>
+<li>通过定制的HttpServletRequest返回定制的HttpSession<ul>
+<li>SessionRepositoryRequestWrapper</li>
+<li>SessionRepositoryFilter</li>
+<li>DelegatingFilterProxy</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于Redis实现<ul>
+<li>@EnableRedisHttpSession</li>
+<li>提供RedisConnectionFactory</li>
+<li>实现AbstractHttpSessionApplicationInitializer<ul>
+<li>DelegatingFilterProxy</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="WebFlux"><a href="#WebFlux" class="headerlink" title="WebFlux"></a>WebFlux</h2><ul>
+<li>什么是WebFlux<ul>
+<li>用于构建基于Reactive技术栈之上的Web应用程序</li>
+<li>基于Reactive Streams API，运行在非阻塞服务器上，如Netty、Jetty</li>
+</ul>
+</li>
+<li>为什么需要WebFlux<ul>
+<li>对于非阻塞Web应用的需要</li>
+<li>函数式编程</li>
+</ul>
+</li>
+<li>关于性能<ul>
+<li>请求的耗时并不会有很大的改善，改善的是吞吐量</li>
+<li>仅需要少量固定数量的线程和较少的内存即可实现拓展</li>
+</ul>
+</li>
+<li>选型<ul>
+<li>已有的Spring MVC应用，保持现状</li>
+<li>依赖了大量阻塞式持久化API和网络API，建议使用Spring MVC，如Mysql</li>
+<li>已经使用了非阻塞技术栈，可以考虑WebFlux</li>
+<li>使用Java8 Lambda结合轻量级函数式框架，可以考虑WebFlux</li>
+</ul>
+</li>
+<li>编程模型<ul>
+<li>基于注解的控制器</li>
+<li>函数式Endpoints</li>
+</ul>
+</li>
+</ul>
+<h1 id="重新认识SpringBoot"><a href="#重新认识SpringBoot" class="headerlink" title="重新认识SpringBoot"></a>重新认识SpringBoot</h1><h2 id="组成部分"><a href="#组成部分" class="headerlink" title="组成部分"></a>组成部分</h2><ul>
+<li>核心功能<ul>
+<li>自动配置-Auto Configuration</li>
+<li>起步依赖-Starter Dependency</li>
+<li>命令行界面-Spring Boot CLI</li>
+<li>Actuator</li>
+</ul>
+</li>
+</ul>
+<h2 id="自动配置的实现原理"><a href="#自动配置的实现原理" class="headerlink" title="自动配置的实现原理"></a>自动配置的实现原理</h2><ul>
+<li>自动配置<ul>
+<li>基于添加的JAR依赖自动对SpringBoot应用程序进行配置，创建Bean</li>
+<li>SpringBoot的自动配置就是当Spring容器启动后，一些自动配置类（只是自动配置类，并不是当前的组件配置到IOC容器中，自动配置类通过@Conditional注解来按需配置）就自动装配的IOC容器中，不需要我们手动注入，从而简化了开发，省去繁琐的配置。</li>
+</ul>
+</li>
+<li>开启自动配置<ul>
+<li>@EnableAutoConfiguration<ul>
+<li>exclude</li>
+</ul>
+</li>
+<li>@SpringBootApplication</li>
+</ul>
+</li>
+<li>自动配置原理<ul>
+<li>条件注解<ul>
+<li>Conditional</li>
+<li>ConditionalOnClass</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自动配置情况观测<ul>
+<li>添加程序参数，<code>--debug</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="自己实现自动配置"><a href="#自己实现自动配置" class="headerlink" title="自己实现自动配置"></a>自己实现自动配置</h2><ul>
+<li>步骤<ol>
+<li>编写Java Config，@Configuration</li>
+<li>添加条件，@Conditional；类条件@ConditionalOnClass、@ConditionalOnMissingClass；属性条件@ConditionalOnProperty、Bean条件、资源条件、Web应用条件、其它条件（Spring4.x以上才有条件注解）</li>
+<li>定位自动配置，META-INF&#x2F;spring.factories</li>
+</ol>
+</li>
+<li>低版本Spring实现自动配置<ul>
+<li>条件判断：通过BeanFactoryPostProcessor进行判断</li>
+<li>配置加载：编写JavaConfig并通过component-scan或者XML引入</li>
+</ul>
+</li>
+</ul>
+<h2 id="起步依赖以及实现原理"><a href="#起步依赖以及实现原理" class="headerlink" title="起步依赖以及实现原理"></a>起步依赖以及实现原理</h2><blockquote>
+<p>起步依赖即Starter</p>
+</blockquote>
+<h3 id="maven依赖管理技巧"><a href="#maven依赖管理技巧" class="headerlink" title="maven依赖管理技巧"></a>maven依赖管理技巧</h3><ul>
+<li>列出依赖树<ul>
+<li><code>mvn dependency:tree</code></li>
+<li>IDEA maven Helper，可视化</li>
+</ul>
+</li>
+<li>排除特定依赖：exclusion</li>
+<li>统一管理依赖<ul>
+<li>dependencyManagement</li>
+<li>bom</li>
+</ul>
+</li>
+</ul>
+<h3 id="起步依赖"><a href="#起步依赖" class="headerlink" title="起步依赖"></a>起步依赖</h3><ul>
+<li>直接面向功能</li>
+<li>一站式获得所有相关依赖</li>
+</ul>
+<h2 id="定制起步依赖"><a href="#定制起步依赖" class="headerlink" title="定制起步依赖"></a>定制起步依赖</h2><ul>
+<li>主要内容<ul>
+<li>autoconfigure模块，包含自动配置代码</li>
+<li>starter模块，包含指向自动配置模块的依赖以及其它依赖</li>
+</ul>
+</li>
+<li>命名方式<ul>
+<li>xxx-spring-boot-autoconfigure</li>
+<li>xxx-spring-boot-starter</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置加载机制"><a href="#配置加载机制" class="headerlink" title="配置加载机制"></a>配置加载机制</h2><h3 id="外化配置加载顺序"><a href="#外化配置加载顺序" class="headerlink" title="外化配置加载顺序"></a>外化配置加载顺序</h3><blockquote>
+<p>Spring Boot 可以将配置外部化，这种模式叫做 “外化配置”。将配置从代码中分离外置，最明显的作用是只要简单地修改下外化配置文件，就可以在不同环境中，可以运行相同的应用代码。</p>
+</blockquote>
+<ol>
+<li>开启DevTools时，~&#x2F;spring-boot-devtools.properties</li>
+<li>测试类上的@TestPropertySource注解</li>
+<li>@SpringBootTest#proterties属性</li>
+<li><strong>命令行参数（–server.port&#x3D;9000）</strong></li>
+<li>STRING_APPLICATION_JSON中的属性（环境变量）</li>
+<li>ServletConfig初始化参数</li>
+<li>ServletContext初始化参数</li>
+<li>java:comp&#x2F;env中的JNDI属性</li>
+<li><strong>System.getProperties()</strong></li>
+<li><strong>操作系统环境变量</strong></li>
+<li>random.*涉及的RandomValuePropertySource</li>
+<li>jar包外部的application-profile.properties 或者 yml</li>
+<li>jar包内部的application-profile.properties 或者 yml</li>
+<li>jar包外部的application.properties 或者 yml</li>
+<li>jar包内部的application.properties 或者 yml</li>
+<li>@Configuration类上的PropertySource</li>
+<li>SpringApplication.setDefaultProperties()设置的默认属性</li>
+</ol>
+<h3 id="application-properties位置"><a href="#application-properties位置" class="headerlink" title="application.properties位置"></a>application.properties位置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./config</span><br><span class="line">./</span><br><span class="line">CLASSPATH中的/config</span><br><span class="line">CLASSPATH中的/</span><br><span class="line"></span><br><span class="line"># 通过下面的配置指定文件名、路径</span><br><span class="line">spring.config.name=xxx</span><br><span class="line">spring.config.location=xxx</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230120231837376.png" alt="image-20230120231837376"></p>
+<h2 id="PropertySource抽象"><a href="#PropertySource抽象" class="headerlink" title="PropertySource抽象"></a>PropertySource抽象</h2><blockquote>
+<p>可以自定义从文件、网络（配置中心）等各种地方获取配置项</p>
+</blockquote>
+<h3 id="添加PropertySource"><a href="#添加PropertySource" class="headerlink" title="添加PropertySource"></a>添加PropertySource</h3><ul>
+<li><p><code>&lt;context:property-placeholder&gt;</code></p>
+</li>
+<li><p>@PropertySource</p>
+</li>
+<li><p>@PropertySources</p>
+</li>
+</ul>
+<h3 id="SpringBoot的-ConfigurationProperties"><a href="#SpringBoot的-ConfigurationProperties" class="headerlink" title="SpringBoot的@ConfigurationProperties"></a>SpringBoot的@ConfigurationProperties</h3><ul>
+<li>可以将属性绑定到结构化对象上</li>
+<li>支持Relaxed Binding</li>
+<li>支持安全的类型转换</li>
+<li>@EnableConfigurationProperties</li>
+</ul>
+<h3 id="定制PropertySource"><a href="#定制PropertySource" class="headerlink" title="定制PropertySource"></a>定制PropertySource</h3><ul>
+<li>步骤<ul>
+<li>实现PropertySource</li>
+<li>从Environment取得PropertySources</li>
+<li>将自己的PropertySource添加到合适的位置</li>
+</ul>
+</li>
+<li>切入位置<ul>
+<li>EnvironmentPostProcessor</li>
+<li>BeanFactoryPostProcessor</li>
+</ul>
+</li>
+</ul>
+<h1 id="运行中的SpringBoot"><a href="#运行中的SpringBoot" class="headerlink" title="运行中的SpringBoot"></a>运行中的SpringBoot</h1><h2 id="ActuatorEndpoint"><a href="#ActuatorEndpoint" class="headerlink" title="ActuatorEndpoint"></a>ActuatorEndpoint</h2><h3 id="Acturator"><a href="#Acturator" class="headerlink" title="Acturator"></a>Acturator</h3><blockquote>
+<p>监控并管理应用程序</p>
+</blockquote>
+<ul>
+<li>访问方式<ul>
+<li>HTTP</li>
+<li>JMX</li>
+</ul>
+</li>
+<li>HTTP访问：<code>/actuator/&lt;id&gt;</code></li>
+<li>配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">management.server.address/port</span><br><span class="line">management.endpoints.web.base-path=/actuator</span><br><span class="line">management.endpoints.web.path-mapping.&lt;id&gt;=xxx</span><br><span class="line"></span><br><span class="line"># 开启与关闭</span><br><span class="line">management.endpoint.&lt;id&gt;.enabled=true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>依赖：spring-boot-starter-actuator</p>
+</li>
+<li><p>endpoint</p>
+<ul>
+<li>beans：显示Bean列表</li>
+<li>caches：显示应用缓存</li>
+<li>conditions：配置条件的计算情况</li>
+<li>configprops：显示@ConfigurationProperties的信息</li>
+<li>env：显示ConfigurableEnvironment中的属性</li>
+<li>health：显示健康检查信息，默认HTTP可访问</li>
+<li>httptrace：显示HTTP Trace信息</li>
+<li>info：显示设置好的应用信息，默认HTTP可访问</li>
+<li>loggers：显示并更新日志配置</li>
+<li>metrics：显示应用度量信息</li>
+<li>mappings：显示所有@RequestMapping信息</li>
+<li>scheduledtasks：显示应用的调度任务信息</li>
+<li>shutdown：优雅关闭应用程序，默认不开启</li>
+<li>threaddump：执行ThreadDump</li>
+<li>heapdump：返回Head Dump文件，格式为HPROF，JMX不支持</li>
+<li>prometheus：返回Prometheus抓取的信息，JMX不支持</li>
+</ul>
+</li>
+</ul>
+<h2 id="定制HealthIndicator"><a href="#定制HealthIndicator" class="headerlink" title="定制HealthIndicator"></a>定制HealthIndicator</h2><h3 id="SpringBoot自带的HealthIndicator"><a href="#SpringBoot自带的HealthIndicator" class="headerlink" title="SpringBoot自带的HealthIndicator"></a>SpringBoot自带的HealthIndicator</h3><ul>
+<li><p>状态</p>
+<ul>
+<li><p>DOWN、OUT_OF_SERVICE 503</p>
+</li>
+<li><p>UP、UNKNOWN 200</p>
+</li>
+</ul>
+</li>
+<li><p>机制</p>
+<ul>
+<li>通过HealthIndicatorRegistry收集信息</li>
+<li>HealthIndicator实现具体检查逻辑，内置了很多，如DataSource、Redis、Mongo等基础设施</li>
+</ul>
+</li>
+</ul>
+<h3 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h3><ul>
+<li>实现HealthIndicator接口</li>
+<li>根据自定义检查逻辑返回对应Health状态，Health中包含状态和详细描述信息</li>
+</ul>
+<h2 id="通过Micrometer获取运行数据"><a href="#通过Micrometer获取运行数据" class="headerlink" title="通过Micrometer获取运行数据"></a>通过Micrometer获取运行数据</h2><blockquote>
+<p>类比SLF4J，日志门面；Micrometer，度量门面。</p>
+</blockquote>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
+<li>多维度度量<ul>
+<li>支持Tag</li>
+</ul>
+</li>
+<li>预置大量探针<ul>
+<li>缓存、类加载器、GC、CPU、线程池</li>
+</ul>
+</li>
+<li>与Spring深度结合</li>
+</ul>
+<h3 id="核心度量指标"><a href="#核心度量指标" class="headerlink" title="核心度量指标"></a>核心度量指标</h3><ul>
+<li>核心接口<ul>
+<li>Meter</li>
+</ul>
+</li>
+<li>内置实现<ul>
+<li>Gauge、TimeGauge</li>
+<li>Timer、LongTaskTimer、FunctionTimer</li>
+<li>Counter、FunctionCounter</li>
+<li>DistributionSummary</li>
+</ul>
+</li>
+</ul>
+<h3 id="结合Spring"><a href="#结合Spring" class="headerlink" title="结合Spring"></a>结合Spring</h3><ul>
+<li>URL<ul>
+<li><code>/actuator/metrics</code>、<code>/actuator/prometheus</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="自定义度量指标"><a href="#自定义度量指标" class="headerlink" title="自定义度量指标"></a>自定义度量指标</h3><blockquote>
+<p>三种方法</p>
+</blockquote>
+<ul>
+<li>通过MeterRegistry注册Meter</li>
+<li>通过MeterBinder Bean让SpringBoot自动绑定</li>
+<li>通过MeterFilter进行定制</li>
+</ul>
+<h2 id="SpringBootAdmin"><a href="#SpringBootAdmin" class="headerlink" title="SpringBootAdmin"></a>SpringBootAdmin</h2><blockquote>
+<p>为SpringBoot提供一个可视化管理界面以及通知机制</p>
+</blockquote>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ul>
+<li>服务端，一般使用单独的服务作为服务端，收集其它应用程序的信息<ul>
+<li>@EnableAdminServer</li>
+</ul>
+</li>
+<li>客户端，具体的应用程序，去连接服务端<ul>
+<li>配置服务端以及Endpoint</li>
+</ul>
+</li>
+<li>安全：spring-boot-starter-security</li>
+</ul>
+<h2 id="定制容器的运行参数"><a href="#定制容器的运行参数" class="headerlink" title="定制容器的运行参数"></a>定制容器的运行参数</h2><h3 id="内嵌容器可选列表"><a href="#内嵌容器可选列表" class="headerlink" title="内嵌容器可选列表"></a>内嵌容器可选列表</h3><ul>
+<li>tomcat</li>
+<li>jetty</li>
+<li>undertow</li>
+<li>reactor-netty</li>
+</ul>
+<h3 id="容器配置"><a href="#容器配置" class="headerlink" title="容器配置"></a>容器配置</h3><ul>
+<li>端口：<code>server.port</code>、<code>server.address</code></li>
+<li>压缩：<code>server.compression.enabled/min-response/mime-types</code></li>
+<li>错误处理：<code>server.error.path/include-exception/include-stacktrace/enabled</code></li>
+</ul>
+<h2 id="HTTP2支持"><a href="#HTTP2支持" class="headerlink" title="HTTP2支持"></a>HTTP2支持</h2><h3 id="服务端HTTPS配置"><a href="#服务端HTTPS配置" class="headerlink" title="服务端HTTPS配置"></a>服务端HTTPS配置</h3><ul>
+<li>配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server.port=8443</span><br><span class="line">server.ssl.*：key-store、key-store-type、key-store-password</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>生成证书文件<ul>
+<li>keytool工具：<code>keytool -genkey -alias 别名 -storetype 仓库类型 -keyalg 算法 -keysize 长度 -keystore 文件名 -validity 有效期 </code></li>
+<li>仓库类型PKCS12、算法RSA、DSA；长度2048</li>
+</ul>
+</li>
+</ul>
+<h3 id="客户端HTTPS配置"><a href="#客户端HTTPS配置" class="headerlink" title="客户端HTTPS配置"></a>客户端HTTPS配置</h3><ul>
+<li>配置HttpClient<ul>
+<li>SSLContextBuilder构建SSLContext</li>
+<li>setSSLHostnameVerifier(new NoopHostnameVerifier())</li>
+</ul>
+</li>
+<li>配置RequestFactory<ul>
+<li>HttpComponentsClientHttpRequestFactory<ul>
+<li>setHttpClient</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h3><ul>
+<li>JDK&gt;&#x3D;JDK9，tomcat&gt;&#x3D;9.0.0，SpringBoot不支持h2c，需要先配置SSL。</li>
+<li>配置：<code>server.http2.enabled</code></li>
+<li>HTTP库：OKHTTPClient</li>
+</ul>
+<h2 id="命令行程序"><a href="#命令行程序" class="headerlink" title="命令行程序"></a>命令行程序</h2><blockquote>
+<p>非Web的SpringBoot项目</p>
+</blockquote>
+<h3 id="关闭Web容器"><a href="#关闭Web容器" class="headerlink" title="关闭Web容器"></a>关闭Web容器</h3><ul>
+<li><p>控制依赖：不添加Web相关依赖</p>
+</li>
+<li><p>配置方式：<code>spring.main.web-application-type=none</code></p>
+</li>
+<li><p>编程方式</p>
+<ul>
+<li>SpringApplication<ul>
+<li>setWebApplicationType</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用工具类"><a href="#常用工具类" class="headerlink" title="常用工具类"></a>常用工具类</h3><ul>
+<li>ApplicationRunner，参数是ApplicationArguments</li>
+<li>CommandLineRunner，参数是String[]</li>
+<li>多个Runner可以使用Order注解指定执行顺序</li>
+<li>返回码：ExitCodeGenerator，对应Linux进程返回码</li>
+</ul>
+<h2 id="可执行Jar包"><a href="#可执行Jar包" class="headerlink" title="可执行Jar包"></a>可执行Jar包</h2><ul>
+<li><p>Jar包内容（不包含JDK、JRE）</p>
+<ul>
+<li>Jar描述，META-INF&#x2F;MANIFEST.MF</li>
+<li>SpringBootLoader，org&#x2F;springframework&#x2F;boot&#x2F;loader</li>
+<li>项目内容，BOOT-INF&#x2F;classes</li>
+<li>项目依赖，BOOT-INF&#x2F;lib</li>
+</ul>
+</li>
+<li><p>程序入口</p>
+<ul>
+<li>MANIFEST.MF<ul>
+<li>Main-Class：org.springframework.boot.loader.JarLauncher</li>
+</ul>
+</li>
+<li>项目主类<ul>
+<li>@SpringApplication</li>
+<li>MANIFEST.MF<ul>
+<li>Start-Class: xxx.yyy.zzz</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可以直接执行的jar包，不需要java命令</p>
+<ul>
+<li>在spring-boot-maven-plugin中的executable设置为true</li>
+<li>可以在.conf的同名文件中配置参数，如a.jar，配置文件则为a.conf</li>
+<li>默认脚本中的一些配置项<ul>
+<li>CONF_FOLDER，放置.conf文件的目录位置，只能在环境变量中配置</li>
+<li>JAVA_OPTS，JVM启动的参数，如JVM的GC与内存</li>
+<li>RUN_ARGS，传递给程序执行的参数</li>
+</ul>
+</li>
+<li>实现原理是在jar包前面包含了一个8KB的SHELL脚本</li>
+</ul>
+</li>
+</ul>
+<h2 id="Docker打包"><a href="#Docker打包" class="headerlink" title="Docker打包"></a>Docker打包</h2><h3 id="通过maven构建docker镜像"><a href="#通过maven构建docker镜像" class="headerlink" title="通过maven构建docker镜像"></a>通过maven构建docker镜像</h3><ul>
+<li>步骤<ul>
+<li>提供一个Dockerfile文件</li>
+<li>配置dockerfile-maven-plugin插件</li>
+</ul>
+</li>
+<li>执行构建<ul>
+<li>mvn package</li>
+<li>mvn dockerfile:build</li>
+</ul>
+</li>
+<li>检查结果<ul>
+<li>docker images</li>
+</ul>
+</li>
+</ul>
+<h3 id="dockerfile编写"><a href="#dockerfile编写" class="headerlink" title="dockerfile编写"></a>dockerfile编写</h3><ul>
+<li>提供JRE</li>
+<li>拷贝JAR</li>
+<li>运行</li>
+</ul>
+<h1 id="Spring-Cloud"><a href="#Spring-Cloud" class="headerlink" title="Spring Cloud"></a>Spring Cloud</h1><h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><blockquote>
+<p>微服务：微服务就是一些<strong>协调工作</strong>的<strong>小而自治</strong>的服务。</p>
+</blockquote>
+<ul>
+<li>异构性<ul>
+<li>语言、存储</li>
+</ul>
+</li>
+<li>弹性<ul>
+<li>一个组件不可用，不会导致级联故障</li>
+</ul>
+</li>
+<li>拓展<ul>
+<li>单体服务不易拓展，多个较小的服务可以按需拓展</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>易于部署</li>
+<li>与组织结构对齐</li>
+<li>可组合性</li>
+<li>可替代性</li>
+</ul>
+</li>
+<li>代价<ul>
+<li>分布式系统的复杂性</li>
+<li>开发、测试过程的复杂性</li>
+<li>部署、监控的运维复杂性</li>
+</ul>
+</li>
+</ul>
+<h2 id="云原生-CloudNative"><a href="#云原生-CloudNative" class="headerlink" title="云原生 CloudNative"></a>云原生 CloudNative</h2><blockquote>
+<p>云原生技术有利于各组织在公有云，私有云和混合云等新型动态环境中，构建和运行可弹性拓展的应用。</p>
+</blockquote>
+<h3 id="云原生应用要求"><a href="#云原生应用要求" class="headerlink" title="云原生应用要求"></a>云原生应用要求</h3><ul>
+<li>devops，开发和运维一同致力于交付高品质得软件服务于客户</li>
+<li>continuous delivery，持续集成：软件得构建，测试和发布，要更快，更频繁，更稳定</li>
+<li>microservices，以一组小型服务得形式来部署应用</li>
+<li>containers，提供比传统虚拟机更高得效率</li>
+</ul>
+<h3 id="CNCF"><a href="#CNCF" class="headerlink" title="CNCF"></a>CNCF</h3><blockquote>
+<p>Cloud Native Computing Foundation</p>
+</blockquote>
+<ul>
+<li>k8s</li>
+<li>Prometheus</li>
+<li>Envoy</li>
+<li>CoreDNS</li>
+<li>containerd</li>
+</ul>
+<h2 id="Factor-APP"><a href="#Factor-APP" class="headerlink" title="Factor APP"></a>Factor APP</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>为构建SaaS应用提供行之有效得方法论</li>
+<li>适用于任意语言和后端服务得开发得应用程序</li>
+</ul>
+<h3 id="12-Factors"><a href="#12-Factors" class="headerlink" title="12-Factors"></a>12-Factors</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://12factor.net/">https://12factor.net/</a></p>
+</blockquote>
+<ul>
+<li>基准代码：一份基准代码，多份部署<ul>
+<li>使用版本管理系统</li>
+<li>基准代码与应用程序保持一一对应的关系</li>
+<li>尽管每个应用只对应一份基准代码，单可以同时存在多份部署，如local、dev、prod</li>
+</ul>
+</li>
+<li>依赖：显式声明依赖关系<ul>
+<li>通过依赖清单，确切声明所有依赖项，如maven</li>
+</ul>
+</li>
+<li>配置：在环境中存储配置，外化配置、配置中心</li>
+<li>后端服务：把后端服务作为附加资源<ul>
+<li>如数据库、缓存等都视为资源</li>
+</ul>
+</li>
+<li>构建，发布，运行：严格分离构建和运行<ul>
+<li>每发布一个版本必须对应一个唯一的发布ID</li>
+</ul>
+</li>
+<li>进程：以一个或者多个无状态进程运行应用<ul>
+<li>任何需要持久化的数据都要存储在后端服务内</li>
+</ul>
+</li>
+<li>端口绑定：通过端口绑定提供服务</li>
+<li>并发：通过进程模型进行拓展</li>
+<li>易处理：快速启动和优雅终止可最大化健壮性<ul>
+<li>追求最小启动时间</li>
+<li>进程一旦接收终止信号就会优雅终止</li>
+<li>进程应当在面对突然死亡时保持健壮</li>
+</ul>
+</li>
+<li>开发环境和线上环境等价：尽可能得保持开发、预发布、线上环境相同<ul>
+<li>想要做到持续部署就必须缩小本地和线上的差异</li>
+<li>后端服务是保持开发与线上等价的重要部分，反对在不同环境中使用不同的后端服务。</li>
+</ul>
+</li>
+<li>日志：把日志当作事件流</li>
+<li>管理进程：后台管理任务当作一次性进程运行</li>
+</ul>
+<h2 id="Spring-Cloud组件"><a href="#Spring-Cloud组件" class="headerlink" title="Spring Cloud组件"></a>Spring Cloud组件</h2><p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230121213817174.png" alt="image-20230121213817174"></p>
+<ul>
+<li>服务发现</li>
+<li>服务熔断</li>
+<li>配置服务</li>
+<li>服务安全，Spring Security</li>
+<li>服务网关，API Gateway</li>
+<li>分布式消息</li>
+<li>分布式跟踪</li>
+<li>云平台支持</li>
+</ul>
+<h1 id="服务注册与发现"><a href="#服务注册与发现" class="headerlink" title="服务注册与发现"></a>服务注册与发现</h1><h2 id="使用Eureka作为服务注册中心"><a href="#使用Eureka作为服务注册中心" class="headerlink" title="使用Eureka作为服务注册中心"></a>使用Eureka作为服务注册中心</h2><ul>
+<li>什么是Eureka：AWS上定位服务的REST服务</li>
+<li>Netflix OSS：<a target="_blank" rel="noopener" href="https://netflix.github.io/">https://netflix.github.io</a></li>
+<li>Spring对Netflix的支持：Spring Cloud Netflix</li>
+<li><strong>已不做更新，如果不是在AWS上面，不推荐使用</strong></li>
+</ul>
+<h3 id="启动Eureka服务"><a href="#启动Eureka服务" class="headerlink" title="启动Eureka服务"></a>启动Eureka服务</h3><ul>
+<li><p>依赖：<code>spring-cloud-starter-netflix-eureka-starter</code></p>
+</li>
+<li><p>声明：@EnableEurekaServer</p>
+</li>
+<li><p>注意：</p>
+<ul>
+<li>默认端口8761</li>
+<li>Eureka服务端自己不要注册到Eureka上面</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 自己不注册到Eureka</span><br><span class="line">eureka.client.register-with-eureka=false</span><br><span class="line"># </span><br><span class="line">eureka.client.fetch-registry=false</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="将服务注册到Eureka"><a href="#将服务注册到Eureka" class="headerlink" title="将服务注册到Eureka"></a>将服务注册到Eureka</h3><ul>
+<li>依赖：<code>spring-cloud-starter-netflix-eureka-client</code></li>
+<li>声明：@EnableDiscoveryClient、@EnableEurekaClient</li>
+<li>配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eureka.client.service-url.default-zone</span><br><span class="line">eureka.client.instance.prefer-ip-address</span><br></pre></td></tr></table></figure>
+
+<h2 id="Bootstrap属性"><a href="#Bootstrap属性" class="headerlink" title="Bootstrap属性"></a>Bootstrap属性</h2><ul>
+<li>启动引导阶段加载的属性</li>
+<li>bootstrap.properties&#x2F;yml</li>
+<li>spring.cloud.bootstrap.name&#x3D;bootstrap</li>
+<li>常用配置<ul>
+<li>spring.application.name&#x3D;应用名，用于服务注册</li>
+<li>配置中心相关</li>
+</ul>
+</li>
+</ul>
+<h2 id="服务发现原理"><a href="#服务发现原理" class="headerlink" title="服务发现原理"></a>服务发现原理</h2><h3 id="如何获得服务地址"><a href="#如何获得服务地址" class="headerlink" title="如何获得服务地址"></a>如何获得服务地址</h3><ul>
+<li>EurekaClient：getNextServerFromEureka()</li>
+<li>DiscoveryClient：getInstances，推荐，Spring的抽象</li>
+</ul>
+<h3 id="Load-Balancer-Client"><a href="#Load-Balancer-Client" class="headerlink" title="Load Balancer Client"></a>Load Balancer Client</h3><ul>
+<li>RestTemplate与WebClient</li>
+<li>@LoadBalaced</li>
+<li>实际上通过ClientHttpRequestInterceptor实现<ul>
+<li>LoadBalancerInterceptor</li>
+</ul>
+</li>
+</ul>
+<h3 id="OpenFeign"><a href="#OpenFeign" class="headerlink" title="OpenFeign"></a>OpenFeign</h3><h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><h3 id="服务注册与发现抽象"><a href="#服务注册与发现抽象" class="headerlink" title="服务注册与发现抽象"></a>服务注册与发现抽象</h3><ul>
+<li>服务注册：ServiceRegistry</li>
+<li>服务发现：DiscoveryClient</li>
+</ul>
+<h3 id="自动向Eureka服务端注册"><a href="#自动向Eureka服务端注册" class="headerlink" title="自动向Eureka服务端注册"></a>自动向Eureka服务端注册</h3><ul>
+<li>ServiceRegistry<ul>
+<li>EurekaSerivceRegistry</li>
+<li>EurekaRegistration</li>
+</ul>
+</li>
+<li>自动配置<ul>
+<li>EurekaAutoServiceRegistration<ul>
+<li>SmartLifecycle</li>
+</ul>
+</li>
+<li>EurekaClientAutoConfiguration</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用ZK作为服务注册中心"><a href="#使用ZK作为服务注册中心" class="headerlink" title="使用ZK作为服务注册中心"></a>使用ZK作为服务注册中心</h2><h3 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h3><ul>
+<li>一个分布式协调服务</li>
+<li>设计目标：简单、多副本、有序，快（适合读写比在10：1以上的场景，即读多写少）</li>
+</ul>
+<h3 id="Spring-Cloud-Zookeeper"><a href="#Spring-Cloud-Zookeeper" class="headerlink" title="Spring Cloud Zookeeper"></a>Spring Cloud Zookeeper</h3><ul>
+<li>依赖<code>spring-cloud-starter-zookeeper-discovery</code>、客户端：Apache Curator</li>
+<li>简单配置：<code>spring.cloud.zookeeper.connect-string=localhost:2181</code></li>
+<li>注意：3.5.x还是Beta，但是很多人在生产中使用</li>
+</ul>
+<h3 id="使用Zookeeper作为注册中心的问题"><a href="#使用Zookeeper作为注册中心的问题" class="headerlink" title="使用Zookeeper作为注册中心的问题"></a>使用Zookeeper作为注册中心的问题</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/601745">https://developer.aliyun.com/article/601745</a></li>
+<li>在实践中，注册中心不能因为自身的任何原因破坏服务之间的可连通性</li>
+<li>注册中心需要是AP的，但是ZK是CP的，如果ZK脑裂了，则直接不可用，所以一般不能跨机房使用</li>
+</ul>
+<h2 id="使用Consul作为服务注册中心"><a href="#使用Consul作为服务注册中心" class="headerlink" title="使用Consul作为服务注册中心"></a>使用Consul作为服务注册中心</h2><h3 id="Consul"><a href="#Consul" class="headerlink" title="Consul"></a>Consul</h3><ul>
+<li>分布式、高可用</li>
+<li>关键特性：服务发现、健康检查、KV存储、多数据中心支持、安全的服务间通信</li>
+<li>服务发现的好用功能<ul>
+<li>HTTP API</li>
+<li>DNS，xxx.service.consul</li>
+<li>与nginx联动，ngx_http_consul_backend_module</li>
+</ul>
+</li>
+</ul>
+<h3 id="Spring结合"><a href="#Spring结合" class="headerlink" title="Spring结合"></a>Spring结合</h3><ul>
+<li>依赖：<code>spring-cloud-starter-consul-discovery</code></li>
+<li>简单配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.consul.host=localhost</span><br><span class="line">spring.cloud.consul.port=8500</span><br><span class="line">spring.cloud.consul.discovery.prefer-ip-address=true</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>docker启动</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run --name consul -d -p 8500:8500 -p 8600:8600/udp consul</span><br><span class="line"></span><br><span class="line"># 客户端DNS</span><br><span class="line">dig @127.0.0.1 -p 8600 xxx.service.xxx</span><br></pre></td></tr></table></figure>
+
+<h2 id="Nacos作为服务注册中心"><a href="#Nacos作为服务注册中心" class="headerlink" title="Nacos作为服务注册中心"></a>Nacos作为服务注册中心</h2><h3 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h3><ul>
+<li>阿里巴巴开源，一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台</li>
+<li>功能<ul>
+<li>动态服务配置</li>
+<li>服务发现和管理</li>
+<li>动态DNS服务</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/01/14/justdoit-note-spring-spring-family/image-20230122002717756.png" alt="image-20230122002717756"></p>
+<h3 id="Spring结合-1"><a href="#Spring结合-1" class="headerlink" title="Spring结合"></a>Spring结合</h3><ul>
+<li>依赖：<code>spring-cloud-alibaba-dependencies</code>、<code>spring-cloud-starter-alibaba-nacos-discovery</code></li>
+<li>简单配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.nacos.discovery.server-addr</span><br></pre></td></tr></table></figure>
+
+<h2 id="DiscoveryClient定制"><a href="#DiscoveryClient定制" class="headerlink" title="DiscoveryClient定制"></a>DiscoveryClient定制</h2><ul>
+<li>功能<ul>
+<li>返回该DiscoveryClient能提供的服务名列表</li>
+<li>返回指定服务对应的ServiceInstance列表</li>
+<li>返回DiscoveryClient的顺序</li>
+<li>返回HealthIndicator里显示的描述</li>
+</ul>
+</li>
+<li>实现RibbonClient支持<ul>
+<li>实现DiscoveryClient接口</li>
+<li>实现自己的<code>ServerList&lt;T extends Server&gt;</code>，调用上一步的client<ul>
+<li>Ribbon提供了<code>AbstractServerList&lt;T extends Server&gt;</code></li>
+</ul>
+</li>
+<li>提供一个配置类，声明ServerListBean实例</li>
+</ul>
+</li>
+</ul>
+<h1 id="服务熔断"><a href="#服务熔断" class="headerlink" title="服务熔断"></a>服务熔断</h1><h2 id="断路器模式"><a href="#断路器模式" class="headerlink" title="断路器模式"></a>断路器模式</h2><ul>
+<li>在断路器对象中封装受保护的方法调用</li>
+<li>该对象监控调用和短路情况</li>
+<li>调用失败触发阈值后，后续调用直接使用断路器返回错误码，不再执行实际调用</li>
+<li>有自动探活恢复机制</li>
+</ul>
+<h2 id="Hystrix实现熔断"><a href="#Hystrix实现熔断" class="headerlink" title="Hystrix实现熔断"></a>Hystrix实现熔断</h2><ul>
+<li><p>@HystrixCommand</p>
+<ul>
+<li>fallbackMethod，commandProperties</li>
+</ul>
+</li>
+<li><p>Spring结合</p>
+<ul>
+<li><code>spring-cloud-starter-netflix-hystrix</code></li>
+<li>@EnableCircuitBreaker</li>
+</ul>
+</li>
+<li><p>Feign支持</p>
+<ul>
+<li>feign.hystrix.enabled&#x3D;true</li>
+<li>@FeignClient，该注解用于接口上，还需要一个FallbackXXX类，实现一样的接口<ul>
+<li>fallback&#x2F;fallbackFactory</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>已经不再更新维护，不推荐使用</p>
+</li>
+</ul>
+<h2 id="熔断观测"><a href="#熔断观测" class="headerlink" title="熔断观测"></a>熔断观测</h2><ul>
+<li>打日志<ul>
+<li>发生熔断时打印特定日志</li>
+</ul>
+</li>
+<li>看监控<ul>
+<li>主动向监控系统埋点，上报熔断情况</li>
+<li>提供与熔断相关的EndPoint，让第三方系统来拉取信息</li>
+</ul>
+</li>
+</ul>
+<h2 id="Resilience4j"><a href="#Resilience4j" class="headerlink" title="Resilience4j"></a>Resilience4j</h2><h3 id="Resilience4j-1"><a href="#Resilience4j-1" class="headerlink" title="Resilience4j"></a>Resilience4j</h3><ul>
+<li>受Hystrix启发的轻量级且易于使用的容错库</li>
+<li>针对Java8与函数式编程设计</li>
+<li>核心组件<ul>
+<li>circuitbreaker：熔断</li>
+<li>ratelimiter：限流</li>
+<li>bulkhead：依赖隔离&amp;负载保护</li>
+<li>retry：自动重试</li>
+<li>cache：应答缓存</li>
+<li>timelimiter：超时控制</li>
+</ul>
+</li>
+</ul>
+<h3 id="实现熔断"><a href="#实现熔断" class="headerlink" title="实现熔断"></a>实现熔断</h3><ul>
+<li>依赖<code>resilience4j-spring-boot2</code></li>
+<li>基于ConcurrentHashMap的内存断路器<ul>
+<li>CircuitBreakerRegistry</li>
+<li>CircuitBreakerConfig</li>
+</ul>
+</li>
+</ul>
+<h3 id="实现限流-Bulkhead"><a href="#实现限流-Bulkhead" class="headerlink" title="实现限流-Bulkhead"></a>实现限流-Bulkhead</h3><ul>
+<li>目的：防止下游依赖被并发请求冲击；防止发生连环故障。超过阈值的请求先等待，等待超过阈值时间后直接返回。bulkhead隔舱，防水舱。</li>
+<li>用法：BulkheadRegistry&#x2F;BulkheadConfig；@Bulkhead(name&#x3D;”名称”)</li>
+<li>配置：BulkheadProperties<ul>
+<li>backend.xxx</li>
+<li>max-concurrent-call</li>
+<li>max-wait-time</li>
+</ul>
+</li>
+<li>命令行验证命令</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ab -c 5 -n 10 url</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现限流-RateLimiter"><a href="#实现限流-RateLimiter" class="headerlink" title="实现限流-RateLimiter"></a>实现限流-RateLimiter</h3><ul>
+<li>目的：限制特定时间段内的执行次数</li>
+<li>用法：<ul>
+<li>RateLimiterRegistry&#x2F;RateLimiterConfig</li>
+<li>RateLimiter(name&#x3D;”名称”)</li>
+</ul>
+</li>
+<li>配置：ReteLimiterProperties<ul>
+<li>limiters.xxx</li>
+<li>limit-for-period</li>
+<li>limit-refresh-period-in-millis</li>
+<li>timeout-in-millis</li>
+</ul>
+</li>
+</ul>
+<h1 id="服务配置"><a href="#服务配置" class="headerlink" title="服务配置"></a>服务配置</h1><h2 id="基于Git"><a href="#基于Git" class="headerlink" title="基于Git"></a>基于Git</h2><h3 id="Spring-Cloud-Config-Server"><a href="#Spring-Cloud-Config-Server" class="headerlink" title="Spring Cloud Config Server"></a>Spring Cloud Config Server</h3><ul>
+<li>目的：提供针对外置配置的HTTP API，把自己作为一个服务注册到注册中心</li>
+<li>依赖：<code>spring-cloud-config-server</code><ul>
+<li>@EnableConfigServer</li>
+<li>支持Git、SVN、Vault、JDBC</li>
+</ul>
+</li>
+<li>配置：MultipleJGitEnvironmentProperties<ul>
+<li><code>spring.cloud.config.server.git.uri</code><ul>
+<li>可以是网络URL，也可以是本地路径：file:&#x2F;&#x2F;xxx</li>
+</ul>
+</li>
+<li>配置文件的要素<ul>
+<li>application，即spring.application.name</li>
+<li>profile，即客户端的spring.profiles.active</li>
+<li>label，配置文件的特定标签，默认master</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Spring-Cloud-Config-Client"><a href="#Spring-Cloud-Config-Client" class="headerlink" title="Spring Cloud Config Client"></a>Spring Cloud Config Client</h3><ul>
+<li>依赖：spring-cloud-starter-config</li>
+<li>发现配置中心<ul>
+<li>配置文件配置，bootstrap.yml<ul>
+<li>spring.cloud.config.url&#x3D;xxx</li>
+<li>spring.cloud.config.fail-fast&#x3D;true</li>
+</ul>
+</li>
+<li>服务发现<ul>
+<li>spring.cloud.config.discovery.enabled&#x3D;true</li>
+<li>spring.cloud.config.discovery.service-id&#x3D;configserver</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>配置刷新<ul>
+<li>@RefreshScope，用于Bean上面</li>
+<li>Endpoint：&#x2F;actuator&#x2F;refresh，或者依赖SpringCloudBus</li>
+</ul>
+</li>
+</ul>
+<h2 id="基于ZK"><a href="#基于ZK" class="headerlink" title="基于ZK"></a>基于ZK</h2><ul>
+<li><p>依赖：spring-cloud-starter-zookeeper-config</p>
+</li>
+<li><p>启用</p>
+<ul>
+<li>bootstrap.yml</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.zookeeper.config.enabled</span><br><span class="line">spring.cloud.zookeeper.connect-string</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存储格式<code>/config/application</code>，<code>profile/key=value</code></p>
+</li>
+<li><p>配置</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.zookeeper.config.root/default-context/profile-speatator</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>刷新机制：通知</li>
+</ul>
+<h2 id="配置抽象"><a href="#配置抽象" class="headerlink" title="配置抽象"></a>配置抽象</h2><ul>
+<li>目标：在分布式系统中，提供外置配置支持</li>
+<li>实现：类似于Spring应用中的Environment与PropertySource，在上下文中添加SpringCloudConfig的PropertySource</li>
+</ul>
+<h2 id="基于Consul"><a href="#基于Consul" class="headerlink" title="基于Consul"></a>基于Consul</h2><ul>
+<li><p>依赖<code>spring-cloud-starter-consul-config</code></p>
+</li>
+<li><p>启用</p>
+<ul>
+<li><p>bootstarp.yml</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.consul.config.enabled/host/port</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置项</p>
+<ul>
+<li>spring.cloud.consul.config.format&#x3D;KEY_VALUE\YAML\PROPERTIES\FILES</li>
+<li>&#x2F;config&#x2F;应用名，profile&#x2F;data</li>
+<li>&#x2F;config&#x2F;application,profile&#x2F;data</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>刷新机制：轮询</p>
+</li>
+</ul>
+<h2 id="基于Nacos"><a href="#基于Nacos" class="headerlink" title="基于Nacos"></a>基于Nacos</h2><ul>
+<li><p>依赖：<code>spring-cloud-alibaba-nacos-config</code></p>
+</li>
+<li><p>启用</p>
+<ul>
+<li>bootstrap.yml</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.nacos.config.server-addr/enabled</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置项</p>
+<ul>
+<li>dataId<ul>
+<li>${prefix}-${spring.profile.active}-${file-extension}</li>
+<li>spring.cloud.nacos.config.prefix</li>
+<li>spring.cloud.nacos.config.file-extension</li>
+</ul>
+</li>
+<li>spring.cloud.nacos.config.group</li>
+</ul>
+</li>
+<li><p>刷新机制：通知</p>
+</li>
+</ul>
+<h2 id="基于Apollo"><a href="#基于Apollo" class="headerlink" title="基于Apollo"></a>基于Apollo</h2><ul>
+<li>有版本发布管理</li>
+<li>灰度发布</li>
+<li>权限管理、审计</li>
+<li>客户端配置信息监控</li>
+<li>开放平台API</li>
+</ul>
+<h1 id="Spring-Cloud-Stream"><a href="#Spring-Cloud-Stream" class="headerlink" title="Spring Cloud Stream"></a>Spring Cloud Stream</h1><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><ul>
+<li>一款用于构建消息驱动的微服务应用程序的轻量级框架</li>
+<li>特性<ul>
+<li>声明式编程模型</li>
+<li>引入多种概念抽象<ul>
+<li>发布订阅、消费组、分区</li>
+</ul>
+</li>
+<li>支持多种消息中间件</li>
+</ul>
+</li>
+<li>核心概念：Binder<ul>
+<li>应用程序与Binder交互，Binder与中间件交互</li>
+<li>@EnableBinding</li>
+<li>@Input、SubscribableChannel</li>
+<li>@Output、MessgaChannel</li>
+</ul>
+</li>
+<li>消费组：对于同一个消息，每个组中有且仅有一个消费者收到消息</li>
+<li>分区：每个Topic下有多个分区，分区内消息可以认为是有序的</li>
+<li>生产消息<ul>
+<li>使用MessageChannel中的send</li>
+<li>方法上使用@SendTo，将方法返回值作为消息发送出去</li>
+</ul>
+</li>
+<li>消费消息<ul>
+<li>方法上使用@StreamListerner<ul>
+<li>方法参数：@Payload、@Headers、@Header</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其它：使用Spring Integration</li>
+</ul>
+<h2 id="访问RabbitMQ"><a href="#访问RabbitMQ" class="headerlink" title="访问RabbitMQ"></a>访问RabbitMQ</h2><ul>
+<li>依赖：<code>spring-cloud-starter-stream-rabbit</code>、<code>spring-boot-starter-amqp</code></li>
+<li>配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.stream.rabbit.binder.*</span><br><span class="line">spring.cloud.stream.rabbit.bindings.&lt;channelName&gt;.consumer.*</span><br><span class="line">spring.rabbitmq.*</span><br></pre></td></tr></table></figure>
+
+<h2 id="访问Kafka"><a href="#访问Kafka" class="headerlink" title="访问Kafka"></a>访问Kafka</h2><ul>
+<li>依赖：<code>spring-cloud-starter-stream-kafka</code></li>
+<li>配置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spring.cloud.stream.kafka.binder.*</span><br><span class="line">spring.cloud.stream.kafka.bindings.&lt;ChannelName&gt;.consumer.*</span><br><span class="line">spring.kafka.*</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring定时任务"><a href="#Spring定时任务" class="headerlink" title="Spring定时任务"></a>Spring定时任务</h2><h3 id="Spring的抽象"><a href="#Spring的抽象" class="headerlink" title="Spring的抽象"></a>Spring的抽象</h3><ul>
+<li>TaskScheduler、Trigger、TriggerContext</li>
+</ul>
+<h3 id="配置定时任务"><a href="#配置定时任务" class="headerlink" title="配置定时任务"></a>配置定时任务</h3><ul>
+<li>@EnableScheduling</li>
+<li>方法级别：@Scheduled</li>
+</ul>
+<h2 id="Spring事件机制"><a href="#Spring事件机制" class="headerlink" title="Spring事件机制"></a>Spring事件机制</h2><ul>
+<li>Spring中的事件：ApplicationEvent</li>
+<li>发送事件<ul>
+<li>ApplicationEventPublisherAware</li>
+<li>ApplicationEventPublisher.publishEvent</li>
+</ul>
+</li>
+<li>监听事件<ul>
+<li>ApplicationListener</li>
+<li>@EventListener</li>
+</ul>
+</li>
+</ul>
+<h1 id="服务链路追踪"><a href="#服务链路追踪" class="headerlink" title="服务链路追踪"></a>服务链路追踪</h1><h2 id="Dapper理解链路治理"><a href="#Dapper理解链路治理" class="headerlink" title="Dapper理解链路治理"></a>Dapper理解链路治理</h2><h3 id="服务治理关注点"><a href="#服务治理关注点" class="headerlink" title="服务治理关注点"></a>服务治理关注点</h3><ul>
+<li>系统中有哪些服务</li>
+<li>服务的依赖关系</li>
+<li>一个请求的具体执行路径</li>
+<li>每个环节的执行是否正常以及其耗时情况</li>
+</ul>
+<h3 id="Google-Dapper的概念"><a href="#Google-Dapper的概念" class="headerlink" title="Google Dapper的概念"></a>Google Dapper的概念</h3><ul>
+<li>Span-基本的工作单元</li>
+<li>Trace-由一组Span构成的树形结构</li>
+<li>Annotation-用于及时记录事件<ul>
+<li>cs client send</li>
+<li>sr server received</li>
+<li>ss server send</li>
+<li>cr client received</li>
+</ul>
+</li>
+</ul>
+<h2 id="Sleuth实现链路追踪"><a href="#Sleuth实现链路追踪" class="headerlink" title="Sleuth实现链路追踪"></a>Sleuth实现链路追踪</h2><ul>
+<li>依赖：<code>spring-cloud-starter-sleuth</code>（系统请求处理库），<code>spring-cloud-starter-zipkin</code>（外部埋点系统）</li>
+<li>日志输出：[appname, traceId,spanId,exportable]</li>
+</ul>
+<h2 id="追踪消息链路"><a href="#追踪消息链路" class="headerlink" title="追踪消息链路"></a>追踪消息链路</h2><blockquote>
+<p>追踪消息中间件的消息走向</p>
+</blockquote>
+<ul>
+<li>可以使用HTTP进行埋点或者使用MQ进行埋点</li>
+</ul>
+<h2 id="服务治理关注点-1"><a href="#服务治理关注点-1" class="headerlink" title="服务治理关注点"></a>服务治理关注点</h2><ul>
+<li>宏观<ul>
+<li>架构设计是否合理</li>
+<li>哪个链路是关键链路</li>
+<li>链路的容量水位趋势</li>
+<li>对系统变更的管理与审计</li>
+</ul>
+</li>
+<li>微观上<ul>
+<li>系统的依赖</li>
+<li>系统的配置</li>
+<li>系统的主观、客观质量</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://equator8848.xyz">Equator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://equator8848.xyz/2023/01/14/justdoit-note-spring-spring-family/">https://equator8848.xyz/2023/01/14/justdoit-note-spring-spring-family/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://equator8848.xyz" target="_blank">Equator's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring%E5%85%A8%E5%AE%B6%E6%A1%B6/">Spring全家桶</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/24/justdoit-lcdp-hello-lcdp/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">初识低代码</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/12/justdoit-note-ceph-ceph%E8%BF%90%E7%BB%B4/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ceph运维</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Equator</div><div class="author-info__description">分享互联网技术与摄影</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/libinkai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客搬家中，陆续将文章迁移进来...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring%E6%A6%82%E8%A7%88"><span class="toc-number">1.</span> <span class="toc-text">Spring概览</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JDBC"><span class="toc-number">2.</span> <span class="toc-text">JDBC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="toc-number">2.1.</span> <span class="toc-text">单数据源配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="toc-number">2.2.</span> <span class="toc-text">多数据源配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">2.3.</span> <span class="toc-text">连接池</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HikariCP"><span class="toc-number">2.3.1.</span> <span class="toc-text">HikariCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Druid"><span class="toc-number">2.3.2.</span> <span class="toc-text">Druid</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringJDBC"><span class="toc-number">2.4.</span> <span class="toc-text">SpringJDBC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E4%BA%8B%E5%8A%A1%E6%8A%BD%E8%B1%A1"><span class="toc-number">2.5.</span> <span class="toc-text">Spring事务抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.5.1.</span> <span class="toc-text">核心接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E4%BC%A0%E6%92%AD"><span class="toc-number">2.5.2.</span> <span class="toc-text">事务传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB"><span class="toc-number">2.5.3.</span> <span class="toc-text">事务隔离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8F%E4%B8%8E%E7%BC%96%E7%A8%8B%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">2.5.4.</span> <span class="toc-text">声明式与编程式事务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JDBC%E5%BC%82%E5%B8%B8%E6%8A%BD%E8%B1%A1"><span class="toc-number">2.6.</span> <span class="toc-text">JDBC异常抽象</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%98%A0%E5%B0%84"><span class="toc-number">3.</span> <span class="toc-text">对象映射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%AF%B9%E8%B1%A1%E6%98%A0%E5%B0%84"><span class="toc-number">3.1.</span> <span class="toc-text">为什么需要对象映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hibernate"><span class="toc-number">3.2.</span> <span class="toc-text">Hibernate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JPA"><span class="toc-number">3.3.</span> <span class="toc-text">JPA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><span class="toc-number">3.3.1.</span> <span class="toc-text">常用注解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lombok"><span class="toc-number">3.4.</span> <span class="toc-text">Lombok</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MyBatis"><span class="toc-number">3.5.</span> <span class="toc-text">MyBatis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MyBatisGenerator"><span class="toc-number">3.5.1.</span> <span class="toc-text">MyBatisGenerator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MyBatisPageHelper"><span class="toc-number">3.5.2.</span> <span class="toc-text">MyBatisPageHelper</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NoSQL"><span class="toc-number">4.</span> <span class="toc-text">NoSQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MongoDB"><span class="toc-number">4.1.</span> <span class="toc-text">MongoDB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis"><span class="toc-number">4.2.</span> <span class="toc-text">Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E7%BC%93%E5%AD%98%E6%8A%BD%E8%B1%A1"><span class="toc-number">4.3.</span> <span class="toc-text">Spring缓存抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E7%BC%93%E5%AD%98"><span class="toc-number">4.4.</span> <span class="toc-text">本地缓存与分布式缓存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB"><span class="toc-number">4.5.</span> <span class="toc-text">读写分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RedisTemplate"><span class="toc-number">4.6.</span> <span class="toc-text">RedisTemplate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis-Repository"><span class="toc-number">4.7.</span> <span class="toc-text">Redis Repository</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E8%BF%9B%E9%98%B6"><span class="toc-number">5.</span> <span class="toc-text">数据访问进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Project-Reactor"><span class="toc-number">5.1.</span> <span class="toc-text">Project Reactor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">5.2.</span> <span class="toc-text">核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Operators-Publisher-x2F-Subscriber"><span class="toc-number">5.2.1.</span> <span class="toc-text">Operators-Publisher&#x2F;Subscriber</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Backpressure-%E5%8F%8D%E5%8E%8B"><span class="toc-number">5.2.2.</span> <span class="toc-text">Backpressure-反压</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scheduler-%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="toc-number">5.2.3.</span> <span class="toc-text">Scheduler-线程调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">5.2.4.</span> <span class="toc-text">异常处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-x-Redis"><span class="toc-number">5.3.</span> <span class="toc-text">Reactive x Redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-x-MongoDB"><span class="toc-number">5.4.</span> <span class="toc-text">Reactive x MongoDB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reactive-x-RDBMS"><span class="toc-number">5.5.</span> <span class="toc-text">Reactive x RDBMS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8APO%E6%89%93%E5%8D%B0%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%B1%82%E6%91%98%E8%A6%81%EF%BC%88%E6%97%A5%E5%BF%97%EF%BC%89"><span class="toc-number">5.6.</span> <span class="toc-text">使用APO打印数据访问层摘要（日志）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AOP"><span class="toc-number">5.7.</span> <span class="toc-text">AOP</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-MVC"><span class="toc-number">6.</span> <span class="toc-text">Spring MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83"><span class="toc-number">6.1.</span> <span class="toc-text">核心</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3-1"><span class="toc-number">6.2.</span> <span class="toc-text">常用注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">6.3.</span> <span class="toc-text">应用上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">6.4.</span> <span class="toc-text">请求处理机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E8%AF%B7%E6%B1%82%E7%9A%84%E5%A4%A7%E8%87%B4%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">6.4.1.</span> <span class="toc-text">一个请求的大致处理流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95"><span class="toc-number">6.5.</span> <span class="toc-text">定义处理方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%98%A0%E5%B0%84%E5%85%B3%E7%B3%BB"><span class="toc-number">6.5.1.</span> <span class="toc-text">定义映射关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">6.5.2.</span> <span class="toc-text">自定义类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%A0%A1%E9%AA%8C"><span class="toc-number">6.5.3.</span> <span class="toc-text">定义校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multipart%E4%B8%8A%E4%BC%A0"><span class="toc-number">6.5.4.</span> <span class="toc-text">Multipart上传</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E6%9C%BA%E5%88%B6"><span class="toc-number">6.6.</span> <span class="toc-text">视图解析机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E5%9B%BE%E8%A7%A3%E6%9E%90%E5%AE%9E%E7%8E%B0%E5%9F%BA%E7%A1%80"><span class="toc-number">6.6.1.</span> <span class="toc-text">视图解析实现基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">6.6.2.</span> <span class="toc-text">重定向</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%A7%86%E5%9B%BE"><span class="toc-number">6.7.</span> <span class="toc-text">常用的视图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Jackson-based-JSON-x2F-XML"><span class="toc-number">6.7.1.</span> <span class="toc-text">Jackson-based JSON &#x2F; XML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thymeleaf-amp-Freemaker"><span class="toc-number">6.7.2.</span> <span class="toc-text">Thymeleaf &amp; Freemaker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEMessageConverter"><span class="toc-number">6.7.3.</span> <span class="toc-text">配置MessageConverter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E4%B8%8E%E7%BC%93%E5%AD%98"><span class="toc-number">6.8.</span> <span class="toc-text">静态资源与缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90"><span class="toc-number">6.8.1.</span> <span class="toc-text">资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-number">6.8.2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E6%9E%B6%E6%9E%84"><span class="toc-number">6.8.3.</span> <span class="toc-text">推荐架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%9C%BA%E5%88%B6"><span class="toc-number">6.9.</span> <span class="toc-text">异常处理机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringMVC%E7%9A%84%E5%88%87%E5%85%A5%E7%82%B9"><span class="toc-number">6.10.</span> <span class="toc-text">SpringMVC的切入点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8"><span class="toc-number">6.10.1.</span> <span class="toc-text">拦截器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEWeb%E8%B5%84%E6%BA%90"><span class="toc-number">7.</span> <span class="toc-text">访问Web资源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87RestTemplate%E8%AE%BF%E9%97%AEWeb%E8%B5%84%E6%BA%90"><span class="toc-number">7.1.</span> <span class="toc-text">通过RestTemplate访问Web资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RestTemplate%E9%AB%98%E9%98%B6%E7%94%A8%E6%B3%95"><span class="toc-number">7.2.</span> <span class="toc-text">RestTemplate高阶用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E9%80%92Http-Header"><span class="toc-number">7.2.1.</span> <span class="toc-text">传递Http Header</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">7.3.</span> <span class="toc-text">处理类型转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6RestTemplate"><span class="toc-number">7.4.</span> <span class="toc-text">定制RestTemplate</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84HTTP%E5%BA%93"><span class="toc-number">7.4.1.</span> <span class="toc-text">支持的HTTP库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%BA%95%E5%B1%82%E8%AF%B7%E6%B1%82%E9%80%BB%E8%BE%91"><span class="toc-number">7.4.2.</span> <span class="toc-text">优化底层请求逻辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87WebClient%E8%AE%BF%E9%97%AEWeb%E8%B5%84%E6%BA%90"><span class="toc-number">7.5.</span> <span class="toc-text">通过WebClient访问Web资源</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E5%BC%80%E5%8F%91%E8%BF%9B%E9%98%B6"><span class="toc-number">8.</span> <span class="toc-text">Web开发进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1RESTful-Service"><span class="toc-number">8.1.</span> <span class="toc-text">设计RESTful Service</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Richardson%E6%88%90%E7%86%9F%E5%BA%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">8.1.1.</span> <span class="toc-text">Richardson成熟度模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0Restful-Web-Service"><span class="toc-number">8.1.2.</span> <span class="toc-text">实现Restful Web Service</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HATEOAS"><span class="toc-number">8.2.</span> <span class="toc-text">HATEOAS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringDataREST"><span class="toc-number">8.3.</span> <span class="toc-text">SpringDataREST</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HAL"><span class="toc-number">8.3.1.</span> <span class="toc-text">HAL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Data-REST"><span class="toc-number">8.3.2.</span> <span class="toc-text">Spring Data REST</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E8%A7%A3%E5%86%B3Session%E9%97%AE%E9%A2%98"><span class="toc-number">8.4.</span> <span class="toc-text">分布式环境解决Session问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">8.4.1.</span> <span class="toc-text">会话解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Session"><span class="toc-number">8.4.2.</span> <span class="toc-text">Spring Session</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebFlux"><span class="toc-number">8.5.</span> <span class="toc-text">WebFlux</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86SpringBoot"><span class="toc-number">9.</span> <span class="toc-text">重新认识SpringBoot</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-number">9.1.</span> <span class="toc-text">组成部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">9.2.</span> <span class="toc-text">自动配置的实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">9.3.</span> <span class="toc-text">自己实现自动配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%B7%E6%AD%A5%E4%BE%9D%E8%B5%96%E4%BB%A5%E5%8F%8A%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">9.4.</span> <span class="toc-text">起步依赖以及实现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#maven%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86%E6%8A%80%E5%B7%A7"><span class="toc-number">9.4.1.</span> <span class="toc-text">maven依赖管理技巧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E6%AD%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">9.4.2.</span> <span class="toc-text">起步依赖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E8%B5%B7%E6%AD%A5%E4%BE%9D%E8%B5%96"><span class="toc-number">9.5.</span> <span class="toc-text">定制起步依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-number">9.6.</span> <span class="toc-text">配置加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E5%8C%96%E9%85%8D%E7%BD%AE%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F"><span class="toc-number">9.6.1.</span> <span class="toc-text">外化配置加载顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#application-properties%E4%BD%8D%E7%BD%AE"><span class="toc-number">9.6.2.</span> <span class="toc-text">application.properties位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PropertySource%E6%8A%BD%E8%B1%A1"><span class="toc-number">9.7.</span> <span class="toc-text">PropertySource抽象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0PropertySource"><span class="toc-number">9.7.1.</span> <span class="toc-text">添加PropertySource</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot%E7%9A%84-ConfigurationProperties"><span class="toc-number">9.7.2.</span> <span class="toc-text">SpringBoot的@ConfigurationProperties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6PropertySource"><span class="toc-number">9.7.3.</span> <span class="toc-text">定制PropertySource</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E4%B8%AD%E7%9A%84SpringBoot"><span class="toc-number">10.</span> <span class="toc-text">运行中的SpringBoot</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ActuatorEndpoint"><span class="toc-number">10.1.</span> <span class="toc-text">ActuatorEndpoint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Acturator"><span class="toc-number">10.1.1.</span> <span class="toc-text">Acturator</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6HealthIndicator"><span class="toc-number">10.2.</span> <span class="toc-text">定制HealthIndicator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot%E8%87%AA%E5%B8%A6%E7%9A%84HealthIndicator"><span class="toc-number">10.2.1.</span> <span class="toc-text">SpringBoot自带的HealthIndicator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-number">10.2.2.</span> <span class="toc-text">自定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87Micrometer%E8%8E%B7%E5%8F%96%E8%BF%90%E8%A1%8C%E6%95%B0%E6%8D%AE"><span class="toc-number">10.3.</span> <span class="toc-text">通过Micrometer获取运行数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%80%A7"><span class="toc-number">10.3.1.</span> <span class="toc-text">特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%BA%A6%E9%87%8F%E6%8C%87%E6%A0%87"><span class="toc-number">10.3.2.</span> <span class="toc-text">核心度量指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E5%90%88Spring"><span class="toc-number">10.3.3.</span> <span class="toc-text">结合Spring</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BA%A6%E9%87%8F%E6%8C%87%E6%A0%87"><span class="toc-number">10.3.4.</span> <span class="toc-text">自定义度量指标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringBootAdmin"><span class="toc-number">10.4.</span> <span class="toc-text">SpringBootAdmin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">10.4.1.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E5%88%B6%E5%AE%B9%E5%99%A8%E7%9A%84%E8%BF%90%E8%A1%8C%E5%8F%82%E6%95%B0"><span class="toc-number">10.5.</span> <span class="toc-text">定制容器的运行参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%B5%8C%E5%AE%B9%E5%99%A8%E5%8F%AF%E9%80%89%E5%88%97%E8%A1%A8"><span class="toc-number">10.5.1.</span> <span class="toc-text">内嵌容器可选列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="toc-number">10.5.2.</span> <span class="toc-text">容器配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP2%E6%94%AF%E6%8C%81"><span class="toc-number">10.6.</span> <span class="toc-text">HTTP2支持</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AFHTTPS%E9%85%8D%E7%BD%AE"><span class="toc-number">10.6.1.</span> <span class="toc-text">服务端HTTPS配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AFHTTPS%E9%85%8D%E7%BD%AE"><span class="toc-number">10.6.2.</span> <span class="toc-text">客户端HTTPS配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP2"><span class="toc-number">10.6.3.</span> <span class="toc-text">HTTP2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">10.7.</span> <span class="toc-text">命令行程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%ADWeb%E5%AE%B9%E5%99%A8"><span class="toc-number">10.7.1.</span> <span class="toc-text">关闭Web容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">10.7.2.</span> <span class="toc-text">常用工具类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8CJar%E5%8C%85"><span class="toc-number">10.8.</span> <span class="toc-text">可执行Jar包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%E6%89%93%E5%8C%85"><span class="toc-number">10.9.</span> <span class="toc-text">Docker打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87maven%E6%9E%84%E5%BB%BAdocker%E9%95%9C%E5%83%8F"><span class="toc-number">10.9.1.</span> <span class="toc-text">通过maven构建docker镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dockerfile%E7%BC%96%E5%86%99"><span class="toc-number">10.9.2.</span> <span class="toc-text">dockerfile编写</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Cloud"><span class="toc-number">11.</span> <span class="toc-text">Spring Cloud</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">11.1.</span> <span class="toc-text">微服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%91%E5%8E%9F%E7%94%9F-CloudNative"><span class="toc-number">11.2.</span> <span class="toc-text">云原生 CloudNative</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%91%E5%8E%9F%E7%94%9F%E5%BA%94%E7%94%A8%E8%A6%81%E6%B1%82"><span class="toc-number">11.2.1.</span> <span class="toc-text">云原生应用要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CNCF"><span class="toc-number">11.2.2.</span> <span class="toc-text">CNCF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Factor-APP"><span class="toc-number">11.3.</span> <span class="toc-text">Factor APP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E7%9A%84"><span class="toc-number">11.3.1.</span> <span class="toc-text">目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Factors"><span class="toc-number">11.3.2.</span> <span class="toc-text">12-Factors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud%E7%BB%84%E4%BB%B6"><span class="toc-number">11.4.</span> <span class="toc-text">Spring Cloud组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0"><span class="toc-number">12.</span> <span class="toc-text">服务注册与发现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Eureka%E4%BD%9C%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">12.1.</span> <span class="toc-text">使用Eureka作为服务注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Eureka%E6%9C%8D%E5%8A%A1"><span class="toc-number">12.1.1.</span> <span class="toc-text">启动Eureka服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E5%88%B0Eureka"><span class="toc-number">12.1.2.</span> <span class="toc-text">将服务注册到Eureka</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap%E5%B1%9E%E6%80%A7"><span class="toc-number">12.2.</span> <span class="toc-text">Bootstrap属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">12.3.</span> <span class="toc-text">服务发现原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%BE%97%E6%9C%8D%E5%8A%A1%E5%9C%B0%E5%9D%80"><span class="toc-number">12.3.1.</span> <span class="toc-text">如何获得服务地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Load-Balancer-Client"><span class="toc-number">12.3.2.</span> <span class="toc-text">Load Balancer Client</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenFeign"><span class="toc-number">12.3.3.</span> <span class="toc-text">OpenFeign</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring"><span class="toc-number">12.4.</span> <span class="toc-text">Spring</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0%E6%8A%BD%E8%B1%A1"><span class="toc-number">12.4.1.</span> <span class="toc-text">服务注册与发现抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%90%91Eureka%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B3%A8%E5%86%8C"><span class="toc-number">12.4.2.</span> <span class="toc-text">自动向Eureka服务端注册</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ZK%E4%BD%9C%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">12.5.</span> <span class="toc-text">使用ZK作为服务注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Zookeeper"><span class="toc-number">12.5.1.</span> <span class="toc-text">Zookeeper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud-Zookeeper"><span class="toc-number">12.5.2.</span> <span class="toc-text">Spring Cloud Zookeeper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Zookeeper%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">12.5.3.</span> <span class="toc-text">使用Zookeeper作为注册中心的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Consul%E4%BD%9C%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">12.6.</span> <span class="toc-text">使用Consul作为服务注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Consul"><span class="toc-number">12.6.1.</span> <span class="toc-text">Consul</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E7%BB%93%E5%90%88"><span class="toc-number">12.6.2.</span> <span class="toc-text">Spring结合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nacos%E4%BD%9C%E4%B8%BA%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">12.7.</span> <span class="toc-text">Nacos作为服务注册中心</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nacos"><span class="toc-number">12.7.1.</span> <span class="toc-text">Nacos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E7%BB%93%E5%90%88-1"><span class="toc-number">12.7.2.</span> <span class="toc-text">Spring结合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DiscoveryClient%E5%AE%9A%E5%88%B6"><span class="toc-number">12.8.</span> <span class="toc-text">DiscoveryClient定制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%86%94%E6%96%AD"><span class="toc-number">13.</span> <span class="toc-text">服务熔断</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%AD%E8%B7%AF%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">13.1.</span> <span class="toc-text">断路器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hystrix%E5%AE%9E%E7%8E%B0%E7%86%94%E6%96%AD"><span class="toc-number">13.2.</span> <span class="toc-text">Hystrix实现熔断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E8%A7%82%E6%B5%8B"><span class="toc-number">13.3.</span> <span class="toc-text">熔断观测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resilience4j"><span class="toc-number">13.4.</span> <span class="toc-text">Resilience4j</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Resilience4j-1"><span class="toc-number">13.4.1.</span> <span class="toc-text">Resilience4j</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E7%86%94%E6%96%AD"><span class="toc-number">13.4.2.</span> <span class="toc-text">实现熔断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E9%99%90%E6%B5%81-Bulkhead"><span class="toc-number">13.4.3.</span> <span class="toc-text">实现限流-Bulkhead</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E9%99%90%E6%B5%81-RateLimiter"><span class="toc-number">13.4.4.</span> <span class="toc-text">实现限流-RateLimiter</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-number">14.</span> <span class="toc-text">服务配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EGit"><span class="toc-number">14.1.</span> <span class="toc-text">基于Git</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud-Config-Server"><span class="toc-number">14.1.1.</span> <span class="toc-text">Spring Cloud Config Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud-Config-Client"><span class="toc-number">14.1.2.</span> <span class="toc-text">Spring Cloud Config Client</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EZK"><span class="toc-number">14.2.</span> <span class="toc-text">基于ZK</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%8A%BD%E8%B1%A1"><span class="toc-number">14.3.</span> <span class="toc-text">配置抽象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EConsul"><span class="toc-number">14.4.</span> <span class="toc-text">基于Consul</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8ENacos"><span class="toc-number">14.5.</span> <span class="toc-text">基于Nacos</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EApollo"><span class="toc-number">14.6.</span> <span class="toc-text">基于Apollo</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Cloud-Stream"><span class="toc-number">15.</span> <span class="toc-text">Spring Cloud Stream</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A7%88"><span class="toc-number">15.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AERabbitMQ"><span class="toc-number">15.2.</span> <span class="toc-text">访问RabbitMQ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AEKafka"><span class="toc-number">15.3.</span> <span class="toc-text">访问Kafka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">15.4.</span> <span class="toc-text">Spring定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring%E7%9A%84%E6%8A%BD%E8%B1%A1"><span class="toc-number">15.4.1.</span> <span class="toc-text">Spring的抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">15.4.2.</span> <span class="toc-text">配置定时任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6"><span class="toc-number">15.5.</span> <span class="toc-text">Spring事件机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA"><span class="toc-number">16.</span> <span class="toc-text">服务链路追踪</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dapper%E7%90%86%E8%A7%A3%E9%93%BE%E8%B7%AF%E6%B2%BB%E7%90%86"><span class="toc-number">16.1.</span> <span class="toc-text">Dapper理解链路治理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E5%85%B3%E6%B3%A8%E7%82%B9"><span class="toc-number">16.1.1.</span> <span class="toc-text">服务治理关注点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Google-Dapper%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">16.1.2.</span> <span class="toc-text">Google Dapper的概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sleuth%E5%AE%9E%E7%8E%B0%E9%93%BE%E8%B7%AF%E8%BF%BD%E8%B8%AA"><span class="toc-number">16.2.</span> <span class="toc-text">Sleuth实现链路追踪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%BD%E8%B8%AA%E6%B6%88%E6%81%AF%E9%93%BE%E8%B7%AF"><span class="toc-number">16.3.</span> <span class="toc-text">追踪消息链路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E5%85%B3%E6%B3%A8%E7%82%B9-1"><span class="toc-number">16.4.</span> <span class="toc-text">服务治理关注点</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/26/justdoit-golang-golang/" title="golang基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="golang基础"/></a><div class="content"><a class="title" href="/2024/05/26/justdoit-golang-golang/" title="golang基础">golang基础</a><time datetime="2024-05-26T14:41:44.000Z" title="发表于 2024-05-26 22:41:44">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="antlr学习"/></a><div class="content"><a class="title" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习">antlr学习</a><time datetime="2023-12-07T13:27:37.000Z" title="发表于 2023-12-07 21:27:37">2023-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES基础"/></a><div class="content"><a class="title" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础">ES基础</a><time datetime="2023-05-26T15:17:09.000Z" title="发表于 2023-05-26 23:17:09">2023-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学生开发者怎么赚小钱钱以及做项目"/></a><div class="content"><a class="title" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目">学生开发者怎么赚小钱钱以及做项目</a><time datetime="2023-05-15T00:16:47.000Z" title="发表于 2023-05-15 08:16:47">2023-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java服务端开发学习路线"/></a><div class="content"><a class="title" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线">Java服务端开发学习路线</a><time datetime="2023-05-09T15:38:17.000Z" title="发表于 2023-05-09 23:38:17">2023-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2024 By Equator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

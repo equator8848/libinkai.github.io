@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Docker镜像 | Equator's Blog</title><meta name="author" content="Equator"><meta name="copyright" content="Equator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据流处理实战之Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker镜像">
+<meta property="og:url" content="https://equator8848.xyz/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/index.html">
+<meta property="og:site_name" content="Equator&#39;s Blog">
+<meta property="og:description" content="数据流处理实战之Docker">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2023-01-09T01:51:21.000Z">
+<meta property="article:modified_time" content="2024-05-26T16:39:36.413Z">
+<meta property="article:author" content="Equator">
+<meta property="article:tag" content="Docker">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://equator8848.xyz/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Docker镜像',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-27 00:39:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Equator's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Docker镜像</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-09T01:51:21.000Z" title="发表于 2023-01-09 09:51:21">2023-01-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-26T16:39:36.413Z" title="更新于 2024-05-27 00:39:36">2024-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Docker镜像"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="镜像概述"><a href="#镜像概述" class="headerlink" title="镜像概述"></a>镜像概述</h1><h2 id="基础镜像"><a href="#基础镜像" class="headerlink" title="基础镜像"></a>基础镜像</h2><ul>
+<li>用于构建实验用的虚拟机CentOS7镜像<code>iso</code>文件，大小接近9G，而Nginx1.8.1的安装包，大小不足1M。使用docker images查看在Docker中的镜像，可以看到CentOS的镜像大小才200M，而Nginx的镜像大小为130多M，反而大了许多倍，这是为什么呢？</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210522192420791.png" alt="image-20210522192420791"></p>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210522192902029.png" alt="image-20210522192902029"></p>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210522192936972.png" alt="image-20210522192936972"></p>
+<ul>
+<li>Docker中的CentOS镜像，实际上是CentOS的阉割版，只具有最基础的系统功能。很多镜像都是在这样的阉割版系统上构建起来的，这种不依赖其它镜像的迷你操作系统镜像也被称为<strong>基础镜像</strong>。</li>
+<li>Linux操作系统包含内核空间以及用户空间：内核空间（Kernel）是系统的核心，拥有资源管理等操作的最高权限。用户空间包含了文件系统（rootfs）等工具软件，并通过系统调用调用内核空间的函数以完成相应的功能。基础镜像只需要提供rootfs，直接共享主机的Kernel，大大地缩小了自己的体积。</li>
+<li>由于基础镜像直接使用主机的Kernel，容器也只能是使用主机的Kernel而不能对其进行任何的修改。如果需要使用指定版本的Kernel，那么使用虚拟机可能是一个更好的选择。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210522194043125.png" alt="image-20210522194043125"></p>
+<ul>
+<li>Docker中的CentOS镜像就是一个基础镜像，只包含了基本系统的功能，所以体积非常小。而用于构建虚拟机的iso镜像文件，其中包含了许多的安装包以及桌面程序，体积好几个G也就不足为奇了。而再小的Nginx程序，它也需要一个可以运行它的操作系统，所以Nginx镜像比单纯的安装包大得多。（在DockerHub中可以看到nginx使用到了Debian作为基础镜像）</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210522200045999.png" alt="image-20210522200045999"></p>
+<h2 id="联合文件系统以及容器的Copy-on-Write机制"><a href="#联合文件系统以及容器的Copy-on-Write机制" class="headerlink" title="联合文件系统以及容器的Copy-on-Write机制"></a>联合文件系统以及容器的Copy-on-Write机制</h2><ul>
+<li>Nginx镜像使用到了Debian作为基础镜像，在从远程仓库中拉取镜像的时候，也可以看到拉取了许多层。镜像都是通过这样搭积木的形式一层一层地迭代产生新的镜像的，这种分层的结构最大的好处就是可以共享资源。试想：在拉取Nginx镜像的时候，本地以及存在Debian基础镜像了，后面再拉取新的镜像，它也依赖了Debian基础镜像，那么Debian基础镜像就可以直接被共享了，不需要重新到远程仓库中重新拉取。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210522201247089.png" alt="image-20210522201247089"></p>
+<ul>
+<li>当启动一个容器时，一个新的容器层会被加到各层镜像的顶部。联合文件系统通过将容器层以及若干镜像层联合起来，得到一个统一的视图。容器层是可读写的，而镜像层是只读的。这种机制与PS的图层机制原理类似，都是通过一层一层地叠加得到一个最终的视图。</li>
+<li>Copy-on-Write机制：当新增文件时，文件只添加到容器层；删除文件时，只在容器层标记该文件已删除；修改文件时，从上到下查找相应的文件拷贝一份到容器层进行修改；查询文件时，从上到下查找对应的文件读取数据。容器层在Copy-on-Write机制的作用下，文件的增删改查操作都无法影响镜像层，从而保证了镜像层的只读性，使得镜像可以被多个容器共享。</li>
+</ul>
+<h1 id="镜像的构建"><a href="#镜像的构建" class="headerlink" title="镜像的构建"></a>镜像的构建</h1><h2 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h2><blockquote>
+<p>前面说到，镜像都是一层一层搭积木得到的，为了DIY得到我们自己想要的镜像，我们可以在原有的基础上修修改改缝缝补补得到一个新的镜像。</p>
+</blockquote>
+<ul>
+<li><code>run</code>命令加上<code>-it</code>参数以交互的方式启动并进入CentOS容器，敲入几个命令，好巧啊，都没有。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210522204537277.png" alt="image-20210522204537277"></p>
+<ul>
+<li><p>通过命令<code>yum install -y ncurses </code>以及<code>yum install -y vim</code>安装对应的工具依赖，然后通过命令<code>exit</code>退出当前容器回到主机（或者使用CTRL+D快捷键）。</p>
+</li>
+<li><p>此时此刻如果我们直接执行命令<code>docker run -it centos</code>，会启动并进入一个全新的容器，里面并没有我们刚刚安装的工具软件，所以我们需要找到我们之前的容器的ID。通过<code>docker ps -a</code>显示所有的容器（包括已停止的），复制其容器ID。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 启动容器</span><br><span class="line">docker start 容器ID</span><br><span class="line"># 进入容器 可以看到这个容器中有我们之前安装的工具软件</span><br><span class="line">docker attach 容器ID</span><br><span class="line"># 提交修改得到新的镜像</span><br><span class="line">docker commit 容器ID 新的镜像名称</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以看到，由于安装的两个工具软件，CentOS镜像的大小由209M变为268M。通过新的镜像运行一个新的容器，新的容器中可以直接使用<code>clear</code>以及<code>vim</code>命令。我们通过commit命令成功得到了一个新的镜像。</p>
+</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210522205641568.png" alt="image-20210522205641568"></p>
+<h2 id="docker-file"><a href="#docker-file" class="headerlink" title="docker file"></a>docker file</h2><blockquote>
+<p>通过commit操作得到的一个缺点之一是镜像的构建过程不透明，可能存在安全隐患。哪天你在路上捡到一个U盘，你敢随便往电脑上插么哈哈哈。docker file是一个记录了镜像构建步骤的文件，是构建镜像的图纸。</p>
+</blockquote>
+<h3 id="docker-file基础"><a href="#docker-file基础" class="headerlink" title="docker file基础"></a>docker file基础</h3><p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210523001548698.png" alt="image-20210523001548698"></p>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210523001623547.png" alt="image-20210523001623547"></p>
+<ul>
+<li>通过docker file构建镜像的过程如下</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编写docker file文件，文件名默认是Dockerfile</span></span><br><span class="line">FROM centos</span><br><span class="line">RUN yum install -y vim &amp;&amp; yum install -y ncurses</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行构建命令：docker build [OPTIONS] PATH | URL | -</span></span><br><span class="line">docker build -t my-centos-dockerfile .</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">. 指的是将当前目录作为构建目录，构建目录文件不宜过多，否则有可能导致构建失败</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用<code>docker history $image_name</code>命令可以查看镜像的构建过程，从上图可以看到，镜像<code>my-centos-dockerfile</code>比镜像<code>centos</code>多了一层，下面的三层都是完全一致的。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210523002323298.png" alt="image-20210523002323298"></p>
+<ul>
+<li>docker file中的每条命令执行时都会产生一个镜像层，而且镜像层之间有缓存机制，如果不想使用缓存机制，可以在<code>docker build</code>命令中加上参数<code>--no-cache</code>。</li>
+</ul>
+<h3 id="docker-file构建流程"><a href="#docker-file构建流程" class="headerlink" title="docker file构建流程"></a>docker file构建流程</h3><ol>
+<li>基于基础镜像启动一个容器</li>
+<li>顺序执行docker file中的命令，对容器进行修改</li>
+<li>提交容器的修改，生成新的镜像</li>
+<li>基于新的镜像启动新的容器，移除用于执行命令的容器</li>
+<li>重复2~4直到镜像全部构建完毕</li>
+</ol>
+<h3 id="docker-file指令"><a href="#docker-file指令" class="headerlink" title="docker file指令"></a>docker file指令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">docker file支持 <span class="comment">#开头格式的注释</span></span></span><br><span class="line">- FROM 基础镜像</span><br><span class="line">- MAINTAINER 姓名+邮箱，声明作者，可以是任意字符串。推荐格式：name&lt;email&gt;</span><br><span class="line">- WORKDIR 指定工作目录，为后面的RUN、CMD、ENTRYPOINT、ADD或COPY指令设置镜像中的当前工作目录</span><br><span class="line">- COPY 从构建目录复制本地文件到镜像中，COPY支持两种形式： COPY src dest与COPY [&quot;src&quot;, &quot;dest&quot;]。</span><br><span class="line">- ADD 与COPY类似，会自动解压归档文件（各种压缩包）</span><br><span class="line">- VOLUME 挂载的目录</span><br><span class="line">- EXPOSE 暴露端口</span><br><span class="line">- RUN 构建过程中容器中执行指定的命令，常用于安装软件，常常存在多个RUN指令，每个RUN指令都会被执行。</span><br><span class="line">- CMD 为容器提供默认的执行命令，Dockerfile中可以有多个CMD指令，但只有最后一个生效。CMD会被docker run之后的参数替换。</span><br><span class="line">- ENTRYPOINT，容器启动时的命令，可以追加。（Dockerfile中可以有多个ENTRYPOINT指令，但只有最后一个生效）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指定<code>RUN、CMD、ENTRYPOINT</code>三种指令的两种格式<ul>
+<li>shell格式：<code>RUN|CMD|ENTRYPOINT $COMMAND</code>，<code>$COMMAND</code>会被<code>/bin/sh -c $COMMAND</code>解析执行。</li>
+<li>exec格式：<code>RUN|CMD|ENTRYPOINT [&quot;$COMMAND&quot;,&quot;PARAM 1&quot;,&quot;PARAM 2&quot;,&quot;PARAM N&quot;]</code>，<code>$COMMAND</code>不会被解析执行。容器中的任务进程就是容器内的 1 号进程，不会通过 shell 执行相关的命令，所以像 $HOME 这样的环境变量是取不到的。推荐使用，这样可以实现优雅退出。</li>
+</ul>
+</li>
+<li>exec格式下，CMD或docker run之后的参数会被当作参数传递给ENTRYPOINT。shell格式下，ENTRYPOINT会忽略其它指令提供的额外参数。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210523114203688.png" alt="image-20210523114203688"></p>
+<p><img src="/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/image-20210523114630552.png" alt="image-20210523114630552"></p>
+<h1 id="镜像的发布"><a href="#镜像的发布" class="headerlink" title="镜像的发布"></a>镜像的发布</h1><blockquote>
+<p>在一个主机上编辑好了docker file文件并成功构建了镜像，怎么在别的主机上进行同样的操作呢</p>
+</blockquote>
+<ul>
+<li>复制docker file到其它主机</li>
+<li>将镜像推送到远程仓库，其它主机再从远程仓库拉取</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://equator8848.xyz">Equator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://equator8848.xyz/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/">https://equator8848.xyz/2023/01/09/justdoit-datastream-docker-02-%E9%95%9C%E5%83%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://equator8848.xyz" target="_blank">Equator's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Docker/">Docker</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/09/justdoit-datastream-docker-03-%E5%AE%B9%E5%99%A8/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Docker容器</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/09/justdoit-datastream-docker-01-%E5%88%9D%E4%BD%93%E9%AA%8C/"><img class="next-cover" src="/2023/01/09/justdoit-datastream-docker-01-%E5%88%9D%E4%BD%93%E9%AA%8C/%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Docker初体验</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/08/justdoit-datastream-index/" title="数据流实战"><img class="cover" src="/img/default_cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">数据流实战</div></div></a></div><div><a href="/2023/01/09/justdoit-datastream-docker-01-%E5%88%9D%E4%BD%93%E9%AA%8C/" title="Docker初体验"><img class="cover" src="/2023/01/09/justdoit-datastream-docker-01-%E5%88%9D%E4%BD%93%E9%AA%8C/%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">Docker初体验</div></div></a></div><div><a href="/2023/01/09/justdoit-datastream-docker-03-%E5%AE%B9%E5%99%A8/" title="Docker容器"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">Docker容器</div></div></a></div><div><a href="/2023/01/09/justdoit-datastream-docker-04-%E7%BD%91%E7%BB%9C/" title="Docker网络"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">Docker网络</div></div></a></div><div><a href="/2023/01/09/justdoit-datastream-docker-05-%E5%AD%98%E5%82%A8/" title="Docker存储"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">Docker存储</div></div></a></div><div><a href="/2023/01/09/justdoit-datastream-docker-06-%E7%BC%96%E6%8E%92/" title="Docker编排"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">Docker编排</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Equator</div><div class="author-info__description">分享互联网技术与摄影</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/libinkai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客搬家中，陆续将文章迁移进来...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">镜像概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%95%9C%E5%83%8F"><span class="toc-number">1.1.</span> <span class="toc-text">基础镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%94%E5%90%88%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8A%E5%AE%B9%E5%99%A8%E7%9A%84Copy-on-Write%E6%9C%BA%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">联合文件系统以及容器的Copy-on-Write机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">镜像的构建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#commit"><span class="toc-number">2.1.</span> <span class="toc-text">commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-file"><span class="toc-number">2.2.</span> <span class="toc-text">docker file</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-file%E5%9F%BA%E7%A1%80"><span class="toc-number">2.2.1.</span> <span class="toc-text">docker file基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-file%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B"><span class="toc-number">2.2.2.</span> <span class="toc-text">docker file构建流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-file%E6%8C%87%E4%BB%A4"><span class="toc-number">2.2.3.</span> <span class="toc-text">docker file指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E7%9A%84%E5%8F%91%E5%B8%83"><span class="toc-number">3.</span> <span class="toc-text">镜像的发布</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/26/justdoit-golang-golang/" title="golang基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="golang基础"/></a><div class="content"><a class="title" href="/2024/05/26/justdoit-golang-golang/" title="golang基础">golang基础</a><time datetime="2024-05-26T14:41:44.000Z" title="发表于 2024-05-26 22:41:44">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="antlr学习"/></a><div class="content"><a class="title" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习">antlr学习</a><time datetime="2023-12-07T13:27:37.000Z" title="发表于 2023-12-07 21:27:37">2023-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES基础"/></a><div class="content"><a class="title" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础">ES基础</a><time datetime="2023-05-26T15:17:09.000Z" title="发表于 2023-05-26 23:17:09">2023-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学生开发者怎么赚小钱钱以及做项目"/></a><div class="content"><a class="title" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目">学生开发者怎么赚小钱钱以及做项目</a><time datetime="2023-05-15T00:16:47.000Z" title="发表于 2023-05-15 08:16:47">2023-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java服务端开发学习路线"/></a><div class="content"><a class="title" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线">Java服务端开发学习路线</a><time datetime="2023-05-09T15:38:17.000Z" title="发表于 2023-05-09 23:38:17">2023-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2024 By Equator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ES基础 | Equator's Blog</title><meta name="author" content="Equator"><meta name="copyright" content="Equator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="概述 ES（ElasticSearch）是一个开源的高拓展的分布式全文检索引擎，可以近乎实时地存储，检索数据。  ES使用Java开发，使用Lucence作为基础通过RESTful隐藏Lucence的复杂性。  ELK日志体系  ElasticSearch LogStash Kibana   可以认为Solr与ES是竞品关系，Solr是Apache旗下项目，同样使用Java开发。  在建立索引的时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES基础">
+<meta property="og:url" content="https://equator8848.xyz/2023/05/26/justdoit-note-es-es-base/index.html">
+<meta property="og:site_name" content="Equator&#39;s Blog">
+<meta property="og:description" content="概述 ES（ElasticSearch）是一个开源的高拓展的分布式全文检索引擎，可以近乎实时地存储，检索数据。  ES使用Java开发，使用Lucence作为基础通过RESTful隐藏Lucence的复杂性。  ELK日志体系  ElasticSearch LogStash Kibana   可以认为Solr与ES是竞品关系，Solr是Apache旗下项目，同样使用Java开发。  在建立索引的时">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2023-05-26T15:17:09.000Z">
+<meta property="article:modified_time" content="2024-05-26T16:39:36.453Z">
+<meta property="article:author" content="Equator">
+<meta property="article:tag" content="ES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://equator8848.xyz/2023/05/26/justdoit-note-es-es-base/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ES基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-27 00:39:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Equator's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ES基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-26T15:17:09.000Z" title="发表于 2023-05-26 23:17:09">2023-05-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-26T16:39:36.453Z" title="更新于 2024-05-27 00:39:36">2024-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ES基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><ul>
+<li><p>ES（ElasticSearch）是一个开源的高拓展的分布式全文检索引擎，可以近乎实时地存储，检索数据。</p>
+</li>
+<li><p>ES使用Java开发，使用Lucence作为基础通过RESTful隐藏Lucence的复杂性。</p>
+</li>
+<li><p>ELK日志体系</p>
+<ul>
+<li>ElasticSearch</li>
+<li>LogStash</li>
+<li>Kibana</li>
+</ul>
+</li>
+<li><p>可以认为Solr与ES是竞品关系，Solr是Apache旗下项目，同样使用Java开发。</p>
+<ul>
+<li>在建立索引的时候，ES比Solr更快。Solr更适合存量的数据查询。</li>
+<li>Solr使用ZK进行分布式管理，ES自身带有分布式协调功能</li>
+</ul>
+</li>
+</ul>
+<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/7.7/getting-started.html">官方文档</a></li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="ES安装"><a href="#ES安装" class="headerlink" title="ES安装"></a>ES安装</h2><ul>
+<li>9200是后端发送请求restAPI使用的、9300是es在分布式集群下节点间的通信端口</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --net=host --name elasticsearch -d -e ES_JAVA_OPTS=&quot;-Xms2048m -Xmx4096m&quot; -e &quot;discovery.type=single-node&quot; -p 9200:9200 -p 9300:9300 elasticsearch:7.7.0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>访问<a href="http://localhost:9200，可以得到ES基础信息">http://localhost:9200，可以得到ES基础信息</a></li>
+<li>配置允许跨域，否则会出现跨域问题无法连接，<code>xxx has been blocked by CORS policy: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource</code></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it elasticsearch /bin/bash</span><br><span class="line"></span><br><span class="line">vi config/elasticsearch.yml</span><br><span class="line"></span><br><span class="line"># 末尾添加</span><br><span class="line">http.cors.enabled: true </span><br><span class="line">http.cors.allow-origin: &quot;*&quot;</span><br><span class="line"></span><br><span class="line"># 重启ES</span><br><span class="line">docker restart elasticsearch</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>es的目录解读<ul>
+<li>config目录存放配置文件</li>
+<li>bin目录存放了可执行的程序</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/05/26/justdoit-note-es-es-base/image-20240207235613296.png" alt="image-20240207235613296"></p>
+<h3 id="设置用户名和密码"><a href="#设置用户名和密码" class="headerlink" title="设置用户名和密码"></a>设置用户名和密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it elasticsearch bash</span><br><span class="line"></span><br><span class="line">vi config/elasticsearch.yml</span><br><span class="line"></span><br><span class="line">xpack.security.enabled: true</span><br><span class="line">xpack.license.self_generated.type: basic</span><br><span class="line">xpack.security.transport.ssl.enabled: true</span><br><span class="line"></span><br><span class="line">restart...</span><br><span class="line"></span><br><span class="line">docker exec -it elasticsearch bash</span><br><span class="line"></span><br><span class="line"># 交互方式设置密码，需要设置多个用户的密码，设置密码建议不要是纯数字，便于后面直接在命令中设置kibana访问ES的账密。</span><br><span class="line">bin/elasticsearch-setup-passwords interactive</span><br><span class="line"></span><br><span class="line">docker restart elasticsearch</span><br><span class="line"></span><br><span class="line">docker restart kibana</span><br></pre></td></tr></table></figure>
+
+<h2 id="HEAD安装"><a href="#HEAD安装" class="headerlink" title="HEAD安装"></a>HEAD安装</h2><blockquote>
+<p>用处不大，Elasticsearch设置用户名密码之后，不能再直接使用Elasticsearch head 访问</p>
+</blockquote>
+<ul>
+<li>访问<a href="http://localhost:9100，连接ES集群后可以看到数据">http://localhost:9100，连接ES集群后可以看到数据</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --net=host --name elasticsearch-head -d -p 9100:9100 mobz/elasticsearch-head:5</span><br></pre></td></tr></table></figure>
+
+<h2 id="Kibana安装"><a href="#Kibana安装" class="headerlink" title="Kibana安装"></a>Kibana安装</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run --net=host --name kibana -d -e ELASTICSEARCH_HOSTS=http://localhost:9200 -e ELASTICSEARCH_USERNAME=&quot;elastic&quot; -e ELASTICSEARCH_PASSWORD=&quot;elastic123456&quot; -e SERVER_HOST=0.0.0.0  -p 5601:5601 kibana:7.6.2</span><br><span class="line"></span><br><span class="line">docker exec -it kibana bash</span><br><span class="line"></span><br><span class="line">vi /usr/share/kibana/config/kibana.yml</span><br><span class="line"></span><br><span class="line"># 修改server.host从0改为0.0.0.0，允许远程访问。如果配置为localhost，只能本地访问。</span><br><span class="line">server.host: &quot;0.0.0.0&quot;</span><br><span class="line"></span><br><span class="line">docker restart kibana</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>访问<a href="http://localhost:5601，可以访问面板">http://localhost:5601，可以访问面板</a></li>
+</ul>
+<h2 id="分词器安装"><a href="#分词器安装" class="headerlink" title="分词器安装"></a>分词器安装</h2><h3 id="相关说明"><a href="#相关说明" class="headerlink" title="相关说明"></a>相关说明</h3><ul>
+<li><p>安装过程：放到ES的plugins目录下的ik目录，然后重启ES</p>
+</li>
+<li><p>分词器</p>
+<ul>
+<li>standard：没有办法对中文进行合理分词的，只是将每个中文字符一个一个的切割开来，比如说「中国人」就会简单的拆分为 中、国、人</li>
+<li>ik_smart 最少切分，会将「中华人民共和国国歌」拆分为：中华人民共和国、国歌。</li>
+<li>ik_max_word 最细粒度切分，得到的词组比较多。会将「中华人民共和国国歌」拆分为：中华人民共和国、中华人民、中华、华人、人民共和国、人民、人、民、共和国、共和、和、国国、国歌，会穷尽各种可能的组合。【推荐，在搜索领域，拆分越细粒度的搜索效果越好】</li>
+</ul>
+</li>
+<li><p>分词分析</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET _analyze</span><br><span class="line">&#123;</span><br><span class="line">  &quot;analyzer&quot;: &quot;ik_smart&quot;, </span><br><span class="line">  &quot;text&quot;:&quot;中华人民共和国国歌&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果分词不符合预期，可以增加自定义字典。</li>
+</ul>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">下载：https://github.com/medcl/elasticsearch-analysis-ik/releases?q=7.7.0&amp;expanded=true</span><br><span class="line"></span><br><span class="line">docker exec -it elasticsearch bash</span><br><span class="line"></span><br><span class="line">cd plugins/</span><br><span class="line"></span><br><span class="line">mkdir ik &amp;&amp; cd ik</span><br><span class="line"></span><br><span class="line">curl https://mirror.ghproxy.com/https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v7.7.0/elasticsearch-analysis-ik-7.7.0.zip -o ik.zip</span><br><span class="line"></span><br><span class="line">unzip ik.zip</span><br><span class="line"></span><br><span class="line">rm ik.zip</span><br><span class="line"></span><br><span class="line">docker restart elasticsearch</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h1><h2 id="与关系型数据库对比"><a href="#与关系型数据库对比" class="headerlink" title="与关系型数据库对比"></a>与关系型数据库对比</h2><blockquote>
+<p>ES是面向文档的，其与数据库的对比如下</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>关系型数据库</th>
+<th>ES</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>database 数据库</td>
+<td>indices 索引</td>
+<td></td>
+</tr>
+<tr>
+<td>table 表</td>
+<td>types 即将弃用</td>
+<td></td>
+</tr>
+<tr>
+<td>rows 行</td>
+<td>documents 文档</td>
+<td></td>
+</tr>
+<tr>
+<td>column 字段</td>
+<td>fields</td>
+<td></td>
+</tr>
+</tbody></table>
+<ul>
+<li>物理设计：ES在后台将多个索引划分为多个分片，分片可以在多个节点中迁移（ES一开始就是集群模式，不过其允许只有一个节点）</li>
+<li>逻辑设计：一个索引类型中，包含多个文档，比如说文档1、文档2。通过索引-&gt;类型-&gt;文档的方式找到具体的文档。</li>
+</ul>
+<h2 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h2><ul>
+<li>索引就是数据库，索引是映射类型的容器，ES中的一个索引是一个非常大的文档集合。索引存储了映射类型的字段和其它配置，然后他们被存储到了各个分片上。</li>
+<li>一个集群至少有一个节点，一个节点就是一个ES进程。</li>
+</ul>
+<h2 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h2><blockquote>
+<p>mapping 映射</p>
+</blockquote>
+<ul>
+<li>类型分类<ul>
+<li>字符串 text、keyword（keyword是不可分割的整体）</li>
+<li>数值 long、integer、short、byte、double、float、half、float、scaled float</li>
+<li>日期类型 date</li>
+<li>布尔值 boolean</li>
+<li>二进制 binary</li>
+</ul>
+</li>
+</ul>
+<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><ul>
+<li>一个文档就是关系型数据库的一行数据</li>
+</ul>
+<h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><ul>
+<li>一个集群至少有一个节点，一个节点就是一个ES进程。创建一个索引，索引会有5个主分片，每个分片都会有一个副本（复制分片）。</li>
+<li>实际上，一个分片就是一个Lucene索引，一个包含倒排索引的文件目录。何为倒排索引？正常索引是通过ID找数据；倒排索引是通过数据找ID。</li>
+</ul>
+<h1 id="操作语法"><a href="#操作语法" class="headerlink" title="操作语法"></a>操作语法</h1><blockquote>
+<p>type被弃用，默认可以写为_doc。</p>
+</blockquote>
+<ul>
+<li><strong>使用 type 允许在一个 index 里存储多种类型的数据，这样就可以减少 index 的数量了。在使用时，向每个文档加入 <code>_type</code> 字段，在指定 type 搜索时就会被用于过滤。只有同一个 index 的中的 type 都有类似的映射 (mapping) 时，才应该使用 type。否则，使用多个 type 可能比使用多个 index 消耗的资源更多。不过type，即将被弃用了。</strong></li>
+<li>ES的操作都是基于restful风格的API进行操作。</li>
+</ul>
+<h2 id="ES整体"><a href="#ES整体" class="headerlink" title="ES整体"></a>ES整体</h2><h3 id="查询ES状态"><a href="#查询ES状态" class="headerlink" title="查询ES状态"></a>查询ES状态</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET _cat/health</span><br></pre></td></tr></table></figure>
+
+<h2 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h2><h3 id="查看所有索引"><a href="#查看所有索引" class="headerlink" title="查看所有索引"></a>查看所有索引</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET _cat/indices</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取索引"><a href="#获取索引" class="headerlink" title="获取索引"></a>获取索引</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /index1</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">PUT /test2/</span><br><span class="line">&#123;</span><br><span class="line">  &quot;mappings&quot;: &#123;</span><br><span class="line">    &quot;properties&quot;: &#123;</span><br><span class="line">      &quot;name&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;text&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;age&quot;:&#123;</span><br><span class="line">        &quot;type&quot;: &quot;integer&quot;</span><br><span class="line">      &#125;,</span><br><span class="line">      &quot;birthday&quot;: &#123;</span><br><span class="line">        &quot;type&quot;: &quot;date&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE test1</span><br></pre></td></tr></table></figure>
+
+<h2 id="文档操作"><a href="#文档操作" class="headerlink" title="文档操作"></a>文档操作</h2><h3 id="创建文档"><a href="#创建文档" class="headerlink" title="创建文档"></a>创建文档</h3><ul>
+<li>创建文档（没有则创建，否则更新）：PUT 索引名称&#x2F;类型名称&#x2F;文档ID</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PUT /test1/type1/1  or /test1/_doc/1</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;:&quot;leo&quot;,</span><br><span class="line">  &quot;age&quot;:28</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建文档（随机ID）：POST 索引名称&#x2F;类型名称</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /test1/_doc/</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;:&quot;tomcat&quot;,</span><br><span class="line">  &quot;age&quot;:30</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改文档：POST 索引名称&#x2F;类型名称&#x2F;文档id&#x2F;_update（推荐，可以修改部分字段）</li>
+<li>删除文档：DELETE 索引名称&#x2F;类型名称&#x2F;文档id</li>
+<li>获取文档：GET 索引名称&#x2F;类型名称&#x2F;文档id</li>
+<li>查询所有数据：索引名称&#x2F;类型名称&#x2F;_search</li>
+</ul>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 删除文档</span><br><span class="line">DELETE /test1/type1/1</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><ul>
+<li>查询具体数据</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 精确搜索</span><br><span class="line">GET test1/type1/1</span><br><span class="line"></span><br><span class="line"># 模糊搜索</span><br><span class="line">GET test1/type1/_search?q=name:leo</span><br></pre></td></tr></table></figure>
+
+<h2 id="复杂查询"><a href="#复杂查询" class="headerlink" title="复杂查询"></a>复杂查询</h2><ul>
+<li>GET查询，携带请求体。<strong>注意在UI界面中，URL与路径之间不能包含空白行</strong>！</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET test1/type1/_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;:&#123;</span><br><span class="line">		&quot;match&quot;:&#123;</span><br><span class="line">		  &quot;name&quot;: &quot;tomcat&quot;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>返回结果中，hits包含索引和文档信息</li>
+</ul>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;from&quot;: 30,</span><br><span class="line">  &quot;size&quot;: 10</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="筛选"><a href="#筛选" class="headerlink" title="筛选"></a>筛选</h3><ul>
+<li>_source字段对查询结果进行过滤，只返回指定的字段</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">GET test1/type1/_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;:&#123;</span><br><span class="line">		&quot;match&quot;:&#123;</span><br><span class="line">		  &quot;name&quot;: &quot;tomcat&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;_source&quot;: [&quot;field1&quot;,&quot;field2&quot;]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">GET test1/type1/_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;:&#123;</span><br><span class="line">		&quot;match&quot;:&#123;</span><br><span class="line">		  &quot;name&quot;: &quot;tomcat&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">		&quot;sort&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;age&quot;:&#123;</span><br><span class="line">				&quot;order&quot;: &quot;desc&quot;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多条件查询"><a href="#多条件查询" class="headerlink" title="多条件查询"></a>多条件查询</h3><ul>
+<li>must（and）</li>
+<li>should（or）</li>
+<li>must_not（not）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">GET test1/type1/_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;:&#123;</span><br><span class="line">	  &quot;bool&quot;: &#123;</span><br><span class="line">	    &quot;must&quot;: [</span><br><span class="line">	      &#123;</span><br><span class="line">	        &quot;match&quot;: &#123;</span><br><span class="line">	          &quot;name&quot;: &quot;jetty&quot;</span><br><span class="line">	        &#125;</span><br><span class="line">	      &#125;,</span><br><span class="line">	      &#123;</span><br><span class="line">	        &quot;match&quot;: &#123;</span><br><span class="line">	          &quot;age&quot;: 14</span><br><span class="line">	        &#125;</span><br><span class="line">	      &#125;</span><br><span class="line">	    ]</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">GET test1/type1/_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;:&#123;</span><br><span class="line">	  &quot;bool&quot;: &#123;</span><br><span class="line">	    &quot;must&quot;: [</span><br><span class="line">	      &#123;</span><br><span class="line">	        &quot;match&quot;: &#123;</span><br><span class="line">	          &quot;name&quot;: &quot;jetty&quot;</span><br><span class="line">	        &#125;</span><br><span class="line">	      &#125;</span><br><span class="line">	    ]</span><br><span class="line">	  &#125;,</span><br><span class="line">	  &quot;filter&quot;: &#123;</span><br><span class="line">	  	&quot;range&quot;: &#123;</span><br><span class="line">	  		&quot;age&quot;: &#123;</span><br><span class="line">	  			&quot;lt&quot;: 10</span><br><span class="line">	  		&#125;</span><br><span class="line">	  	&#125;</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="多条件"><a href="#多条件" class="headerlink" title="多条件"></a>多条件</h3><ul>
+<li>空格隔开，满足一个即可</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET test1/type1/_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;:&#123;</span><br><span class="line">		&quot;match&quot;:&#123;</span><br><span class="line">		  &quot;name&quot;: &quot;tomcat jetty leo&quot;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="精确查询"><a href="#精确查询" class="headerlink" title="精确查询"></a>精确查询</h3><ul>
+<li>term 通过倒排索引指定的词条进行精确查找（效率高）</li>
+<li>match 会使用分词器解析</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET test1/_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;:&#123;</span><br><span class="line">		&quot;term&quot;:&#123;</span><br><span class="line">		  &quot;name&quot;: &quot;tomcat&quot;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分词分析"><a href="#分词分析" class="headerlink" title="分词分析"></a>分词分析</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">GET _analyze</span><br><span class="line">&#123;</span><br><span class="line">  &quot;analyzer&quot;: &quot;standard&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;tomcat&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">GET _analyze</span><br><span class="line">&#123;</span><br><span class="line">  &quot;analyzer&quot;: &quot;keyword&quot;,</span><br><span class="line">  &quot;text&quot;: &quot;tomcat&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="高亮查询"><a href="#高亮查询" class="headerlink" title="高亮查询"></a>高亮查询</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">GET test1/_search</span><br><span class="line">&#123;</span><br><span class="line">	&quot;query&quot;:&#123;</span><br><span class="line">		&quot;match&quot;:&#123;</span><br><span class="line">		  &quot;name&quot;: &quot;tomcat&quot;</span><br><span class="line">		&#125; </span><br><span class="line">	&#125;,</span><br><span class="line">	&quot;highlight&quot;: &#123;</span><br><span class="line">		&quot;fields&quot;: &#123;</span><br><span class="line">			&quot;name&quot;: &#123;</span><br><span class="line">				</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>通过<code>pre_tags</code>、<code>post_tags</code>，自定义高亮的标签。</li>
+</ul>
+<h1 id="SpringBoot集成"><a href="#SpringBoot集成" class="headerlink" title="SpringBoot集成"></a>SpringBoot集成</h1><ol>
+<li>配置依赖</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-elasticsearch&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;$&#123;springboot.version&#125;&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>配置连接属性</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 配置</span><br><span class="line">spring:</span><br><span class="line">  elasticsearch:</span><br><span class="line">    rest:</span><br><span class="line">      uris: http://172.16.8.2:9200</span><br></pre></td></tr></table></figure>
+
+<h2 id="索引操作-1"><a href="#索引操作-1" class="headerlink" title="索引操作"></a>索引操作</h2><ol>
+<li>新增索引：CreateIndexRequest</li>
+<li>获取索引，判断是否存在，GetIndexRequest</li>
+<li>删除索引，DeleteIndexRequest</li>
+</ol>
+<h2 id="文档操作-1"><a href="#文档操作-1" class="headerlink" title="文档操作"></a>文档操作</h2><ol>
+<li>添加文档，IndexRequest</li>
+<li>获取文档，GetIndexRequest</li>
+<li>更新文档，UpdateRequest</li>
+<li>删除文档，DeleteRequest</li>
+<li>批量操作，BulkRequest</li>
+<li>查询，SearchRequest</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://equator8848.xyz">Equator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://equator8848.xyz/2023/05/26/justdoit-note-es-es-base/">https://equator8848.xyz/2023/05/26/justdoit-note-es-es-base/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://equator8848.xyz" target="_blank">Equator's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ES/">ES</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/12/07/justdoit-antlr-anltr-learning/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">antlr学习</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/15/gossip-developer-do-project/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">学生开发者怎么赚小钱钱以及做项目</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Equator</div><div class="author-info__description">分享互联网技术与摄影</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/libinkai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客搬家中，陆续将文章迁移进来...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="toc-number">1.1.</span> <span class="toc-text">相关文档</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">ES安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81"><span class="toc-number">2.1.1.</span> <span class="toc-text">设置用户名和密码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HEAD%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">HEAD安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kibana%E5%AE%89%E8%A3%85"><span class="toc-number">2.3.</span> <span class="toc-text">Kibana安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E8%AF%8D%E5%99%A8%E5%AE%89%E8%A3%85"><span class="toc-number">2.4.</span> <span class="toc-text">分词器安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E"><span class="toc-number">2.4.1.</span> <span class="toc-text">相关说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-1"><span class="toc-number">2.4.2.</span> <span class="toc-text">安装</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%B9%E6%AF%94"><span class="toc-number">3.1.</span> <span class="toc-text">与关系型数据库对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">3.2.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">字段类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3"><span class="toc-number">3.4.</span> <span class="toc-text">文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4"><span class="toc-number">3.5.</span> <span class="toc-text">集群</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E8%AF%AD%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">操作语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES%E6%95%B4%E4%BD%93"><span class="toc-number">4.1.</span> <span class="toc-text">ES整体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2ES%E7%8A%B6%E6%80%81"><span class="toc-number">4.1.1.</span> <span class="toc-text">查询ES状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C"><span class="toc-number">4.2.</span> <span class="toc-text">索引操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E7%B4%A2%E5%BC%95"><span class="toc-number">4.2.1.</span> <span class="toc-text">查看所有索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E7%B4%A2%E5%BC%95"><span class="toc-number">4.2.2.</span> <span class="toc-text">获取索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="toc-number">4.2.3.</span> <span class="toc-text">创建索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="toc-number">4.2.4.</span> <span class="toc-text">删除索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C"><span class="toc-number">4.3.</span> <span class="toc-text">文档操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E6%A1%A3"><span class="toc-number">4.3.1.</span> <span class="toc-text">创建文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">4.3.2.</span> <span class="toc-text">删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.3.3.</span> <span class="toc-text">查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.4.</span> <span class="toc-text">复杂查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5"><span class="toc-number">4.4.1.</span> <span class="toc-text">分页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%9B%E9%80%89"><span class="toc-number">4.4.2.</span> <span class="toc-text">筛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">4.4.3.</span> <span class="toc-text">排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.4.4.</span> <span class="toc-text">多条件查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="toc-number">4.4.5.</span> <span class="toc-text">过滤器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E6%9D%A1%E4%BB%B6"><span class="toc-number">4.4.6.</span> <span class="toc-text">多条件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B2%BE%E7%A1%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.4.7.</span> <span class="toc-text">精确查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E8%AF%8D%E5%88%86%E6%9E%90"><span class="toc-number">4.4.8.</span> <span class="toc-text">分词分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E4%BA%AE%E6%9F%A5%E8%AF%A2"><span class="toc-number">4.4.9.</span> <span class="toc-text">高亮查询</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringBoot%E9%9B%86%E6%88%90"><span class="toc-number">5.</span> <span class="toc-text">SpringBoot集成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E6%93%8D%E4%BD%9C-1"><span class="toc-number">5.1.</span> <span class="toc-text">索引操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E6%93%8D%E4%BD%9C-1"><span class="toc-number">5.2.</span> <span class="toc-text">文档操作</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/26/justdoit-golang-golang/" title="golang基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="golang基础"/></a><div class="content"><a class="title" href="/2024/05/26/justdoit-golang-golang/" title="golang基础">golang基础</a><time datetime="2024-05-26T14:41:44.000Z" title="发表于 2024-05-26 22:41:44">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="antlr学习"/></a><div class="content"><a class="title" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习">antlr学习</a><time datetime="2023-12-07T13:27:37.000Z" title="发表于 2023-12-07 21:27:37">2023-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES基础"/></a><div class="content"><a class="title" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础">ES基础</a><time datetime="2023-05-26T15:17:09.000Z" title="发表于 2023-05-26 23:17:09">2023-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学生开发者怎么赚小钱钱以及做项目"/></a><div class="content"><a class="title" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目">学生开发者怎么赚小钱钱以及做项目</a><time datetime="2023-05-15T00:16:47.000Z" title="发表于 2023-05-15 08:16:47">2023-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java服务端开发学习路线"/></a><div class="content"><a class="title" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线">Java服务端开发学习路线</a><time datetime="2023-05-09T15:38:17.000Z" title="发表于 2023-05-09 23:38:17">2023-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2024 By Equator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

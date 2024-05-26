@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>使用Git保护你的代码 | Equator's Blog</title><meta name="author" content="Equator"><meta name="copyright" content="Equator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="写给使用Rstudio的同学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Git保护你的代码">
+<meta property="og:url" content="https://equator8848.xyz/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="Equator&#39;s Blog">
+<meta property="og:description" content="写给使用Rstudio的同学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2023-01-09T10:43:50.000Z">
+<meta property="article:modified_time" content="2024-05-26T16:39:36.397Z">
+<meta property="article:author" content="Equator">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://equator8848.xyz/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用Git保护你的代码',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-27 00:39:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Equator's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">使用Git保护你的代码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-09T10:43:50.000Z" title="发表于 2023-01-09 18:43:50">2023-01-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-26T16:39:36.397Z" title="更新于 2024-05-27 00:39:36">2024-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="使用Git保护你的代码"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Git介绍"><a href="#Git介绍" class="headerlink" title="Git介绍"></a>Git介绍</h1><ul>
+<li><p>Git是一个分布式版本控制系统，很多高级功能，团队协作中更是不可缺少它。实际上我们在这里使用Git的目的就是作为代码备份，操作是比较简单的，具体教程可以看廖雪峰的<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/">免费Git教程</a>：</p>
+</li>
+<li><p>初始化完毕之后，一般都是三部曲：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 从工作区添加到stage暂存区</span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line"># 从暂存区提交到当前分支</span><br><span class="line">git commit -m &quot;备注&quot;</span><br><span class="line"></span><br><span class="line"># 推送到远程仓库</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Git分为工作区和版本库两个区域，版本库里面又划分了一个暂存区的区域。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/git%E5%8C%BA%E5%9F%9F.png" alt="img"></p>
+<ul>
+<li><p>每个Git的项目文件夹下，除了隐藏的<code>.git</code>文件夹，这个文件夹之外的其他区域都属于工作区。一般的工作流程：工作区的文件需要添加到Git的暂存区（git add），随后再提交到Git的版本库（git commit）。</p>
+</li>
+<li><p>首次新建的文件都是untracked状态（未跟踪），此时需要git add到暂存区，Git便会在暂存区中生成一个该文件的索引，文件此时处于uncommited状态，需要git commit生成版本库。添加到了版本库之后，再对文件进行修改，那么文件的状态会变为unstaged状态。</p>
+</li>
+<li><p>“所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道。”</p>
+</li>
+<li><p>R语言中的数据RData也是二进制文件，所以也无法使用版本控制系统进行追踪。所以Rstudio生成的.gitignore文件默认也是忽略.RData文件的。</p>
+</li>
+</ul>
+<h1 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h1><blockquote>
+<p>下面演示一下如何在Rstudio中使用Git</p>
+</blockquote>
+<h2 id="1-新建R项目"><a href="#1-新建R项目" class="headerlink" title="1. 新建R项目"></a>1. 新建R项目</h2><blockquote>
+<p>在R Studio里面新建一个项目，新建项目时记得勾选Create a git repository。</p>
+</blockquote>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE.jpg" alt="img"></p>
+<h2 id="2-配置版本控制"><a href="#2-配置版本控制" class="headerlink" title="2. 配置版本控制"></a>2. 配置版本控制</h2><blockquote>
+<p>如果第1步勾选了“Create a git repository”，则可以跳过这一步。已有项目引入Git，也可以按照这个方法操作。</p>
+<p>版本控制系统设置为Git并初始化仓库。（配置这个需要重启Session，请保存好自己的数据）</p>
+</blockquote>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E9%85%8D%E7%BD%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86.png" alt="img"><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E9%85%8D%E7%BD%AE%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E4%B8%BAGit.png" alt="img"></p>
+<h2 id="3-新建仓库"><a href="#3-新建仓库" class="headerlink" title="3. 新建仓库"></a>3. 新建仓库</h2><blockquote>
+<p>如果没有账号则注册账号：</p>
+<p>Gitee（国内的仓库，中文界面，速度较快）：<a target="_blank" rel="noopener" href="https://gitee.com/">https://gitee.com/</a></p>
+<p>GitHub（国外的仓库，英文界面），<a target="_blank" rel="noopener" href="https://github.com/%EF%BC%88[%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B](https://www.jianshu.com/p/21a1558549cc)%EF%BC%89">https://github.com/（[注册教程](https://www.jianshu.com/p/21a1558549cc)）</a></p>
+</blockquote>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E6%96%B0%E5%BB%BAGit%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93.png" alt="img"></p>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E5%91%BD%E4%BB%A4%E5%B1%95%E7%A4%BA.png" alt="img"></p>
+<h2 id="4-关联远程仓库"><a href="#4-关联远程仓库" class="headerlink" title="4. 关联远程仓库"></a>4. 关联远程仓库</h2><p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93.png" alt="img"></p>
+<h2 id="5-配置用户名和邮箱（配置一次就行）"><a href="#5-配置用户名和邮箱（配置一次就行）" class="headerlink" title="5. 配置用户名和邮箱（配置一次就行）"></a>5. 配置用户名和邮箱（配置一次就行）</h2><blockquote>
+<p>告诉git你是谁，只需要配置一次即可</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email &quot;you@example.com&quot;</span><br><span class="line">git config --global user.name &quot;Your Name&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E5%90%8D.png" alt="img"></p>
+<h2 id="6-SSH配置（配置一次就行）"><a href="#6-SSH配置（配置一次就行）" class="headerlink" title="6. SSH配置（配置一次就行）"></a>6. SSH配置（配置一次就行）</h2><blockquote>
+<p>你推送代码到仓库的凭证</p>
+</blockquote>
+<ul>
+<li>生成密钥，复制到粘贴板备用</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 先看看是否已有密钥</span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br><span class="line"></span><br><span class="line">ssh-keygen -t rsa -C &quot;you@example.com&quot;</span><br><span class="line"></span><br><span class="line"># 确认一下，然后复制到粘贴板</span><br><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E9%85%8D%E7%BD%AEssh.png" alt="img"></p>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E5%A4%8D%E5%88%B6ssh%E5%85%AC%E9%92%A5%E5%88%B0%E7%B2%98%E8%B4%B4%E6%9D%BF.png" alt="img"></p>
+<ul>
+<li>github配置SSH公钥</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E9%85%8D%E7%BD%AEssh%E5%85%AC%E9%92%A5.png" alt="img"></p>
+<h2 id="7-配置忽略的文件❗❗❗❗❗"><a href="#7-配置忽略的文件❗❗❗❗❗" class="headerlink" title="7. 配置忽略的文件❗❗❗❗❗"></a>7. 配置忽略的文件❗❗❗❗❗</h2><blockquote>
+<p>Github免费用户单个仓库只有500MB的空间，所以只能用来保存一些关键的数据或者代码，我们在推送的时候，需要在<code>.gitignore</code>文件指出需要忽略哪些文件或者目录。</p>
+</blockquote>
+<ul>
+<li>如果你是将原有的项目上传到Git上面，需要新建data&#x2F;input，data&#x2F;ouput目录，分别作为输入输出目录，便于统一管理。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E9%85%8D%E7%BD%AEgitignore.png" alt="img"></p>
+<h2 id="8-Add、Commit"><a href="#8-Add、Commit" class="headerlink" title="8. Add、Commit"></a>8. Add、Commit</h2><ul>
+<li>界面方式</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E7%95%8C%E9%9D%A2%E6%93%8D%E4%BD%9Cadd%E4%B8%8Ecommit.png" alt="img"></p>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E6%B7%BB%E5%8A%A0commit%E5%A4%87%E6%B3%A8.png" alt="img"><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/commit%E6%88%90%E5%8A%9F.png" alt="img"></p>
+<ul>
+<li>命令行方式</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit <span class="operator">-</span>m <span class="string">&quot;test1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9-推送"><a href="#9-推送" class="headerlink" title="9. 推送"></a>9. 推送</h2><ul>
+<li>命令行方式</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8E%A8%E9%80%81.png" alt="img"></p>
+<ul>
+<li><p>第一次命令行推送完毕后，后续也可以界面操作</p>
+<ul>
+<li><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E7%95%8C%E9%9D%A2%E6%8E%A8%E9%80%81.png" alt="img"></li>
+</ul>
+</li>
+<li><p>此时代码已经推送到远程仓库~</p>
+</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E6%8E%A8%E9%80%81%E6%88%90%E5%8A%9F.png" alt="img"></p>
+<ul>
+<li>如果此时你误删了数据，可以<code>git checkout .</code>恢复，或者界面操作</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E6%81%A2%E5%A4%8D%E6%96%87%E4%BB%B6.png" alt="img"></p>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><h2 id="使用账号密码推送远程仓库时报错"><a href="#使用账号密码推送远程仓库时报错" class="headerlink" title="使用账号密码推送远程仓库时报错"></a>使用账号密码推送远程仓库时报错</h2><blockquote>
+<p>这是因为Github不支持账号+密码的验证方式了，请使用SSH作为登录凭证。</p>
+</blockquote>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E5%AF%86%E7%A0%81%E6%8E%A8%E9%80%81.png" alt="img"></p>
+<h2 id="误操作把大文件add、commit、push了怎么办"><a href="#误操作把大文件add、commit、push了怎么办" class="headerlink" title="误操作把大文件add、commit、push了怎么办"></a>误操作把大文件add、commit、push了怎么办</h2><p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/push%E5%A4%B1%E8%B4%A5.png" alt="img"></p>
+<blockquote>
+<p>下面的操作需要分为几种情况</p>
+</blockquote>
+<h3 id="只是add了"><a href="#只是add了" class="headerlink" title="只是add了"></a>只是add了</h3><ul>
+<li>当你add的时候有一个大块头文件时，add命令执行完毕也要花很长时间，这时候你就要意识到不对劲了。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/add%E7%BC%93%E6%85%A2.png" alt="img"></p>
+<ul>
+<li>add后，使用<code>git status</code>查看一下状态，看看哪些文件被添加了。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/add%E5%A4%A7%E6%96%87%E4%BB%B6%E5%90%8E%E7%8A%B6%E6%80%81.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">拿上面的例子来说：首先，我们需要编辑.gitignore文件，加上忽略iso文件的规则</span><br><span class="line">然后执行命令</span><br><span class="line">git rm -r --cached 你要忽略的文件</span><br><span class="line"># 清理垃圾</span><br><span class="line">git gc --prune=now</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;xxx&quot;</span><br><span class="line"># 推送到远程仓库</span><br><span class="line">git push origin main</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E4%BB%8E%E6%9A%82%E5%AD%98%E5%8C%BA%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6.png" alt="img"></p>
+<ul>
+<li>如果你没有运行<code>git gc --prune=now</code>你会发现，虽然文件没有被推送到远程仓库，但是还在本地仓库里面</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E4%B8%8D%E6%B8%85%E7%90%86%E5%9E%83%E5%9C%BE%E7%9A%84%E5%90%8E%E6%9E%9C1.png" alt="img"></p>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E4%B8%8D%E6%B8%85%E7%90%86%E5%9E%83%E5%9C%BE%E7%9A%84%E5%90%8E%E6%9E%9C2.png" alt="img"></p>
+<h3 id="add且commit了，但是没有push上去"><a href="#add且commit了，但是没有push上去" class="headerlink" title="add且commit了，但是没有push上去"></a>add且commit了，但是没有push上去</h3><ul>
+<li>实验场景</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/commit%E5%A4%A7%E6%96%87%E4%BB%B61.png" alt="img"><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/commit%E5%A4%A7%E6%96%87%E4%BB%B62.png" alt="img"></p>
+<ul>
+<li>回到add之前的版本</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80.png" alt="img"></p>
+<ul>
+<li>新增.gitignore配置，重新add、commit</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/commit%E5%A4%A7%E6%96%87%E4%BB%B63.png" alt="img"></p>
+<ul>
+<li>清理</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="operator">-</span><span class="built_in">c</span> gc.reflogExpire<span class="operator">=</span><span class="number">0</span> <span class="operator">-</span><span class="built_in">c</span> gc.reflogExpireUnreachable<span class="operator">=</span><span class="number">0</span> <span class="operator">-</span><span class="built_in">c</span> gc.rerereresolved<span class="operator">=</span><span class="number">0</span> <span class="operator">-</span><span class="built_in">c</span> gc.rerereunresolved<span class="operator">=</span><span class="number">0</span> <span class="operator">-</span><span class="built_in">c</span> gc.pruneExpire<span class="operator">=</span>now gc <span class="string">&quot;$@&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/commit%E5%A4%A7%E6%96%87%E4%BB%B64.png" alt="img"></p>
+<h3 id="add且commit了，且push到远程仓库了"><a href="#add且commit了，且push到远程仓库了" class="headerlink" title="add且commit了，且push到远程仓库了"></a>add且commit了，且push到远程仓库了</h3><ul>
+<li>可以使用BFG工具清理文件，<a target="_blank" rel="noopener" href="https://rtyley.github.io/bfg-repo-cleaner/">官网</a>，此处不展开</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https<span class="operator">:</span><span class="operator">/</span><span class="operator">/</span>maven.aliyun.com<span class="operator">/</span>repository<span class="operator">/</span>public<span class="operator">/</span>com<span class="operator">/</span>madgag<span class="operator">/</span>bfg<span class="operator">/</span><span class="number">1.14</span>.0<span class="operator">/</span>bfg<span class="operator">-</span><span class="number">1.14</span>.0.jar</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/%E8%A1%A8%E6%83%85%E5%8C%85.png" alt="img"></p>
+<h2 id="三部曲都有点烦，可以再简化吗？"><a href="#三部曲都有点烦，可以再简化吗？" class="headerlink" title="三部曲都有点烦，可以再简化吗？"></a>三部曲都有点烦，可以再简化吗？</h2><blockquote>
+<p>可以使用脚本来简化一下，将下面的push.sh文件放到项目的根目录下即可</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">if [ &quot;$1&quot; ]; then</span><br><span class="line">	msg=$1</span><br><span class="line">else    </span><br><span class="line">	msg=&quot;update code at `date`&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">git commit -m &quot;$msg&quot;</span><br><span class="line"></span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用</span></span><br><span class="line">sh push.sh <span class="string">&quot;XX修改&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不包含commit信息，那么脚本会自动添加commit信息</span></span><br><span class="line">sh push.sh </span><br></pre></td></tr></table></figure>
+
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7024922528514572302">https://juejin.cn/post/7024922528514572302</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cposture/p/git.html">https://www.cnblogs.com/cposture/p/git.html</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://equator8848.xyz">Equator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://equator8848.xyz/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/">https://equator8848.xyz/2023/01/09/justdoit-data-protection-%E4%BD%BF%E7%94%A8Git%E4%BF%9D%E6%8A%A4%E4%BB%A3%E7%A0%81/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://equator8848.xyz" target="_blank">Equator's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/Git/">Git</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/09/justdoit-note-mysql-sql-optimization/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">sql调优</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/09/justdoit-data-protection-%E5%89%8D%E8%A8%80%E4%B8%8Etrash/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">数据保护指南</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/01/09/justdoit-data-protection-%E5%89%8D%E8%A8%80%E4%B8%8Etrash/" title="数据保护指南"><img class="cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-09</div><div class="title">数据保护指南</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Equator</div><div class="author-info__description">分享互联网技术与摄影</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/libinkai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客搬家中，陆续将文章迁移进来...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">Git介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">基本配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%96%B0%E5%BB%BAR%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.1.</span> <span class="toc-text">1. 新建R项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%85%8D%E7%BD%AE%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">2. 配置版本控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="toc-number">2.3.</span> <span class="toc-text">3. 新建仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%85%B3%E8%81%94%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-number">2.4.</span> <span class="toc-text">4. 关联远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AE%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E9%82%AE%E7%AE%B1%EF%BC%88%E9%85%8D%E7%BD%AE%E4%B8%80%E6%AC%A1%E5%B0%B1%E8%A1%8C%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">5. 配置用户名和邮箱（配置一次就行）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-SSH%E9%85%8D%E7%BD%AE%EF%BC%88%E9%85%8D%E7%BD%AE%E4%B8%80%E6%AC%A1%E5%B0%B1%E8%A1%8C%EF%BC%89"><span class="toc-number">2.6.</span> <span class="toc-text">6. SSH配置（配置一次就行）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E9%85%8D%E7%BD%AE%E5%BF%BD%E7%95%A5%E7%9A%84%E6%96%87%E4%BB%B6%E2%9D%97%E2%9D%97%E2%9D%97%E2%9D%97%E2%9D%97"><span class="toc-number">2.7.</span> <span class="toc-text">7. 配置忽略的文件❗❗❗❗❗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Add%E3%80%81Commit"><span class="toc-number">2.8.</span> <span class="toc-text">8. Add、Commit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%8E%A8%E9%80%81"><span class="toc-number">2.9.</span> <span class="toc-text">9. 推送</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">常见问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%E6%8E%A8%E9%80%81%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%97%B6%E6%8A%A5%E9%94%99"><span class="toc-number">3.1.</span> <span class="toc-text">使用账号密码推送远程仓库时报错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AF%E6%93%8D%E4%BD%9C%E6%8A%8A%E5%A4%A7%E6%96%87%E4%BB%B6add%E3%80%81commit%E3%80%81push%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">3.2.</span> <span class="toc-text">误操作把大文件add、commit、push了怎么办</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AA%E6%98%AFadd%E4%BA%86"><span class="toc-number">3.2.1.</span> <span class="toc-text">只是add了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add%E4%B8%94commit%E4%BA%86%EF%BC%8C%E4%BD%86%E6%98%AF%E6%B2%A1%E6%9C%89push%E4%B8%8A%E5%8E%BB"><span class="toc-number">3.2.2.</span> <span class="toc-text">add且commit了，但是没有push上去</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add%E4%B8%94commit%E4%BA%86%EF%BC%8C%E4%B8%94push%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E4%BA%86"><span class="toc-number">3.2.3.</span> <span class="toc-text">add且commit了，且push到远程仓库了</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E9%83%A8%E6%9B%B2%E9%83%BD%E6%9C%89%E7%82%B9%E7%83%A6%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%86%8D%E7%AE%80%E5%8C%96%E5%90%97%EF%BC%9F"><span class="toc-number">3.3.</span> <span class="toc-text">三部曲都有点烦，可以再简化吗？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-number">4.</span> <span class="toc-text">附录</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/26/justdoit-golang-golang/" title="golang基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="golang基础"/></a><div class="content"><a class="title" href="/2024/05/26/justdoit-golang-golang/" title="golang基础">golang基础</a><time datetime="2024-05-26T14:41:44.000Z" title="发表于 2024-05-26 22:41:44">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="antlr学习"/></a><div class="content"><a class="title" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习">antlr学习</a><time datetime="2023-12-07T13:27:37.000Z" title="发表于 2023-12-07 21:27:37">2023-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES基础"/></a><div class="content"><a class="title" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础">ES基础</a><time datetime="2023-05-26T15:17:09.000Z" title="发表于 2023-05-26 23:17:09">2023-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学生开发者怎么赚小钱钱以及做项目"/></a><div class="content"><a class="title" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目">学生开发者怎么赚小钱钱以及做项目</a><time datetime="2023-05-15T00:16:47.000Z" title="发表于 2023-05-15 08:16:47">2023-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java服务端开发学习路线"/></a><div class="content"><a class="title" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线">Java服务端开发学习路线</a><time datetime="2023-05-09T15:38:17.000Z" title="发表于 2023-05-09 23:38:17">2023-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2024 By Equator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

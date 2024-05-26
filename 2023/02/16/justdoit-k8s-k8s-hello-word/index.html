@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>k8s基础 | Equator's Blog</title><meta name="author" content="Equator"><meta name="copyright" content="Equator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="K8S基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k8s基础">
+<meta property="og:url" content="https://equator8848.xyz/2023/02/16/justdoit-k8s-k8s-hello-word/index.html">
+<meta property="og:site_name" content="Equator&#39;s Blog">
+<meta property="og:description" content="K8S基础知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2023-02-16T13:26:51.000Z">
+<meta property="article:modified_time" content="2024-05-26T16:39:36.441Z">
+<meta property="article:author" content="Equator">
+<meta property="article:tag" content="K8S">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://equator8848.xyz/2023/02/16/justdoit-k8s-k8s-hello-word/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'k8s基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-27 00:39:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Equator's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">k8s基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-02-16T13:26:51.000Z" title="发表于 2023-02-16 21:26:51">2023-02-16</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-26T16:39:36.441Z" title="更新于 2024-05-27 00:39:36">2024-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="k8s基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><ul>
+<li>docker让我们可以轻松地运行一个容器，生产环境中我们一般需要在多个节点部署服务，这就需要使用容器编排技术让多个节点上的多个容器协调工作。</li>
+<li>官方文档：<a target="_blank" rel="noopener" href="https://kubernetes.io/zh-cn/docs/concepts/overview/components/">https://kubernetes.io/zh-cn/docs/concepts/overview/components/</a></li>
+</ul>
+<h2 id="集群架构"><a href="#集群架构" class="headerlink" title="集群架构"></a>集群架构</h2><ul>
+<li>master，主节点，控制平台，一般不运行任务</li>
+<li>worker，工作节点</li>
+</ul>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><ul>
+<li>etcd，分布式键值系统</li>
+<li>api server，集群的统一入口，协调各组件，以HTTP API提供接口服务。所有对象资源的增删改查、监听操作都交给APIServer处理后再由Etcd存储</li>
+<li>scheduler，根据调度算法为新创建的Pod选择一个Node节点</li>
+<li>controller-manager，处理集群中常规后台任务，一个资源对应一个控制器，而ControllerManager就是负责管理这些控制器的</li>
+<li>cloud-controller-manager</li>
+<li>Kubelet，kubelet是Master在Node节点上的Agent，管理本机运行容器的生命周期，比如创建容器、Pod挂载数据卷等</li>
+<li>Kube-Proxy，在Node节点上实现Pod网络代理，维护网络规则和负载均衡工作</li>
+<li>Docker，运行容器</li>
+</ul>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><ul>
+<li><p>Pod</p>
+<ul>
+<li>K8S调度、管理的最小单位，一个Pod可以包含一个或者多个容器。一个工作节点可以有多个pod。</li>
+</ul>
+</li>
+<li><p>Label&amp;Selector</p>
+<ul>
+<li>资源标识符与选择器</li>
+</ul>
+</li>
+<li><p>Pause容器</p>
+<ul>
+<li>用于Pod内部网络通信</li>
+</ul>
+</li>
+<li><p>Replication Controller</p>
+<ul>
+<li>副本控制器，RC与ReplicaSet、Deployment三者组成Replication Controller</li>
+</ul>
+</li>
+<li><p>Deployment</p>
+<ul>
+<li>无状态工作负载</li>
+</ul>
+</li>
+<li><p>StatefulSet</p>
+<ul>
+<li>有状态集群</li>
+<li>名称有序，增加时顺序，减少时逆序</li>
+<li>重建后名称不变，但是IP变化，推荐搭配Service的None使用</li>
+</ul>
+</li>
+<li><p>Service</p>
+<ul>
+<li>提供统一的服务访问入口、服务代理、服务发现</li>
+<li>通过标签关联对应的pod，生命周期不与Pod绑定，不会因为Pod的重新创建而改变IP</li>
+<li>提供负载均衡功能</li>
+<li>种类<ul>
+<li>ClusterIP，集群内部可以访问（默认模式）</li>
+<li>NodePort，节点可以访问</li>
+<li>LoadBalancer，负载均衡模式，需要云服务商的负载均衡器才能使用</li>
+<li>None：不分配IP，只使用名字访问</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>NameSpace</p>
+<ul>
+<li>命名空间，资源的集合</li>
+</ul>
+</li>
+<li><p>Volume</p>
+<ul>
+<li>存储卷，集群中的共享资源</li>
+</ul>
+</li>
+<li><p>Endpoint</p>
+<ul>
+<li>逻辑概念，标识服务进程的访问点</li>
+<li>Pod的IP+容器端口&#x3D;Endpoint</li>
+</ul>
+</li>
+<li><p>DaemonSet</p>
+<ul>
+<li>在每个节点上跑一个 Pod，可以用来做节点监控、节点日志收集等</li>
+</ul>
+</li>
+<li><p>Job &amp; CronJob</p>
+<ul>
+<li>Job 用来表达的是一次性的任务，而 CronJob 会根据其时间规划反复运行</li>
+</ul>
+</li>
+</ul>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="minikube"><a href="#minikube" class="headerlink" title="minikube"></a>minikube</h2><blockquote>
+<p>实验版</p>
+</blockquote>
+<h2 id="云厂商版K8S"><a href="#云厂商版K8S" class="headerlink" title="云厂商版K8S"></a>云厂商版K8S</h2><ul>
+<li>master节点由云厂商运维，只需要部署worker节点</li>
+</ul>
+<h2 id="kubeadm"><a href="#kubeadm" class="headerlink" title="kubeadm"></a>kubeadm</h2><blockquote>
+<p>Ubuntu 20.04、Docker 20.10.12、K8S 1.17.3</p>
+</blockquote>
+<h3 id="安装软件源"><a href="#安装软件源" class="headerlink" title="安装软件源"></a>安装软件源</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL http://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo add-apt-repository &quot;deb http://mirrors.aliyun.com/kubernetes/apt kubernetes-xenial main&quot;</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<h3 id="安装组件"><a href="#安装组件" class="headerlink" title="安装组件"></a>安装组件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y kubelet=1.17.3-00 kubeadm=1.17.3-00 kubectl=1.17.3-00</span><br></pre></td></tr></table></figure>
+
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ul>
+<li>关闭交换空间</li>
+<li>安装docker</li>
+<li>配置docker<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/etc/docker/daemon.json</span></span><br><span class="line">&#123;</span><br><span class="line">  &quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="引导"><a href="#引导" class="headerlink" title="引导"></a>引导</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start kubelet</span><br><span class="line"></span><br><span class="line">sudo systemctl enable kubelet</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubeadm init --pod-network-cidr=10.244.0.0/16 --kubernetes-version v1.17.3 --apiserver-advertise-address &lt;NET_INTERFACE_IP&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="用户权限配置"><a href="#用户权限配置" class="headerlink" title="用户权限配置"></a>用户权限配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p $HOME/.kube</span><br><span class="line">sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span><br><span class="line">sudo chown $(id -u):$(id -g) $HOME/.kube/config</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h3><blockquote>
+<p>这个必须配置，否则节点是NotReady状态</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl --insecure -sfL https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml | kubectl apply -f -</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令补全"><a href="#命令补全" class="headerlink" title="命令补全"></a>命令补全</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;source &lt;(kubectl completion bash)&#x27; &gt;&gt; ~/.bashrc</span><br><span class="line">echo &#x27;source /usr/share/bash-completion/bash_completion&#x27; &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><h2 id="部署Java服务"><a href="#部署Java服务" class="headerlink" title="部署Java服务"></a>部署Java服务</h2><ul>
+<li>打Jar包</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install maven</span><br><span class="line"></span><br><span class="line">git clone https://github.com/libinkai/k8s-demo.git</span><br><span class="line"></span><br><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>构建Docker镜像</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t equator/k8s-demo .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>推送镜像到远程仓库：<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instance/dashboard">https://cr.console.aliyun.com/cn-hangzhou/instance/dashboard</a></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 登录</span><br><span class="line">docker login --username=$user_name registry.cn-hangzhou.aliyuncs.com</span><br><span class="line"></span><br><span class="line">docker tag [ImageId] registry.cn-hangzhou.aliyuncs.com/equator-demo/k8s-demo:[镜像版本号]</span><br><span class="line"></span><br><span class="line">docker push registry.cn-hangzhou.aliyuncs.com/equator-demo/k8s-demo:[镜像版本号]</span><br><span class="line"></span><br><span class="line"># 集群授权</span><br><span class="line">kubectl create secret docker-registry [$Reg_Secret] --docker-server=[$Registry] --docker-username=[$Username] --docker-password=[$Password] --docker-email=[$Email]</span><br></pre></td></tr></table></figure>
+
+<h3 id="单Pod部署"><a href="#单Pod部署" class="headerlink" title="单Pod部署"></a>单Pod部署</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: pod-demo</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">    - name: java-demo</span><br><span class="line">      image: registry.cn-hangzhou.aliyuncs.com/equator-demo/k8s-demo:1.0.0</span><br><span class="line">      ports:</span><br><span class="line">        - containerPort: 8080</span><br><span class="line">  imagePullSecrets:</span><br><span class="line">    - name: aliyun</span><br><span class="line"></span><br><span class="line">// 部署</span><br><span class="line">kubectl apply -f pod.yaml</span><br><span class="line"></span><br><span class="line">// 查看</span><br><span class="line">kubectl get pods</span><br><span class="line"></span><br><span class="line">// 测试</span><br><span class="line">curl http://10.244.1.8:8080/api/v1/test/ip</span><br><span class="line"></span><br><span class="line">// 删除</span><br><span class="line">kubectl delete pod/pod-demo</span><br></pre></td></tr></table></figure>
+
+<h3 id="Deployment部署"><a href="#Deployment部署" class="headerlink" title="Deployment部署"></a>Deployment部署</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: apps/v1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: deployment-demo</span><br><span class="line">  labels:</span><br><span class="line">    app: java-demo</span><br><span class="line">spec:</span><br><span class="line">  replicas: 3</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: java-demo</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: java-demo</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">        - name: java-demo</span><br><span class="line">          image: registry.cn-hangzhou.aliyuncs.com/equator-demo/k8s-demo:1.0.0</span><br><span class="line">          ports:</span><br><span class="line">            - containerPort: 8080</span><br><span class="line">      imagePullSecrets:</span><br><span class="line">        - name: aliyun</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><ul>
+<li>查看node、pod</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -o wide|json</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看详情</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe pod pod-name</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看log</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs pod-name -f</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进入Pod容器终端，c参数进入指定容器</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl exec -it pod-name --bash [-c 容器名]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>扩容缩容</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl scale deployment deployment-name -replicas=5</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看历史</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl rollout history deployment xxx </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>映射端口</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl port-forward pod-name port:port</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>回滚</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl rollout undo deployment xxx [--to-revision=2]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除部署</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete deployment xxx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>全部资源</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl get all</span><br><span class="line"></span><br><span class="line">kubectl delete all --all</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重新部署</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl rollout restart deployment test-k8s</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>暂停与恢复，暂停后，对 deployment 的修改不会立刻生效，恢复后才应用设置</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl rollout pause deployment test-k8s</span><br><span class="line"></span><br><span class="line">kubectl rollout resume deployment test-k8s</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a>数据持久化</h1><ul>
+<li>K8S不会处理数据的存储，需要自行挂载存储，有如下几种<ul>
+<li>本地磁盘</li>
+<li>云存储</li>
+<li>NFS</li>
+</ul>
+</li>
+<li>存储的架构<ul>
+<li>Persistent Volume Claim (PVC)，对存储需求的一个申明，可以理解为一个申请单，系统根据这个申请单去找一个合适的 PV（使用者关心）</li>
+<li>Persistent Volume (PV)，描述卷的具体信息，例如磁盘大小，访问模式（集群运维者关心）</li>
+<li>Storage Class (SC)，将存储卷划分为不同的种类，例如：SSD，普通磁盘，本地磁盘，按需使用</li>
+</ul>
+</li>
+</ul>
+<h1 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/9EX8Cp45">https://k8s.easydoc.net/docs/dRiQjyTY/28366845/6GiNOzyZ/9EX8Cp45</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://equator8848.xyz">Equator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://equator8848.xyz/2023/02/16/justdoit-k8s-k8s-hello-word/">https://equator8848.xyz/2023/02/16/justdoit-k8s-k8s-hello-word/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://equator8848.xyz" target="_blank">Equator's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/K8S/">K8S</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/02/26/photography-xt4/"><img class="prev-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">xt4使用笔记</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/24/justdoit-lcdp-hello-lcdp/"><img class="next-cover" src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">初识低代码</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Equator</div><div class="author-info__description">分享互联网技术与摄影</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/libinkai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客搬家中，陆续将文章迁移进来...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">1.</span> <span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E7%BE%A4%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">集群架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6"><span class="toc-number">1.2.</span> <span class="toc-text">组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%84%E6%BA%90"><span class="toc-number">1.3.</span> <span class="toc-text">资源</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#minikube"><span class="toc-number">2.1.</span> <span class="toc-text">minikube</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%91%E5%8E%82%E5%95%86%E7%89%88K8S"><span class="toc-number">2.2.</span> <span class="toc-text">云厂商版K8S</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kubeadm"><span class="toc-number">2.3.</span> <span class="toc-text">kubeadm</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">2.3.1.</span> <span class="toc-text">安装软件源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6"><span class="toc-number">2.3.2.</span> <span class="toc-text">安装组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.3.3.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%AF%BC"><span class="toc-number">2.3.4.</span> <span class="toc-text">引导</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.5.</span> <span class="toc-text">用户权限配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C"><span class="toc-number">2.3.6.</span> <span class="toc-text">配置网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%A5%E5%85%A8"><span class="toc-number">2.3.7.</span> <span class="toc-text">命令补全</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E6%88%98"><span class="toc-number">3.</span> <span class="toc-text">实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2Java%E6%9C%8D%E5%8A%A1"><span class="toc-number">3.1.</span> <span class="toc-text">部署Java服务</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95Pod%E9%83%A8%E7%BD%B2"><span class="toc-number">3.1.1.</span> <span class="toc-text">单Pod部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deployment%E9%83%A8%E7%BD%B2"><span class="toc-number">3.1.2.</span> <span class="toc-text">Deployment部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">3.2.</span> <span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">4.</span> <span class="toc-text">数据持久化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="toc-number">5.</span> <span class="toc-text">相关文档</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/26/justdoit-golang-golang/" title="golang基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="golang基础"/></a><div class="content"><a class="title" href="/2024/05/26/justdoit-golang-golang/" title="golang基础">golang基础</a><time datetime="2024-05-26T14:41:44.000Z" title="发表于 2024-05-26 22:41:44">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="antlr学习"/></a><div class="content"><a class="title" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习">antlr学习</a><time datetime="2023-12-07T13:27:37.000Z" title="发表于 2023-12-07 21:27:37">2023-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES基础"/></a><div class="content"><a class="title" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础">ES基础</a><time datetime="2023-05-26T15:17:09.000Z" title="发表于 2023-05-26 23:17:09">2023-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学生开发者怎么赚小钱钱以及做项目"/></a><div class="content"><a class="title" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目">学生开发者怎么赚小钱钱以及做项目</a><time datetime="2023-05-15T00:16:47.000Z" title="发表于 2023-05-15 08:16:47">2023-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java服务端开发学习路线"/></a><div class="content"><a class="title" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线">Java服务端开发学习路线</a><time datetime="2023-05-09T15:38:17.000Z" title="发表于 2023-05-09 23:38:17">2023-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2024 By Equator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

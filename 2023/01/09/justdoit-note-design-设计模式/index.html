@@ -1,0 +1,550 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>设计模式 | Equator's Blog</title><meta name="author" content="Equator"><meta name="copyright" content="Equator"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="优雅永不过时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="https://equator8848.xyz/2023/01/09/justdoit-note-design-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Equator&#39;s Blog">
+<meta property="og:description" content="优雅永不过时">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg">
+<meta property="article:published_time" content="2023-01-09T00:43:50.000Z">
+<meta property="article:modified_time" content="2024-05-26T16:39:36.441Z">
+<meta property="article:author" content="Equator">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://equator8848.xyz/2023/01/09/justdoit-note-design-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '设计模式',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-27 00:39:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Equator's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">设计模式</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-09T00:43:50.000Z" title="发表于 2023-01-09 08:43:50">2023-01-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-26T16:39:36.441Z" title="更新于 2024-05-27 00:39:36">2024-05-27</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AC%94%E8%AE%B0%E5%A4%87%E5%BF%98%E5%BD%95/">笔记备忘录</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="设计模式"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="面向对象设计的六大原则"><a href="#面向对象设计的六大原则" class="headerlink" title="面向对象设计的六大原则"></a>面向对象设计的六大原则</h1><h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><ul>
+<li><p>原则定义：一个类应该只负责一个职责。</p>
+</li>
+<li><p>原则也适用于方法，反模式如下</p>
+<ul>
+<li>方法中if else语句很多</li>
+<li>一个类依赖了很多其它的类</li>
+<li>方法根据输入值执行不同的任务</li>
+</ul>
+</li>
+<li><p>实践方法：高内聚，低耦合。</p>
+</li>
+</ul>
+<h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><ul>
+<li>原则定义：一个软件实体应当对扩展开放，对修改关闭。即软件实体应尽量在不修改原有代码的情况下进行扩展。</li>
+<li>实践方法：一个类一旦开发完成，后续增加新的功能就不应该通过修改这个类来完成，而是通过继承，增加新的类。（并不绝对，应该完全重构还是得重构）</li>
+</ul>
+<h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><ul>
+<li>原则定义：所有引用基类（父类）的地方必须能透明地使用其子类的对象。</li>
+<li>实践方法：面向抽象（接口）编程，尽量避免重写父类的方法。</li>
+</ul>
+<h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><ul>
+<li>原则定义：抽象不应该依赖于细节，细节应当依赖于抽象。</li>
+<li>声明方法参数的类型，实例变量的类型，方法的返回值类型，类型强制转换等等场景，尽量依赖抽象。</li>
+</ul>
+<h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><ul>
+<li>原则定义：使用多个专门的接口，而不使用单一的总接口，即客户端不应该依赖那些它不需要的接口。</li>
+<li>实践方法：接口中的方法需要功能统一。</li>
+</ul>
+<h2 id="迪米特原则"><a href="#迪米特原则" class="headerlink" title="迪米特原则"></a>迪米特原则</h2><blockquote>
+<p>又称最少知识原则</p>
+</blockquote>
+<ul>
+<li>原则定义：一个软件实体应当尽可能少地与其他实体发生相互作用。</li>
+<li>实践方法：“隐藏自己，做好清理”，利用封装，将不必要暴露的东西隐藏起来。</li>
+</ul>
+<h1 id="UML类图"><a href="#UML类图" class="headerlink" title="UML类图"></a>UML类图</h1><p><img src="/2023/01/09/justdoit-note-design-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/IMG_20220626_110544.jpg" alt="IMG_20220626_110544"></p>
+<h1 id="设计模式概览"><a href="#设计模式概览" class="headerlink" title="设计模式概览"></a>设计模式概览</h1><h2 id="创建型"><a href="#创建型" class="headerlink" title="创建型"></a>创建型</h2><blockquote>
+<p>主要解决如何灵活创建对象或者类的问题</p>
+</blockquote>
+<h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><blockquote>
+<p>静态工厂方法（Static Factory Method）模式，是由一个工厂对象决定创建出哪一种产品类的实例，非GOF23种设计模式之一，但是非常常用。</p>
+</blockquote>
+<ul>
+<li><p>可以在一个工厂中生产一个产品类的产品，如电脑，可以生产IOS以及Windows的。</p>
+</li>
+<li><p>使用过程中也可以使用java反射机制代替条件判断。</p>
+</li>
+<li><p>使用场景：</p>
+<ul>
+<li>某个类频繁改动，被引用很多，不想直接new这个类的对象</li>
+<li>某个类的构建过程很复杂</li>
+<li>某个类的构建过程中依赖的依赖项无法在调用处找到</li>
+</ul>
+</li>
+</ul>
+<h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><blockquote>
+<p>定义一个用于创建对象的接口，让子类决定实例化哪个类。</p>
+<p>工厂方法模式是简单工厂方法模式的升级版本，为了克服简单工厂方法模式的缺点而生，使用场景简单工厂方法完全一样</p>
+</blockquote>
+<ul>
+<li>为每一种要生产的产品配备一个工厂，就是说每个工厂只生产一种特定的产品。这样做的好处就是当以后需要增加新的产品时，直接新增加一个对应的工厂就可以了，而不是去修改原有的工厂，符合编程原则的<strong>开闭原则</strong>。</li>
+</ul>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><blockquote>
+<p>抽象工厂为创建一组相关或者是相互依赖的对象提供一个接口，而不需要指定他们的具体类</p>
+</blockquote>
+<ul>
+<li><p>使用场景</p>
+<ul>
+<li>暂无</li>
+</ul>
+</li>
+<li><p>一个工厂要生产某一个品牌家族里面的系列产品，关键在于<strong>品牌家族</strong>的概念。如小米和苹果，都有自己的工厂，也实现同一个抽象工厂。抽象工厂有多个方法，可以生产多个产品类。</p>
+</li>
+</ul>
+<h3 id="构建者模式"><a href="#构建者模式" class="headerlink" title="构建者模式"></a>构建者模式</h3><blockquote>
+<p>将一个复杂对象的构建与其表示分离，使得同样的构建过程可以创建不同的表示</p>
+</blockquote>
+<ul>
+<li>使用场景：<ul>
+<li>当一个类的构造函数参数个数超过4个，而且这些参数有些是可选的参数，考虑使用构造者模式。</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>给目标类创建一个静态内部类Builder，其成员变量与目标类一致（copy过去）</li>
+<li>目标类构造方法改为私有的，参数为Builder</li>
+<li>Builder的构造方法参数为目标类的必填参数</li>
+<li>Builder中的方法，对成员变量进行赋值操作，返回Builder类型实例（以便链式调用）</li>
+<li>Builder提供build方法，构建目标类的实例并返回（将自己this作为参数调用目标类的构造函数）</li>
+</ul>
+</li>
+<li>真实场景<ul>
+<li>StringBuilder</li>
+</ul>
+</li>
+</ul>
+<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><ul>
+<li>使用场景<ul>
+<li>保证系统中只有一个实例，需要考虑类实现序列化时如何保证？如何保证不能通过反射创建新的实例？</li>
+</ul>
+</li>
+<li>使用方法，5种方法</li>
+</ul>
+<ol>
+<li>饿汉式，静态常量，定义实例对象时直接初始化，线程安全</li>
+<li><del>懒汉式，单null检查，线程不安全</del></li>
+<li>懒汉式+同步方法，线程安全，性能低</li>
+<li>双重null检查（同步块+volatile关键字禁止重排序）</li>
+<li>静态内部类，（Holder），推荐</li>
+<li>枚举，唯一一个不能反射创建的方法，使用枚举充当Holder，但是不能懒加载。（枚举不能被继承且只允许实例化一次）</li>
+</ol>
+<h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><blockquote>
+<p>使用原型实例指定待创建对象的类型，并且通过复制这个原型来创建新的对象。</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>某个类创建实例代价过高</li>
+<li>当构建的多个对象实例都需要处于某种初始状态</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>实现<code>java.lang.Cloneable</code>接口</li>
+</ul>
+</li>
+<li>真实场景<ul>
+<li>Spring创建Bean</li>
+</ul>
+</li>
+</ul>
+<h2 id="结构型"><a href="#结构型" class="headerlink" title="结构型"></a>结构型</h2><blockquote>
+<p>主要用于将类或对象进行组合从而构建灵活而高效的结构</p>
+</blockquote>
+<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><blockquote>
+<p>将一个接口转换为客户端所期待的接口，从而使两个接口不兼容的类可以在一起工作，也称为Wrapper（包装器）</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>需要使用一个现存的类，但它提供的接口与我们系统的接口不兼容，而我们还不能修改它</li>
+<li>整合其它多个团队开发的奇奇怪怪的模块</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li><code>Adapter</code>实现目标接口<code>Target</code>，而且必须要引用<code>Adaptee</code>，因为我们要在此类中包装<code>Adaptee</code>的功能</li>
+</ul>
+</li>
+</ul>
+<h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><blockquote>
+<p>桥接模式是将抽象部分与它的实现部分分离，使它们都可以独立地变化。又称为柄体(Handle and Body)模式或接口(Interfce)模式。</p>
+</blockquote>
+<ul>
+<li>假设某个汽车厂商生产三种品牌的汽车：Big、Tiny和Boss，每种品牌又可以选择燃油、纯电和混合动力。如果用传统的继承来表示各个最终车型，一共有3个抽象类加9个最终子类。</li>
+</ul>
+<p><img src="/2023/01/09/justdoit-note-design-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230109160317407.png" alt="image-20230109160317407"></p>
+<p><img src="/2023/01/09/justdoit-note-design-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/image-20230109160420459.png" alt="image-20230109160420459"></p>
+<ul>
+<li>使用场景<ul>
+<li>避免直接继承带来的子类爆炸</li>
+<li>出现两个变化维度时可以考虑</li>
+</ul>
+</li>
+<li>真实使用场景<ul>
+<li>Java IO流</li>
+</ul>
+</li>
+</ul>
+<h3 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h3><blockquote>
+<p>组合模式允许以相同的方式处理单个对象和对象的组合体</p>
+</blockquote>
+<ul>
+<li><p>使用场景</p>
+<ul>
+<li>当你的程序结构有类似树一样的层级关系时，例如文件系统，视图树，公司组织架构等等</li>
+<li>当你要以统一的方式操作单个对象和由这些对象组成的组合对象的时候</li>
+</ul>
+</li>
+<li><p>使用方法</p>
+<ul>
+<li>设计一个个体与组合通用的接口Component，根据透明方式以及安全方式的不同，有不同的处理</li>
+<li>设计组合类，其继承Component并持有一个Component的集合</li>
+<li>叶子节点只需要继承Component</li>
+</ul>
+</li>
+</ul>
+<h3 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h3><blockquote>
+<p>装饰模式是在不必改变原类和使用继承的情况下，动态地扩展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象</p>
+</blockquote>
+<ul>
+<li><p>使用场景</p>
+<ul>
+<li>需要在运行时动态的给一个对象增加额外的职责时候</li>
+<li>需要给一个现有的类增加职责，但是又不想通过继承的方式来实现的时候（应该优先使用组合而非继承），或者通过继承的方式不现实的时候（可能由于排列组合产生类爆炸的问题）</li>
+</ul>
+</li>
+<li><p>使用方法</p>
+<ul>
+<li>装饰者基类实现和被装饰原始对象相同的接口I，内部持有一个接口I的引用，用于接收被装饰的对象</li>
+<li>构建多个装饰者子类，继承装饰者基类，实现不同的功能，在I的方法中加入自己的逻辑</li>
+</ul>
+</li>
+<li><p>与代理模式的区别</p>
+<ul>
+<li>代理模式侧重于使用代理类增强被代理对象的访问，而装饰者模式侧重于使用装饰者类来对被装饰对象的功能进行增减</li>
+<li>装饰者模式主要是提供一组装饰者类，然后形成一个<strong>装饰者栈</strong>，来动态的对某一个对象不断加强，而代理一般不会使用多级代理</li>
+</ul>
+</li>
+<li><p>和适配器模式的区别</p>
+<ul>
+<li>适配器模式的意义是要将一个接口转变成另一个接口，它的目的是通过改变接口来达到重复使用的目的。而装饰器模式不是要改变被装饰对象的接口，而是恰恰要保持原有的接口，但是增强原有对象的功能，或者改变原有对象的处理方式而提升性能</li>
+</ul>
+</li>
+</ul>
+<h3 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h3><blockquote>
+<p>提供一个高层次的接口，使得子系统更易于使用，也称为门面模式Facade</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>聚合其它模块</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>Facade类引用其它多个子模块，对外提供统一的接口</li>
+<li>大部分的外观模式没有限制客户端直接使用子系统。也就是说如果用户遇到了通过外观方法无法完成的功能，可以自己调用相关子系统去完成</li>
+</ul>
+</li>
+</ul>
+<h3 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h3><blockquote>
+<p>允许使用对象共享来有效地支持大量细粒度对象</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>存在大量相似对象，每个对象之间只是根据不同的使用场景有些许变化时</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>定义一个共享对象通用的接口，定义所有对象共享的操作（一定要区分出内部状态与外部状态，共享对象只持有内部状态，内部状态不可以从客户端设置，而外部状态必须从客户端设置。）</li>
+<li>实现需要共享的对象类，其一般是一个不可变类，内部只保存需要共享的内部状态，它可能不止一个</li>
+<li>构建共享对象工厂</li>
+</ul>
+</li>
+</ul>
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><blockquote>
+<p>为其他对象提供一种代理以控制对这个对象的访问</p>
+</blockquote>
+<ul>
+<li><p>静态与动态</p>
+<ul>
+<li><p>静态代理：预先确定了代理与被代理者的关系，即类与被代理类的依赖关系在<strong>编译期间</strong>就确定了</p>
+</li>
+<li><p>动态代理：类与被代理类的依赖关系在<strong>运行期</strong>才能确定，应用于AOP</p>
+<ul>
+<li>JDK动态代理：首先使用接口来定义好操作的规范。然后通过<code>Proxy</code>类产生的代理对象调用被代理对象的操作，而这个操作又被分发给<code>InvocationHandler</code>接口的 <code>invoke</code>方法具体执行</li>
+<li>CGLIB动态代理：动态生成一个要代理类的子类，子类重写要代理的类的所有不是final的方法。在子类中采用方法拦截的技术拦截所有父类方法的调用，顺势织入横切逻辑。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="行为型"><a href="#行为型" class="headerlink" title="行为型"></a>行为型</h2><blockquote>
+<p>主要解决类或者对象之间互相通信的问题</p>
+</blockquote>
+<h3 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h3><blockquote>
+<p>避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>一个请求需要被多个对象中的某一个处理，但是到底是哪个对象必须在运行时根据条件决定。</li>
+</ul>
+</li>
+</ul>
+<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><blockquote>
+<p>将一个请求封装成一个对象，从而让用户使用不同的请求把客户端参数化；对请求排队或记录日志，以及支持可撤销的操作。</p>
+</blockquote>
+<ul>
+<li>应用场景<ul>
+<li>当需要将各种执行的动作抽象出来，使用时通过不同的参数来决定执行哪个对象</li>
+<li>当某个或者某些操作需要支持撤销的场景</li>
+<li>当要对操作过程记录日志，以便后期通过日志将操作过程重新做一遍时</li>
+<li>当某个操作需要支持事务操作的时候</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>声明一个命令接口 (Command)，有一个execute方法</li>
+<li>构建那些可以具体完成命令的角色（Receiver）</li>
+<li>构建各种具体命令（ConcreteCommand），接收Receiver作为参数</li>
+<li>构建命令的调用者 （Invoker），可以持有命令的集合，遍历执行</li>
+</ul>
+</li>
+</ul>
+<h3 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h3><blockquote>
+<p>给定一个语言，定义它的文法的一种表示，并定义一个解释器，这个解释器使用该表示来解释语言中的句子。</p>
+</blockquote>
+<ul>
+<li>解释器模式（Interpreter）是一种针对特定问题设计的一种解决方案，如解析字符串匹配，代码解析。</li>
+<li>如Antlr的工作原理？</li>
+</ul>
+<h3 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h3><blockquote>
+<p>提供一种方法顺序访问一个容器对象中的各个元素，而又不需要暴露该对象的内部表示。</p>
+</blockquote>
+<ul>
+<li>Java的集合框架中常用</li>
+</ul>
+<h3 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h3><blockquote>
+<p> 用一个中介对象来封装一系列的对象交互。中介者使各个对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>中介者模式经常用在有众多交互组件的UI上。为了简化UI程序，MVC模式以及MVVM模式都可以看作是Mediator模式的扩展</li>
+</ul>
+</li>
+</ul>
+<h3 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h3><blockquote>
+<p>在不破坏封闭的前提下捕获一个对象的内部状态，并在该对象之外保存这个状态，从而可以将对象恢复到原先保存的状态</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>保存类对象</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>定义Originator，需要保存状态的类</li>
+<li>构建备忘录Memento，一般是个POJO</li>
+<li>构建CareTaker，负责保存和恢复<code>Originator</code>的状态，状态是保存在这类里面的。可以持有一系列备忘录的集合，保存多个状态</li>
+</ul>
+</li>
+</ul>
+<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><blockquote>
+<p>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都可以得到通知并自动更新。</p>
+<p>也被称为发布订阅模式</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>发布订阅</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>被观察者持有观察者的集合</li>
+</ul>
+</li>
+</ul>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><blockquote>
+<p>策略模式定义了一系列的<strong>算法</strong>，并将每一个算法封装起来，使他们可以相互替换。</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li><strong>个操作有好多种实现方法</strong>，而你需要根据不同的情况使用<code>if-else</code>等分支结构来确定使用哪种实现方式。有多种策略可以实现一个特定的目的，使用何种策略取决于调用者（客户端）。</li>
+</ul>
+</li>
+<li>使用方法<ul>
+<li>定义一个抽象策略接口</li>
+<li>定义多个不同的具体的策略类</li>
+</ul>
+</li>
+</ul>
+<h3 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h3><blockquote>
+<p>当一个对象内在状态改变时允许改变其行为，这个对象看起来像是改变了其类。</p>
+</blockquote>
+<ul>
+<li>使用场景</li>
+<li>使用方法<ul>
+<li>定义一个状态接口，有一个action方法。不同状态下的action实现不同</li>
+<li>定义一个Context上下文类，持有状态接口的引用，用于切换状态。提供一个代理的action方法</li>
+<li>定义各种状态类</li>
+</ul>
+</li>
+</ul>
+<h3 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><blockquote>
+<p>在一个方法中定义一个算法的骨架，而将一些步骤的实现延迟到子类中，使得子类可以在不改变一个算法的结构前提下即可重定义该算法的某些特定步骤</p>
+</blockquote>
+<ul>
+<li>使用场景<ul>
+<li>两个或者多个类大体相似，但是个别方法局部不一致，可以使用此模式重构</li>
+</ul>
+</li>
+<li>一般情况下，程序的执行流是子类调用父类的方法，模板方法模式使得程序流程变成了父类调用子类方法，这个使得程序比较难以理解和跟踪。</li>
+</ul>
+<h3 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h3><blockquote>
+<p>封装一些作用于某种数据结构中的各元素的操作，它可以在不改变这个数据结构的前提下定义作用于其内部各个元素的新操作</p>
+</blockquote>
+<ul>
+<li>使用方法<ul>
+<li>构建Element，element类里面将自己this作为参数传递给visitor的visit()方法，把自己交给访问者访问。</li>
+<li>构建ObjectStructure，持有Element的引用集合，可以遍历访问</li>
+<li>构建Visitor接口，一个Element一个visit方法</li>
+</ul>
+</li>
+</ul>
+<h4 id="分派"><a href="#分派" class="headerlink" title="分派"></a>分派</h4><ul>
+<li>分派：根据对象的类型而对方法进行的选择。发生在编译时的分派叫静态分派，例如重载（overload），发生在运行时的分派叫动态分派，例如重写（overwrite）<ul>
+<li>依据单个宗量进行方法的选择就叫单分派，Java 动态分派只根据方法的接收者一个宗量进行分配，所以其是单分派</li>
+<li>依据多个宗量进行方法的选择就叫多分派，Java 静态分派要根据方法的接收者与参数这两个宗量进行分配，所以其是多分派</li>
+</ul>
+</li>
+<li>ObjectStructure遍历element时的accept是一个单分派过程，Element的visitor.visit(this)，也是一次单分派过程。两次动态单分派结合起来就完成了一次伪动态双分派</li>
+</ul>
+<h1 id="个人常用的设计模式"><a href="#个人常用的设计模式" class="headerlink" title="个人常用的设计模式"></a>个人常用的设计模式</h1><ul>
+<li>简单工厂模式：复杂类的构建，list接口以及details接口中对于PO到VO的转换，复用构建过程</li>
+<li>构建者模式：构建飞书机器人的消息文本</li>
+<li>单例模式：可复用，线程安全的的Client</li>
+<li>代理模式：在Windows本地调试KVM接口</li>
+<li>责任链模式：多类型用户登录</li>
+<li>模板方法模式：Java与Groovy函数的业务逻辑，都属于Function，但是细节部分不一样</li>
+</ul>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://shusheng007.top/2021/09/07/999/">https://shusheng007.top/2021/09/07/999/</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://equator8848.xyz">Equator</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://equator8848.xyz/2023/01/09/justdoit-note-design-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">https://equator8848.xyz/2023/01/09/justdoit-note-design-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://equator8848.xyz" target="_blank">Equator's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/09/justdoit-datastream-docker-01-%E5%88%9D%E4%BD%93%E9%AA%8C/"><img class="prev-cover" src="/2023/01/09/justdoit-datastream-docker-01-%E5%88%9D%E4%BD%93%E9%AA%8C/%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Docker初体验</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/08/live-%E5%92%95%E5%92%95%E7%BE%8E%E5%A7%BF%E6%AC%A3%E8%B5%8F/"><img class="next-cover" src="/2023/01/08/live-%E5%92%95%E5%92%95%E7%BE%8E%E5%A7%BF%E6%AC%A3%E8%B5%8F/%E4%BC%98%E9%9B%85%E5%8D%A7%E5%A7%BF.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">咕咕美姿欣赏</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Equator</div><div class="author-info__description">分享互联网技术与摄影</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/libinkai"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">博客搬家中，陆续将文章迁移进来...</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%85%AD%E5%A4%A7%E5%8E%9F%E5%88%99"><span class="toc-number">1.</span> <span class="toc-text">面向对象设计的六大原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">单一职责原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99"><span class="toc-number">1.2.</span> <span class="toc-text">开闭原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99"><span class="toc-number">1.3.</span> <span class="toc-text">里氏替换原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99"><span class="toc-number">1.4.</span> <span class="toc-text">依赖倒置原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E9%9A%94%E7%A6%BB%E5%8E%9F%E5%88%99"><span class="toc-number">1.5.</span> <span class="toc-text">接口隔离原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AA%E7%B1%B3%E7%89%B9%E5%8E%9F%E5%88%99"><span class="toc-number">1.6.</span> <span class="toc-text">迪米特原则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UML%E7%B1%BB%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">UML类图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%A7%88"><span class="toc-number">3.</span> <span class="toc-text">设计模式概览</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">创建型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.1.</span> <span class="toc-text">简单工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.2.</span> <span class="toc-text">工厂方法模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.3.</span> <span class="toc-text">抽象工厂模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.4.</span> <span class="toc-text">构建者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.5.</span> <span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.6.</span> <span class="toc-text">原型模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">结构型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.1.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.2.</span> <span class="toc-text">桥接模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.3.</span> <span class="toc-text">组合模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A3%85%E9%A5%B0%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.4.</span> <span class="toc-text">装饰者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%A7%82%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.5.</span> <span class="toc-text">外观模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.6.</span> <span class="toc-text">享元模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.2.7.</span> <span class="toc-text">代理模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E4%B8%BA%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">行为型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.1.</span> <span class="toc-text">责任链模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.2.</span> <span class="toc-text">命令模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E9%87%8A%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.3.</span> <span class="toc-text">解释器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.4.</span> <span class="toc-text">迭代器模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E4%BB%8B%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.5.</span> <span class="toc-text">中介者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.6.</span> <span class="toc-text">备忘录模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.7.</span> <span class="toc-text">观察者模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.8.</span> <span class="toc-text">策略模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.9.</span> <span class="toc-text">状态模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.10.</span> <span class="toc-text">模板方法模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.3.11.</span> <span class="toc-text">访问者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%B4%BE"><span class="toc-number">3.3.11.1.</span> <span class="toc-text">分派</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">个人常用的设计模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">5.</span> <span class="toc-text">参考文章</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/05/26/justdoit-golang-golang/" title="golang基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="golang基础"/></a><div class="content"><a class="title" href="/2024/05/26/justdoit-golang-golang/" title="golang基础">golang基础</a><time datetime="2024-05-26T14:41:44.000Z" title="发表于 2024-05-26 22:41:44">2024-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="antlr学习"/></a><div class="content"><a class="title" href="/2023/12/07/justdoit-antlr-anltr-learning/" title="antlr学习">antlr学习</a><time datetime="2023-12-07T13:27:37.000Z" title="发表于 2023-12-07 21:27:37">2023-12-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ES基础"/></a><div class="content"><a class="title" href="/2023/05/26/justdoit-note-es-es-base/" title="ES基础">ES基础</a><time datetime="2023-05-26T15:17:09.000Z" title="发表于 2023-05-26 23:17:09">2023-05-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="学生开发者怎么赚小钱钱以及做项目"/></a><div class="content"><a class="title" href="/2023/05/15/gossip-developer-do-project/" title="学生开发者怎么赚小钱钱以及做项目">学生开发者怎么赚小钱钱以及做项目</a><time datetime="2023-05-15T00:16:47.000Z" title="发表于 2023-05-15 08:16:47">2023-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线"><img src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java服务端开发学习路线"/></a><div class="content"><a class="title" href="/2023/05/09/gossip-hexo-tserver-dev-roadmap/" title="Java服务端开发学习路线">Java服务端开发学习路线</a><time datetime="2023-05-09T15:38:17.000Z" title="发表于 2023-05-09 23:38:17">2023-05-09</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2017 - 2024 By Equator</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
